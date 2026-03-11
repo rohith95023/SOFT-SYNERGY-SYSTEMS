@@ -66,7 +66,7 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Desktop Navigation - IBM Style */}
+        {/* Desktop Navigation - Corporate-style */}
         <div className="hidden lg:flex items-center gap-2">
           {NAV_LINKS.map((link) => (
             <div
@@ -93,7 +93,7 @@ const Navbar = () => {
                 )}
               </Link>
 
-              {/* Mega Menu Dropdown - IBM Style */}
+              {/* Mega Menu Dropdown - Corporate-style */}
               {link.dropdown && (
                 <AnimatePresence>
                   {activeDropdown === link.name && (
@@ -160,7 +160,7 @@ const Navbar = () => {
         </button>
       </Container>
 
-      {/* Mobile Menu - IBM Style */}
+      {/* Mobile Menu - Corporate-style */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

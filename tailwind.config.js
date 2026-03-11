@@ -7,13 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        // IBM Carbon Design Inspired Colors
+        // Enterprise Design Inspired Colors
         primary: {
-          DEFAULT: '#0f62fe',
-          hover: '#0353e9',
-          light: '#a6c8ff',
-          dark: '#0043ce',
-          soft: '#e5f1ff',
+          DEFAULT: '#008b96',
+          hover: '#007680',
+          light: '#b2eef2',
+          dark: '#005d64',
+          soft: '#e0f7f9',
         },
         accent: {
           DEFAULT: '#0093c7',
@@ -50,8 +50,8 @@ export default {
         info: '#0093c7',
       },
       fontFamily: {
-        inter: ['IBM Plex Sans', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['IBM Plex Mono', 'Consolas', 'monospace'],
+        inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['Fira Code', 'Consolas', 'monospace'],
       },
       fontSize: {
         'display': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '300' }],

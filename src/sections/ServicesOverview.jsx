@@ -11,7 +11,7 @@ const ServicesOverview = () => {
   return (
     <Section className="bg-white" id="services">
       <Container>
-        {/* Section Header - IBM Style */}
+        {/* Section Header - Corporate-style */}
         <div className="max-w-3xl mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ const ServicesOverview = () => {
           </motion.div>
         </div>
 
-        {/* Services Grid - IBM Carbon Style */}
+        {/* Services Grid - Corporate Style */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-carbon-20">
           {SERVICE_CATEGORIES.map((service, idx) => (
             <motion.div

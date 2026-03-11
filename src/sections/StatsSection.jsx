@@ -24,7 +24,7 @@ const StatsSection = () => {
           </h2>
         </motion.div>
 
-        {/* Stats Grid - IBM Carbon Style */}
+        {/* Stats Grid - Corporate Style */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-carbon-70">
           {STATS_DATA.map((stat, idx) => (
             <motion.div

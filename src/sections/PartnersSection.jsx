@@ -8,7 +8,7 @@ const PartnersSection = () => {
   return (
     <Section className="bg-white" id="partners">
       <Container>
-        {/* Section Header - IBM Style */}
+        {/* Section Header - Corporate-style */}
         <div className="text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ const PartnersSection = () => {
           </motion.div>
         </div>
 
-        {/* Partners Grid - IBM Carbon Style */}
+        {/* Partners Grid - Corporate Style */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-carbon-20">
           {PARTNERS.map((partner, idx) => (
             <motion.div

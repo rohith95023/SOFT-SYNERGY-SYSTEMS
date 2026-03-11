@@ -9,7 +9,7 @@ const TestimonialsSection = () => {
   return (
     <Section className="bg-carbon-10" id="testimonials">
       <Container>
-        {/* Section Header - IBM Style */}
+        {/* Section Header - Corporate-style */}
         <div className="max-w-3xl mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,7 @@ const TestimonialsSection = () => {
           </motion.div>
         </div>
 
-        {/* Testimonials Grid - IBM Carbon Style */}
+        {/* Testimonials Grid - Corporate Style */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-carbon-20">
           {TESTIMONIALS.map((testimonial, idx) => (
             <motion.div

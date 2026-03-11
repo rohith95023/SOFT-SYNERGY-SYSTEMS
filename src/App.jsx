@@ -18,7 +18,7 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 // Legal Pages
 import { PrivacyPolicy, Terms, CookiePolicy, Support } from './pages/LegalPages';
 
-// Professional Loading component matching IBM Carbon style
+// Professional Loading component matching Corporate Style
 const PageLoader = () => (
   <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
     <div className="flex flex-col items-center gap-4">

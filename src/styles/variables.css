@@ -1,13 +1,13 @@
-/* IBM-inspired Design Token Variables
+/* Corporate-inspired Design Token Variables
    Professional corporate design system for Soft Synergy Systems */
 
 :root {
-  /* Primary Brand Colors - IBM Carbon Design inspired */
-  --color-primary: #0f62fe;
-  --color-primary-hover: #0353e9;
-  --color-primary-light: #a6c8ff;
-  --color-primary-dark: #0043ce;
-  --color-primary-soft: #e5f1ff;
+  /* Primary Brand Colors - Corporate Design inspired */
+  --color-primary: #008b96;
+  --color-primary-hover: #007680;
+  --color-primary-light: #b2eef2;
+  --color-primary-dark: #005d64;
+  --color-primary-soft: #e0f7f9;
 
   /* Accent Colors */
   --color-accent: #0093c7;
@@ -43,9 +43,9 @@
   --color-background-secondary: #f4f4f4;
   --color-background-tertiary: #e0e0e0;
 
-  /* Typography Scale - IBM Plex inspired */
-  --font-family: 'IBM Plex Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-family-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  /* Typography Scale - Corporate Plex inspired */
+  --font-family: 'Corporate Plex Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-mono: 'Corporate Plex Mono', 'Consolas', monospace;
 
   /* Font Sizes */
   --text-xs: 0.75rem;

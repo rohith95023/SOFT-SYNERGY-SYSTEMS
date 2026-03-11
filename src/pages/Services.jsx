@@ -59,7 +59,7 @@ const Services = () => {
         ]}
       />
 
-      {/* Services Navigation - IBM Style */}
+      {/* Services Navigation - Corporate-style */}
       <Section className="bg-white pt-0">
         <Container>
           <div className="border-b border-carbon-20 -mt-8 sticky top-20 bg-white z-30">

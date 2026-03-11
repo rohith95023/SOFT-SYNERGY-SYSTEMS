@@ -188,7 +188,7 @@ Mission: Empowering organisations with innovative technology solutions that driv
 ## **6.3 Services Page (/services)**
 
 - Hero with services overview tagline and breadcrumb
-- Sticky left sidebar or tabbed navigation for service categories (inspired by IBM reference)
+- Sticky left sidebar or tabbed navigation for service categories (inspired by enterprise reference)
 - Four services fully detailed:
 - AI & Python Development - RAG, voice agents, ML models, predictive analytics
 - Quality Assurance - End-to-end testing, automation, performance, security testing
