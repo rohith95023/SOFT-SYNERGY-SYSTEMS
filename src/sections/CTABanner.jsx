@@ -1,50 +1,55 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Section from '../layout/Section';
-import Container from '../layout/Container';
-import Button from '../ui/Button';
+import Section from '../components/layout/Section';
+import Container from '../components/layout/Container';
+import Button from '../components/ui/Button';
 
 const CTABanner = () => {
   return (
-    <Section className="py-0">
+    <Section className="bg-primary py-16 md:py-20">
       <Container>
-        <div className="relative overflow-hidden rounded-[2rem] bg-primary px-8 py-16 md:px-16 md:py-20 shadow-strong">
-          {/* Decorative background shapes */}
-          <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
-            <svg viewBox="0 0 100 100" className="w-full h-full fill-white">
-              <circle cx="80" cy="20" r="40" />
-            </svg>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col lg:flex-row items-center justify-between gap-8"
+        >
+          <div className="text-center lg:text-left">
+            <h2 className="text-3xl md:text-4xl font-light text-white tracking-tight mb-4">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="text-primary-light text-lg max-w-xl">
+              Let's discuss how our technology solutions can drive growth,
+              efficiency, and innovation for your organization.
+            </p>
           </div>
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
-            <div className="max-w-2xl text-center lg:text-left">
-              <h2 className="text-white text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
-                Ready to Transform Your Business with Advanced Technology?
-              </h2>
-              <p className="text-white/80 text-lg md:text-xl">
-                Partner with Soft Synergy Systems to leverage AI, automation, and enterprise-grade software built for the future.
-              </p>
-            </div>
-            
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link to="/contact">
-                <Button 
-                  variant="secondary" 
-                  size="lg" 
-                  className="bg-white text-primary hover:bg-white/90 shadow-lg px-10 py-5 text-xl"
-                  icon={ArrowRight}
-                >
-                  Start a Conversation
-                </Button>
-              </Link>
-            </motion.div>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link to="/contact">
+              <Button
+                variant="ghost"
+                size="lg"
+                className="bg-white text-primary hover:bg-carbon-10 border-white"
+                icon={ArrowRight}
+              >
+                Start a Conversation
+              </Button>
+            </Link>
+            <Link to="/services">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-white hover:bg-white/10"
+                icon={ArrowUpRight}
+              >
+                Explore Services
+              </Button>
+            </Link>
           </div>
-        </div>
+        </motion.div>
       </Container>
     </Section>
   );

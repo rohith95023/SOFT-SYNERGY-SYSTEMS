@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Section from '../layout/Section';
-import Container from '../layout/Container';
-import SectionTitle from '../ui/SectionTitle';
+import Section from '../components/layout/Section';
+import Container from '../components/layout/Container';
+import SectionTitle from '../components/ui/SectionTitle';
 
 const CompanyStory = () => {
   return (

@@ -1,26 +1,26 @@
 export const TESTIMONIALS = [
   {
     id: 1,
-    quote: "Soft Synergy Systems transformed our legacy banking platform into a modern microservices architecture. Their expertise in Enterprise Java is unmatched.",
-    author: "Rajesh Kumar",
-    role: "CTO",
-    company: "Global Fintech Solutions",
-    rating: 5
+    quote: 'Soft Synergy Systems transformed our legacy systems into a modern, scalable platform. Their expertise in enterprise Java development is exceptional.',
+    author: 'Rajesh Kumar',
+    role: 'CTO',
+    company: 'FinanceHub',
+    rating: 5,
   },
   {
     id: 2,
-    quote: "The AI-powered voice agent developed by SSS has reduced our customer support load by 40%. Highly professional and innovative team.",
-    author: "Sarah Chen",
-    role: "Head of Digital",
-    company: "HealthTech Asia",
-    rating: 5
+    quote: 'The AI solutions they built for us have significantly improved our customer service efficiency. Highly recommend their team.',
+    author: 'Priya Sharma',
+    role: 'VP Operations',
+    company: 'HealthTech Inc',
+    rating: 5,
   },
   {
     id: 3,
-    quote: "Their QA automation services ensured a flawless launch for our e-commerce app. The performance testing was particularly thorough.",
-    author: "Michael Ross",
-    role: "Product Manager",
-    company: "NextGen Logistics",
-    rating: 5
-  }
+    quote: 'Professional team with deep technical expertise. They delivered our e-commerce platform on time and exceeded expectations.',
+    author: 'Michael Chen',
+    role: 'Founder',
+    company: 'RetailPro',
+    rating: 5,
+  },
 ];

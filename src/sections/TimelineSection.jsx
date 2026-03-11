@@ -1,61 +1,67 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Section from '../layout/Section';
-import Container from '../layout/Container';
-import SectionTitle from '../ui/SectionTitle';
+import Section from '../components/layout/Section';
+import Container from '../components/layout/Container';
 
-const TIMELINE_DATA = [
-  { year: '2016', title: 'Foundation', description: 'Soft Synergy Systems established in Bengaluru with a focus on enterprise software.' },
-  { year: '2018', title: 'Expansion', description: 'Launched AI & Robotics division, expanding our technological capabilities.' },
-  { year: '2020', title: 'Global Reach', description: 'Secured our first international enterprise clients in Southeast Asia and Middle East.' },
-  { year: '2022', title: 'ISO Certification', description: 'Formally recognized as an ISO Certified Organisation for quality management.' },
-  { year: '2024', title: 'Innovation Hub', description: 'Opened our new advanced development center for RAG and Generative AI systems.' },
-  { year: '2026', title: 'Digital Era', description: 'Leading the charge in AI-driven digital transformation for global enterprises.' },
+const milestones = [
+  { year: '2014', title: 'Founded', description: 'Soft Synergy Systems established in Bengaluru' },
+  { year: '2016', title: 'ISO Certification', description: 'Achieved ISO certification for quality management' },
+  { year: '2018', title: 'AI Division Launch', description: 'Launched dedicated AI and Machine Learning division' },
+  { year: '2020', title: 'Global Expansion', description: 'Expanded operations to Middle East and Southeast Asia' },
+  { year: '2022', title: '50+ Clients', description: 'Reached milestone of serving 50+ enterprise clients' },
+  { year: '2024', title: 'Robotics Division', description: 'Launched Robotics & Automation division' },
 ];
 
 const TimelineSection = () => {
   return (
-    <Section light>
+    <Section className="bg-white">
       <Container>
-        <SectionTitle
-          badge="Our Journey"
-          title="Company Timeline"
-          subtitle="A decade of growth, innovation, and technological excellence."
-        />
+        <div className="text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
+              Our Journey
+            </span>
+            <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight">
+              Company Timeline
+            </h2>
+          </motion.div>
+        </div>
 
-        <div className="relative max-w-4xl mx-auto pt-10">
-          {/* Vertical Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 -translate-x-1/2 hidden md:block" />
-          
-          <div className="space-y-12 md:space-y-24">
-            {TIMELINE_DATA.map((item, idx) => (
+        {/* Timeline */}
+        <div className="relative max-w-4xl mx-auto">
+          {/* Center Line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-carbon-20 -translate-x-1/2 hidden md:block" />
+
+          <div className="space-y-8 md:space-y-0">
+            {milestones.map((milestone, idx) => (
               <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+                key={milestone.year}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`relative flex items-center ${idx % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className={`relative md:flex items-center ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
               >
-                {/* Desktop Content */}
-                <div className="flex-1 hidden md:block" />
-                
-                {/* Year Marker */}
-                <div className="absolute left-0 md:left-1/2 w-12 h-12 rounded-full bg-white border-4 border-primary shadow-soft flex items-center justify-center -translate-x-1/2 z-10 font-bold text-primary text-sm">
-                  {item.year.substring(2)}'
-                </div>
-
-                {/* Content Box */}
-                <div className={`flex-1 ${idx % 2 === 0 ? 'md:pr-16 text-right' : 'md:pl-16 text-left'} pl-16 md:pl-0`}>
-                  <div className={`inline-block p-6 rounded-2xl bg-white shadow-medium border border-slate-light/10 relative`}>
-                    <span className="block text-primary font-extrabold text-2xl mb-2">{item.year}</span>
-                    <h4 className="text-xl font-bold text-navy mb-4">{item.title}</h4>
-                    <p className="text-slate text-sm leading-relaxed">{item.description}</p>
-                    
-                    {/* Triangle Arrow */}
-                    <div className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-l border-t border-slate-light/10 transform ${idx % 2 === 0 ? 'hidden md:block -right-2 rotate-[135deg]' : 'hidden md:block -left-2 -rotate-45'} hidden group-hover:block transition-standard`} />
+                {/* Content */}
+                <div className={`md:w-1/2 ${idx % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
+                  <div className="bg-carbon-10 p-6 hover:bg-carbon-20 transition-colors">
+                    <span className="text-3xl font-light text-primary mb-2 block">{milestone.year}</span>
+                    <h3 className="text-lg font-medium text-carbon-100 mb-2">{milestone.title}</h3>
+                    <p className="text-sm text-carbon-60">{milestone.description}</p>
                   </div>
                 </div>
+
+                {/* Dot */}
+                <div className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-primary hidden md:block" />
+
+                {/* Spacer */}
+                <div className="md:w-1/2" />
               </motion.div>
             ))}
           </div>

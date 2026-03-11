@@ -1,180 +1,271 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight, CheckCircle, Cpu, Shield, Code, Globe } from 'lucide-react';
 import SEO from '../components/common/SEO';
+import Section from '../components/layout/Section';
+import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
-import Container from '../layout/Container';
-import Section from '../layout/Section';
+import CTABanner from '../sections/CTABanner';
 import { SERVICE_LIST } from '../constants/services';
-import { cn } from '../utils/cn';
-import Button from '../components/ui/Button';
-import Card from '../components/ui/Card';
+
+const techStack = [
+  { name: 'React', category: 'Frontend' },
+  { name: 'Python', category: 'Backend' },
+  { name: 'Java', category: 'Backend' },
+  { name: 'Node.js', category: 'Backend' },
+  { name: 'AWS', category: 'Cloud' },
+  { name: 'Azure', category: 'Cloud' },
+  { name: 'TensorFlow', category: 'AI/ML' },
+  { name: 'PostgreSQL', category: 'Database' },
+  { name: 'MongoDB', category: 'Database' },
+  { name: 'Docker', category: 'DevOps' },
+  { name: 'Kubernetes', category: 'DevOps' },
+  { name: 'Selenium', category: 'QA' },
+];
+
+const processSteps = [
+  { step: '01', title: 'Discovery', description: 'Understanding your business needs and technical requirements' },
+  { step: '02', title: 'Planning', description: 'Creating detailed project roadmap and architecture design' },
+  { step: '03', title: 'Development', description: 'Agile development with regular progress updates' },
+  { step: '04', title: 'Testing', description: 'Comprehensive QA and user acceptance testing' },
+  { step: '05', title: 'Deployment', description: 'Production deployment and post-launch support' },
+];
 
 const Services = () => {
-  const [activeTab, setActiveTab] = useState(SERVICE_LIST[0].id);
+  const [activeService, setActiveService] = useState(SERVICE_LIST[0].id);
+
+  const currentService = SERVICE_LIST.find(s => s.id === activeService);
 
   return (
-    <>
-      <SEO 
-        title="Our Services" 
-        description="Explore our specialized technology divisions: AI & Python, QA Services, Enterprise Java, and Full Stack Web Development."
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <SEO
+        title="Services - Soft Synergy Systems"
+        description="Explore our comprehensive services in AI Development, QA, Enterprise Java, and Full Stack Web Development."
       />
-      <PageHero 
-        title="Specialized Technology Divisions" 
-        subtitle="End-to-end engineering excellence across AI, automation, and enterprise software."
-        breadcrumbs={[{ name: 'Services' }]}
+
+      {/* Page Hero */}
+      <PageHero
+        title="Our Services"
+        subtitle="Comprehensive technology solutions tailored for enterprise success"
+        breadcrumbs={[
+          { label: 'Home', path: '/' },
+          { label: 'Services', path: '/services' }
+        ]}
       />
 
-      <Section className="pb-0 overflow-visible">
+      {/* Services Navigation - IBM Style */}
+      <Section className="bg-white pt-0">
         <Container>
-          <div className="flex flex-col lg:flex-row gap-8 lg:items-start">
-            {/* Sidebar Navigation */}
-            <div className="lg:w-1/3 lg:sticky lg:top-24 z-20">
-              <div className="bg-white rounded-3xl shadow-strong border border-slate-light/10 p-4">
-                <p className="text-xs font-bold uppercase tracking-widest text-primary mb-6 px-4">Service Categories</p>
-                <div className="flex flex-col gap-2">
-                  {SERVICE_LIST.map((service) => (
-                    <button
-                      key={service.id}
-                      onClick={() => setActiveTab(service.id)}
-                      className={cn(
-                        "flex items-center gap-4 w-full p-4 rounded-2xl transition-all duration-300 text-left group",
-                        activeTab === service.id 
-                          ? "bg-primary text-white shadow-lg" 
-                          : "hover:bg-primary/5 text-navy"
-                      )}
-                    >
-                      <div className={cn(
-                        "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors",
-                        activeTab === service.id ? "bg-white/20" : "bg-primary/5 group-hover:bg-primary group-hover:text-white"
-                      )}>
-                        <service.icon className="h-5 w-5" />
-                      </div>
-                      <span className="font-bold text-sm leading-tight">{service.title}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Contact Sidebar Card */}
-              <div className="mt-8 bg-navy rounded-3xl p-8 text-white relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-                <h4 className="text-xl font-bold mb-4 relative z-10">Need a Custom Solution?</h4>
-                <p className="text-white/70 text-sm mb-6 leading-relaxed relative z-10">
-                  Talk to our experts about your specific project requirements.
-                </p>
-                <Button variant="secondary" className="w-full relative z-10" icon={ArrowRight}>Get Started</Button>
-              </div>
-            </div>
-
-            {/* Detailed Content */}
-            <div className="lg:w-2/3 min-h-[600px]">
-              <AnimatePresence mode="wait">
-                {SERVICE_LIST.filter(s => s.id === activeTab).map((service) => (
-                  <motion.div
-                    key={service.id}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-medium border border-slate-light/5">
-                      <div className="w-20 h-20 bg-primary/5 rounded-3xl flex items-center justify-center mb-10">
-                        <service.icon className="h-10 w-10 text-primary" />
-                      </div>
-                      <h2 className="text-3xl md:text-5xl font-extrabold text-navy mb-8">{service.title}</h2>
-                      <p className="text-slate text-xl mb-10 leading-relaxed font-medium">
-                        {service.description}
-                      </p>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-                        <div>
-                          <h4 className="text-xs uppercase font-extrabold tracking-widest text-primary mb-6">Core Capabilities</h4>
-                          <ul className="space-y-4">
-                            {service.capabilities.map((cap, i) => (
-                              <li key={i} className="flex items-start gap-3">
-                                <CheckCircle2 className="h-5 w-5 text-success shrink-0 mt-0.5" />
-                                <span className="text-slate font-medium">{cap}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="text-xs uppercase font-extrabold tracking-widest text-primary mb-6">Target Industries</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {service.industries.map((ind, i) => (
-                              <span key={i} className="px-4 py-2 bg-background-light text-navy rounded-full text-xs font-bold border border-slate-light/10">
-                                {ind}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="pt-10 border-t border-slate-light/10 flex flex-col md:flex-row gap-6 items-center justify-between">
-                        <div>
-                          <p className="text-sm text-slate-light font-semibold mb-1">Ready to start?</p>
-                          <p className="text-lg font-bold text-navy">Request a consultation today.</p>
-                        </div>
-                        <Button size="lg" icon={ArrowRight}>Start Discussion</Button>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Process Section */}
-      <Section light className="mt-20">
-        <Container>
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-4 inline-block">Workflow</span>
-            <h2 className="text-4xl font-extrabold text-navy mb-6">Our Engineering Process</h2>
-            <p className="text-slate font-medium text-lg leading-relaxed">
-              We follow a structured 5-step methodology to ensure every solution we build is robust, scalable, and perfectly aligned with business goals.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
-            {/* Connecting line for desktop */}
-            <div className="absolute top-1/2 left-0 w-full h-0.5 bg-primary/10 -translate-y-1/2 hidden md:block" />
-            
-            {[
-              { n: '01', t: 'Discovery', d: 'In-depth analysis of requirements and constraints.' },
-              { n: '02', t: 'Architect', d: 'Designing scalable and modern architectures.' },
-              { n: '03', t: 'Develop', d: 'Agile development with continuous integration.' },
-              { n: '04', t: 'Validate', d: 'Rigorous end-to-end testing and QA.' },
-              { n: '05', t: 'Deliver', d: 'Seamless deployment and ongoing support.' }
-            ].map((step, idx) => (
-              <div key={idx} className="relative z-10 group text-center px-4">
-                <div className="w-16 h-16 rounded-full bg-white border-2 border-primary/20 flex items-center justify-center mx-auto mb-8 group-hover:border-primary group-hover:scale-110 transition-all duration-300 shadow-soft">
-                  <span className="text-primary font-black text-xl">{step.n}</span>
-                </div>
-                <h4 className="text-lg font-bold text-navy mb-3">{step.t}</h4>
-                <p className="text-slate-light text-xs leading-relaxed font-semibold">{step.d}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Tech Stack Horizontal Scroll Placeholder */}
-      <Section className="bg-white border-t border-slate-light/5">
-        <Container>
-          <div className="flex flex-col items-center">
-            <h4 className="text-xs uppercase font-extrabold tracking-widest text-slate-light mb-12">Our Core Technology Stack</h4>
-            <div className="flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-standard duration-500">
-              {['React', 'Python', 'Java', 'AWS', 'Docker', 'Kubernetes', 'TensorFlow', 'PostgreSQL'].map((tech) => (
-                <span key={tech} className="text-2xl font-black text-navy">{tech}</span>
+          <div className="border-b border-carbon-20 -mt-8 sticky top-20 bg-white z-30">
+            <div className="flex overflow-x-auto hide-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
+              {SERVICE_LIST.map((service) => (
+                <button
+                  key={service.id}
+                  onClick={() => setActiveService(service.id)}
+                  className={`px-6 py-4 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${activeService === service.id
+                      ? 'border-primary text-primary'
+                      : 'border-transparent text-carbon-60 hover:text-carbon-100'
+                    }`}
+                >
+                  {service.title}
+                </button>
               ))}
             </div>
           </div>
         </Container>
       </Section>
-    </>
+
+      {/* Service Detail */}
+      <Section className="bg-white pt-8">
+        <Container>
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              <motion.div
+                key={activeService}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                {/* Service Header */}
+                <div className="flex items-start gap-6 mb-10">
+                  <div className="w-16 h-16 bg-primary-soft flex items-center justify-center shrink-0">
+                    <currentService.icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-3xl font-light text-carbon-100 tracking-tight mb-3">
+                      {currentService.title}
+                    </h2>
+                    <p className="text-carbon-60 leading-relaxed">
+                      {currentService.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Capabilities */}
+                <div className="mb-10">
+                  <h3 className="text-xs uppercase tracking-widest font-semibold text-carbon-50 mb-6">
+                    Key Capabilities
+                  </h3>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {currentService.capabilities.map((cap, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-3 p-4 bg-carbon-10 hover:bg-carbon-20 transition-colors"
+                      >
+                        <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                        <span className="text-sm text-carbon-80">{cap}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Industries */}
+                <div>
+                  <h3 className="text-xs uppercase tracking-widest font-semibold text-carbon-50 mb-6">
+                    Industries Served
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {currentService.industries.map((ind, idx) => (
+                      <span
+                        key={idx}
+                        className="px-4 py-2 bg-primary-soft text-primary text-sm font-medium"
+                      >
+                        {ind}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-40">
+                {/* Quick Links */}
+                <div className="bg-carbon-10 p-6 mb-6">
+                  <h3 className="text-sm font-semibold text-carbon-100 mb-4">All Services</h3>
+                  <div className="space-y-1">
+                    {SERVICE_LIST.map((service) => (
+                      <button
+                        key={service.id}
+                        onClick={() => setActiveService(service.id)}
+                        className={`w-full text-left px-4 py-3 text-sm transition-colors ${activeService === service.id
+                            ? 'bg-white text-primary font-medium'
+                            : 'text-carbon-60 hover:bg-white hover:text-carbon-100'
+                          }`}
+                      >
+                        {service.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="bg-primary p-6 text-white">
+                  <h3 className="text-lg font-medium mb-3">Ready to get started?</h3>
+                  <p className="text-primary-light text-sm mb-6">
+                    Let's discuss how {currentService.title} can transform your business.
+                  </p>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 bg-white text-primary px-5 py-2.5 text-sm font-medium hover:bg-carbon-10 transition-colors"
+                  >
+                    Start a Conversation <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Our Process */}
+      <Section className="bg-carbon-10">
+        <Container>
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
+                Our Approach
+              </span>
+              <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight">
+                How We Work
+              </h2>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-px bg-carbon-30">
+            {processSteps.map((step, idx) => (
+              <motion.div
+                key={step.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="bg-white p-6 text-center group hover:bg-carbon-10 transition-colors"
+              >
+                <div className="text-4xl font-light text-primary mb-4">{step.step}</div>
+                <h3 className="text-lg font-medium text-carbon-100 mb-2">{step.title}</h3>
+                <p className="text-sm text-carbon-60">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* Technology Stack */}
+      <Section className="bg-white">
+        <Container>
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
+                Technology Stack
+              </span>
+              <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight">
+                Technologies We Use
+              </h2>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-px bg-carbon-20">
+            {techStack.map((tech, idx) => (
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.03, duration: 0.3 }}
+                className="bg-white p-6 text-center group hover:bg-carbon-10 transition-colors"
+              >
+                <p className="font-medium text-carbon-100 group-hover:text-primary transition-colors">
+                  {tech.name}
+                </p>
+                <p className="text-xs text-carbon-50 mt-1">{tech.category}</p>
+              </motion.div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* CTA */}
+      <CTABanner />
+    </motion.main>
   );
 };
 

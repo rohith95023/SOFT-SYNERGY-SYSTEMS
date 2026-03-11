@@ -1,107 +1,159 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Filter } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import SEO from '../components/common/SEO';
+import Section from '../components/layout/Section';
+import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
-import Container from '../layout/Container';
-import Section from '../layout/Section';
-import { PORTFOLIO_DATA, CATEGORIES } from '../constants/portfolio';
-import { cn } from '../utils/cn';
-import Card from '../ui/Card';
-import Badge from '../ui/Badge';
 import CTABanner from '../sections/CTABanner';
+import { PORTFOLIO_ITEMS } from '../constants/portfolio';
+
+const filters = ['All', 'Banking', 'Healthcare', 'E-commerce', 'Telecom'];
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const filteredProjects = activeFilter === 'All' 
-    ? PORTFOLIO_DATA 
-    : PORTFOLIO_DATA.filter(p => p.category === activeFilter);
+  const filteredItems = activeFilter === 'All'
+    ? PORTFOLIO_ITEMS
+    : PORTFOLIO_ITEMS.filter(item => item.industry === activeFilter);
 
   return (
-    <>
-      <SEO 
-        title="Portfolio" 
-        description="Explore our successful enterprise projects and digital transformation case studies across various industries."
-      />
-      <PageHero 
-        title="Our Success Stories" 
-        subtitle="How we've helped global enterprises achieve excellence through technology."
-        breadcrumbs={[{ name: 'Portfolio' }]}
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <SEO
+        title="Portfolio - Soft Synergy Systems"
+        description="Explore our portfolio of successful projects across Banking, Healthcare, E-commerce, and Telecom industries."
       />
 
-      <Section>
+      {/* Page Hero */}
+      <PageHero
+        title="Our Portfolio"
+        subtitle="Case studies showcasing our impact across industries"
+        breadcrumbs={[
+          { label: 'Home', path: '/' },
+          { label: 'Portfolio', path: '/portfolio' }
+        ]}
+      />
+
+      {/* Filter Tabs */}
+      <Section className="bg-white pt-8">
         <Container>
-          {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-2 mb-16">
-            {CATEGORIES.map((cat) => (
+          <div className="flex flex-wrap gap-2 mb-12">
+            {filters.map((filter) => (
               <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={cn(
-                  "px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border",
-                  activeFilter === cat 
-                    ? "bg-primary text-white border-primary shadow-lg" 
-                    : "bg-white text-slate border-slate-light/10 hover:border-primary/30 hover:bg-primary/5"
-                )}
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-5 py-2.5 text-sm font-medium transition-colors ${activeFilter === filter
+                    ? 'bg-primary text-white'
+                    : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
+                  }`}
               >
-                {cat}
+                {filter}
               </button>
             ))}
           </div>
 
-          {/* Projects Grid */}
-          <motion.div 
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <Card className="h-full flex flex-col group overflow-hidden p-0">
-                    <div className="relative h-64 overflow-hidden">
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button className="bg-white text-navy px-6 py-2.5 rounded-full font-bold flex items-center gap-2 hover:bg-primary hover:text-white transition-standard">
-                          View Project <ExternalLink size={16} />
-                        </button>
-                      </div>
-                      <div className="absolute top-4 left-4">
-                        <Badge variant="accent" className="bg-white/90 text-navy shadow-lg backdrop-blur-sm">{project.category}</Badge>
-                      </div>
+          {/* Portfolio Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-carbon-20">
+            {filteredItems.map((item, idx) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="bg-white group"
+              >
+                {/* Image */}
+                <div className="aspect-[16/10] bg-carbon-10 overflow-hidden relative">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300" />
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <span className="text-xs uppercase tracking-widest font-semibold text-primary mb-2 block">
+                    {item.industry}
+                  </span>
+                  <h3 className="text-lg font-medium text-carbon-100 mb-2 group-hover:text-primary transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-carbon-60 mb-4">
+                    {item.description}
+                  </p>
+
+                  {/* Stats */}
+                  {item.stats && (
+                    <div className="flex gap-6 pt-4 border-t border-carbon-20">
+                      {item.stats.map((stat, i) => (
+                        <div key={i}>
+                          <p className="text-lg font-medium text-primary">{stat.value}</p>
+                          <p className="text-xs text-carbon-50">{stat.label}</p>
+                        </div>
+                      ))}
                     </div>
-                    <div className="p-8">
-                      <p className="text-primary font-bold text-xs uppercase tracking-widest mb-2">{project.client}</p>
-                      <h3 className="text-xl font-bold text-navy mb-4 group-hover:text-primary transition-standard">{project.title}</h3>
-                      <p className="text-slate text-sm mb-6 leading-relaxed">
-                        {project.description}
-                      </p>
-                      <div className="pt-6 border-t border-slate-light/10 flex justify-between items-center">
-                        <span className="text-xs font-bold text-slate-light uppercase tracking-widest">Outcome</span>
-                        <span className="text-success font-bold">{project.outcome}</span>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </Container>
       </Section>
 
+      {/* Results Section */}
+      <Section className="bg-carbon-10">
+        <Container>
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
+                Impact & Results
+              </span>
+              <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight">
+                Measurable Business Outcomes
+              </h2>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-carbon-30">
+            {[
+              { value: '40%', label: 'Average Efficiency Gain' },
+              { value: '60%', label: 'Cost Reduction' },
+              { value: '99%', label: 'Client Satisfaction' },
+              { value: '50+', label: 'Projects Delivered' },
+            ].map((stat, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="bg-white p-8 text-center"
+              >
+                <p className="text-3xl font-light text-primary mb-2">{stat.value}</p>
+                <p className="text-xs uppercase tracking-widest text-carbon-50">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* CTA */}
       <CTABanner />
-    </>
+    </motion.main>
   );
 };
 

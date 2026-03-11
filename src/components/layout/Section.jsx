@@ -1,25 +1,16 @@
 import React from 'react';
 import { cn } from '../../utils/cn';
 
-const Section = ({
-  children,
-  className,
-  id,
-  dark = false,
-  light = false,
-  ...props
-}) => {
+const Section = ({ children, className, id, light, dark }) => {
   return (
     <section
       id={id}
       className={cn(
-        'section-padding overflow-hidden relative',
-        dark && 'bg-navy text-white',
-        light && 'bg-background-light',
-        !dark && !light && 'bg-white',
+        'py-16 md:py-20 lg:py-24',
+        light && 'bg-white',
+        dark && 'bg-carbon-100',
         className
       )}
-      {...props}
     >
       {children}
     </section>

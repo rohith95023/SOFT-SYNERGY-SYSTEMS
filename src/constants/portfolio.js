@@ -1,58 +1,68 @@
-export const PORTFOLIO_DATA = [
+export const PORTFOLIO_ITEMS = [
   {
     id: 1,
-    title: 'Enterprise Banking Core',
-    category: 'Banking',
-    client: 'Global Fintech LP',
-    outcome: '60% Faster Processing',
-    description: 'Modernization of legacy core banking system using microservices and Java Spring Boot.',
-    image: 'https://via.placeholder.com/600x400?text=Banking+Project'
+    title: 'Banking Platform Modernization',
+    industry: 'Banking',
+    description: 'Complete digital transformation of a legacy banking system to modern microservices architecture.',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    stats: [
+      { value: '40%', label: 'Faster Processing' },
+      { value: '60%', label: 'Cost Reduction' },
+    ],
   },
   {
     id: 2,
-    title: 'AI Diagnostic Assistant',
-    category: 'Healthcare',
-    client: 'MediScan AI',
-    outcome: '98% Search Accuracy',
-    description: 'RAG-based AI assistant for assisting radiologists in medical report analysis.',
-    image: 'https://via.placeholder.com/600x400?text=AI+Healthcare'
+    title: 'Healthcare AI Diagnostics',
+    industry: 'Healthcare',
+    description: 'AI-powered diagnostic system for early disease detection and treatment recommendations.',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+    stats: [
+      { value: '95%', label: 'Accuracy Rate' },
+      { value: '50%', label: 'Time Saved' },
+    ],
   },
   {
     id: 3,
-    title: 'Telecom Inventory SaaS',
-    category: 'Telecom',
-    client: 'AeroConnect',
-    outcome: '40% Cost Reduction',
-    description: 'Full stack dashboard for managing global telecom assets and real-time inventory.',
-    image: 'https://via.placeholder.com/600x400?text=Telecom+SaaS'
+    title: 'E-commerce Platform',
+    industry: 'E-commerce',
+    description: 'Scalable multi-tenant e-commerce platform supporting millions of transactions daily.',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80',
+    stats: [
+      { value: '3x', label: 'Traffic Capacity' },
+      { value: '99.9%', label: 'Uptime' },
+    ],
   },
   {
     id: 4,
-    title: 'QA Automation Pipeline',
-    category: 'E-commerce',
-    client: 'ShopSwift Global',
-    outcome: 'Zero Release Defects',
-    description: 'Implementation of end-to-end automated testing across web and mobile platforms.',
-    image: 'https://via.placeholder.com/600x400?text=QA+Automation'
+    title: 'Telecom Network Analytics',
+    industry: 'Telecom',
+    description: 'Real-time network analytics and predictive maintenance system for telecom infrastructure.',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
+    stats: [
+      { value: '30%', label: 'Downtime Reduced' },
+      { value: '25%', label: 'Cost Savings' },
+    ],
   },
   {
     id: 5,
-    title: 'Logistics Optimization',
-    category: 'Logistics',
-    client: 'CargoFlow India',
-    outcome: '25% Fuel Savings',
-    description: 'Predictive analytics model for real-time route optimization and fleet management.',
-    image: 'https://via.placeholder.com/600x400?text=Logistics+AI'
+    title: 'Supply Chain Optimization',
+    industry: 'Logistics',
+    description: 'AI-driven supply chain optimization platform for real-time tracking and route optimization.',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+    stats: [
+      { value: '35%', label: 'Efficiency Gain' },
+      { value: '20%', label: 'Fuel Savings' },
+    ],
   },
   {
     id: 6,
-    title: 'Digital Payments Hub',
-    category: 'Fintech',
-    client: 'PaySynergy',
-    outcome: '1M+ Concurrent Tx',
-    description: 'High-performance payment gateway with advanced fraud detection using Python ML.',
-    image: 'https://via.placeholder.com/600x400?text=Payment+Hub'
-  }
+    title: 'Patient Management System',
+    industry: 'Healthcare',
+    description: 'Comprehensive patient management system with integrated telemedicine capabilities.',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
+    stats: [
+      { value: '60%', label: 'Admin Time Saved' },
+      { value: '45%', label: 'Patient Satisfaction' },
+    ],
+  },
 ];
-
-export const CATEGORIES = ['All', 'Banking', 'Healthcare', 'E-commerce', 'Telecom', 'Logistics', 'Fintech'];

@@ -1,8 +1,8 @@
 import React from 'react';
 import SEO from '../components/common/SEO';
 import PageHero from '../components/ui/PageHero';
-import Container from '../layout/Container';
-import Section from '../layout/Section';
+import Container from '../components/layout/Container';
+import Section from '../components/layout/Section';
 
 const LegalLayout = ({ title, date, children }) => (
   <>

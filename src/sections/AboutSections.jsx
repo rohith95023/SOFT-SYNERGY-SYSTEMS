@@ -1,9 +1,9 @@
 import React from 'react';
 import { Target, Eye, ShieldCheck, Zap, Users, Lightbulb, TrendingUp, Award } from 'lucide-react';
-import Section from '../layout/Section';
-import Container from '../layout/Container';
-import SectionTitle from '../ui/SectionTitle';
-import Card from '../ui/Card';
+import Section from '../components/layout/Section';
+import Container from '../components/layout/Container';
+import SectionTitle from '../components/ui/SectionTitle';
+import Card from '../components/ui/Card';
 
 const MissionVision = () => {
   return (
@@ -95,4 +95,4 @@ const CoreValues = () => {
 };
 
 export { MissionVision, CoreValues };
-import { motion } from 'framer-motion';
+

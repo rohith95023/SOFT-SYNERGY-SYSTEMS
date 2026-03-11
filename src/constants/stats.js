@@ -1,26 +1,26 @@
 export const STATS_DATA = [
   {
-    id: 1,
-    value: '10',
+    id: 'years',
+    value: 10,
     suffix: '+',
-    label: 'Years Experience'
+    label: 'Years Experience',
   },
   {
-    id: 2,
-    value: '50',
+    id: 'clients',
+    value: 50,
     suffix: '+',
-    label: 'Enterprise Clients'
+    label: 'Enterprise Clients',
   },
   {
-    id: 3,
-    value: '4',
+    id: 'divisions',
+    value: 4,
     suffix: '',
-    label: 'Specialized Divisions'
+    label: 'Core Divisions',
   },
   {
-    id: 4,
-    value: '100',
-    suffix: '%',
-    label: 'ISO Certified'
-  }
+    id: 'industries',
+    value: 7,
+    suffix: '+',
+    label: 'Industries Served',
+  },
 ];

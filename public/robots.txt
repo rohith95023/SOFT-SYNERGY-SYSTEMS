@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and API paths (none currently, but future-proofed)
+Disallow: /api/
+Disallow: /.env
+
+# Sitemap location
+Sitemap: https://softsynergysystems.com/sitemap.xml

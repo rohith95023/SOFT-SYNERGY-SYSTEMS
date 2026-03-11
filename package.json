@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/rohith95023/SOFT-SYNERGY-SYSTEMS#readme",
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
     "@vitejs/plugin-react": "^5.1.4",
     "autoprefixer": "^10.4.27",
     "postcss": "^8.5.8",

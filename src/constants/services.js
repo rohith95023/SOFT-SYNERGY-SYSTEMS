@@ -1,64 +1,74 @@
-import { Cpu, ShieldCheck, Database, Globe } from 'lucide-react';
+import { Brain, Shield, Code, Globe } from 'lucide-react';
 
 export const SERVICE_LIST = [
   {
-    id: 'ai',
+    id: 'ai-python',
     title: 'AI & Python Development',
-    description: 'Building intelligent AI-powered solutions tailored for modern enterprises.',
-    icon: Cpu,
+    description: 'Building intelligent AI-powered solutions tailored for modern enterprises, from RAG systems to predictive analytics.',
+    icon: Brain,
+    link: '/services',
     capabilities: [
-      'RAG (Retrieval-Augmented Generation) systems',
+      'RAG Systems & Knowledge Bases',
       'AI Voice Agents & Chatbots',
-      'Predictive Analytics Models',
-      'Custom ML Model Development'
+      'Machine Learning Models',
+      'Predictive Analytics',
+      'Natural Language Processing',
+      'Computer Vision Solutions',
     ],
     industries: ['Healthcare', 'Finance', 'E-commerce', 'Customer Service'],
-    cta: 'Learn More',
-    link: '/services#ai'
   },
   {
-    id: 'qa',
+    id: 'qa-services',
     title: 'Quality Assurance Services',
-    description: 'Ensuring flawless software through comprehensive end-to-end testing.',
-    icon: ShieldCheck,
+    description: 'Ensuring flawless software through comprehensive end-to-end testing and quality engineering practices.',
+    icon: Shield,
+    link: '/services',
     capabilities: [
-      'Automated Testing Frameworks',
-      'Performance & Load Testing',
-      'Security Vulnerability Assessment',
-      'Compliance & Regulatory Testing'
+      'Automated Testing',
+      'Performance Testing',
+      'Security Testing',
+      'API Testing',
+      'Mobile Testing',
+      'Compliance Testing',
     ],
     industries: ['Banking', 'Healthcare', 'Fintech', 'Insurance'],
-    cta: 'Learn More',
-    link: '/services#qa'
   },
   {
-    id: 'java',
+    id: 'enterprise-java',
     title: 'Enterprise Java Development',
-    description: 'Scalable, enterprise-grade Java applications built for demanding industries.',
-    icon: Database,
+    description: 'Scalable, enterprise-grade Java applications built for demanding industries with complex requirements.',
+    icon: Code,
+    link: '/services',
     capabilities: [
       'Microservices Architecture',
       'Scalable Backend Systems',
-      'High-Performance API Development',
-      'Legacy System Modernization'
+      'API Development',
+      'Legacy Modernization',
+      'Spring Boot Applications',
+      'Enterprise Integration',
     ],
     industries: ['Banking', 'Insurance', 'Telecommunications', 'Logistics'],
-    cta: 'Learn More',
-    link: '/services#java'
   },
   {
-    id: 'web',
+    id: 'fullstack-web',
     title: 'Full Stack Web Development',
-    description: 'End-to-end web applications from frontend UX to backend API.',
+    description: 'End-to-end web applications from frontend UX to backend API, delivering seamless digital experiences.',
     icon: Globe,
+    link: '/services',
     capabilities: [
-      'Custom SaaS Platforms',
-      'Enterprise E-commerce Solutions',
-      'Real-time Business Dashboards',
-      'Progressive Web Apps (PWA)'
+      'Web Applications',
+      'SaaS Platforms',
+      'E-commerce Solutions',
+      'Business Dashboards',
+      'API Platforms',
+      'Progressive Web Apps',
     ],
-    industries: ['Startups', 'SaaS', 'E-commerce', 'Direct-to-Consumer'],
-    cta: 'Learn More',
-    link: '/services#web'
-  }
+    industries: ['E-commerce', 'Healthcare', 'Education', 'Logistics'],
+  },
 ];
+
+export const SERVICE_NAV_LINKS = SERVICE_LIST.map(service => ({
+  name: service.title,
+  path: service.link,
+  description: service.description,
+}));

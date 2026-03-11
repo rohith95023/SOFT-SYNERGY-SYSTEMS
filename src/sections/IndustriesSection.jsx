@@ -1,39 +1,76 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Section from '../layout/Section';
-import Container from '../layout/Container';
-import SectionTitle from '../ui/SectionTitle';
-import { INDUSTRIES } from '../../constants/industries';
+import Section from '../components/layout/Section';
+import Container from '../components/layout/Container';
+import { INDUSTRIES } from '../constants/industries';
 
 const IndustriesSection = () => {
   return (
-    <Section className="bg-white">
+    <Section className="bg-carbon-10" id="industries">
       <Container>
-        <SectionTitle
-          badge="Market Focus"
-          title="Industries We Transform"
-          subtitle="We provide specialized technology solutions across diverse sectors, understanding the unique challenges of each domain."
-        />
+        {/* Section Header - IBM Style */}
+        <div className="max-w-3xl mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
+              Industry Expertise
+            </span>
+            <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight mb-4">
+              Industries We Transform
+            </h2>
+            <p className="text-carbon-60">
+              Deep domain expertise across major industry verticals, delivering
+              tailored solutions that address unique business challenges.
+            </p>
+          </motion.div>
+        </div>
 
-        <div className="flex overflow-x-auto pb-8 gap-6 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 lg:grid-cols-6 lg:overflow-visible">
+        {/* Industries Grid - IBM Carbon Style */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-carbon-20">
           {INDUSTRIES.map((industry, idx) => (
             <motion.div
-              key={industry.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: idx * 0.1 }}
+              key={industry.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.05, duration: 0.4 }}
               viewport={{ once: true }}
-              className="min-w-[160px] md:min-w-0"
+              className="bg-white p-6 text-center group hover:bg-carbon-10 transition-colors duration-200"
             >
-              <div className="p-8 rounded-2xl bg-background-light border border-slate-light/10 flex flex-col items-center justify-center text-center group hover:bg-white hover:shadow-medium hover:border-primary/20 transition-standard cursor-default">
-                <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-300">
-                  <industry.icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
-                </div>
-                <span className="font-bold text-navy group-hover:text-primary transition-colors">{industry.name}</span>
+              <div className="w-12 h-12 bg-primary-soft mx-auto flex items-center justify-center mb-4 group-hover:bg-primary transition-colors duration-200">
+                <industry.icon className="h-6 w-6 text-primary group-hover:text-white transition-colors duration-200" />
               </div>
+              <h3 className="text-sm font-medium text-carbon-100">
+                {industry.name}
+              </h3>
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="mt-12 pt-10 border-t border-carbon-20"
+        >
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+            {[
+              { value: '7+', label: 'Industries' },
+              { value: '50+', label: 'Projects Delivered' },
+              { value: '99%', label: 'Client Satisfaction' },
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center">
+                <p className="text-2xl font-light text-primary mb-1">{stat.value}</p>
+                <p className="text-xs uppercase tracking-widest text-carbon-50">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </Container>
     </Section>
   );

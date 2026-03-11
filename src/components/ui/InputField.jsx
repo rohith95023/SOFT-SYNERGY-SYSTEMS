@@ -3,43 +3,45 @@ import { cn } from '../../utils/cn';
 
 const InputField = ({
   label,
-  error,
-  id,
+  name,
   type = 'text',
+  value,
+  onChange,
+  placeholder,
+  error,
+  required,
   className,
-  ...props
 }) => {
   return (
-    <div className={cn('flex flex-col mb-4 w-full', className)}>
+    <div className={cn('flex flex-col', className)}>
       {label && (
         <label
-          htmlFor={id}
-          className="text-sm font-semibold mb-2 text-slate uppercase tracking-wide"
+          htmlFor={name}
+          className="text-sm font-medium text-carbon-80 mb-2"
         >
           {label}
+          {required && <span className="text-error ml-1">*</span>}
         </label>
       )}
-      {type === 'textarea' ? (
-        <textarea
-          id={id}
-          className={cn(
-            'w-full px-4 py-3 bg-white border border-slate-light/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-standard min-h-[120px] resize-none',
-            error && 'border-red-500 focus:ring-red-500'
-          )}
-          {...props}
-        />
-      ) : (
-        <input
-          id={id}
-          type={type}
-          className={cn(
-            'w-full px-4 py-3 bg-white border border-slate-light/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-standard',
-            error && 'border-red-500 focus:ring-red-500'
-          )}
-          {...props}
-        />
+      <input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        required={required}
+        className={cn(
+          'w-full px-4 py-3 bg-white border text-carbon-100 transition-colors',
+          'focus:outline-none',
+          error
+            ? 'border-error focus:border-error'
+            : 'border-carbon-50 hover:border-carbon-70 focus:border-primary'
+        )}
+      />
+      {error && (
+        <span className="text-xs text-error mt-1">{error}</span>
       )}
-      {error && <span className="text-red-500 text-xs mt-1 font-medium">{error}</span>}
     </div>
   );
 };
