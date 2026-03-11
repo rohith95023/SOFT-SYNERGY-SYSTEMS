@@ -122,7 +122,7 @@ export const FAQ_DATA = [
         id: 'process-1',
         category: 'Process',
         question: 'How do I start a project with Soft Synergy Systems?',
-        answer: 'Starting a project is easy. You can use our Contact form on the website, email us at hr@softsynergysystems.com, or call us at +91 82964 53365. One of our solution architects will reach out within 24 hours to schedule a discovery call where we will understand your requirements and propose a tailored solution.',
+        answer: 'Starting a project is easy. You can use our Contact form on the website, email us at hr@softsynergysystems.com, or call us at +91 97908 23800. One of our solution architects will reach out within 24 hours to schedule a discovery call where we will understand your requirements and propose a tailored solution.',
         tags: ['start', 'contact', 'engagement', 'begin'],
     },
     {

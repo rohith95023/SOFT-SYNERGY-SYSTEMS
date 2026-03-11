@@ -35,7 +35,7 @@ The site must deliver an exceptional first impression within 3 seconds, clearly 
 | **Tagline** | Innovating for a Digital Era |
 | **Headquarters** | 26/3, Thirumenahalli Main Road, Block 3, Chokkanahalli, Bengaluru, Karnataka, India |
 | **Email** | <hr@softsynergysystems.com> |
-| **Phone** | +91 82964 53365 |
+| **Phone** | +91 97908 23800 |
 | **ISO Certification** | Yes - ISO Certified Organisation |
 | **Industries** | Banking, Fintech, Telecom, Logistics, Healthcare, E-commerce |
 

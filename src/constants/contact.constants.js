@@ -44,8 +44,8 @@ export const CONTACT_INFO = {
             support: 'support@softsynergysystems.com',
         },
         phone: {
-            primary: '+91 82964 53365',
-            display: '+91 82964 53365',
+            primary: '+91 97908 23800',
+            display: '+91 97908 23800',
         },
     },
     workingHours: {
@@ -202,7 +202,7 @@ export const CONTACT_CTA = {
     subtitle: 'Call us directly or schedule a meeting at your convenience.',
     phoneCTA: {
         text: 'Call Now',
-        number: '+91 82964 53365',
+        number: '+91 97908 23800',
     },
     scheduleCTA: {
         text: 'Schedule a Call',

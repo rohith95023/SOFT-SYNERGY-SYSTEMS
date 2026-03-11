@@ -121,7 +121,7 @@ const Footer = () => {
                     href="tel:+918296453365"
                     className="text-sm text-carbon-30 hover:text-white transition-colors duration-150"
                   >
-                    +91 82964 53365
+                    +91 97908 23800
                   </a>
                 </div>
               </li>

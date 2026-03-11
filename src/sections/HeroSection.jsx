@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
@@ -7,9 +7,36 @@ import Container from '../components/layout/Container';
 import backgroundVideo from '../assets/background.mp4';
 
 const HeroSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      title1: "Innovating for a",
+      title2: "Digital Era",
+      description: "Soft Synergy Systems delivers enterprise-grade AI, automation, and software solutions that drive intelligence, efficiency, and growth for global businesses."
+    },
+    {
+      title1: "Scaling Visionary",
+      title2: "Startups",
+      description: "Transform innovative concepts into market-ready products with our agile development, rapid prototyping, and robust architectural solutions."
+    },
+    {
+      title1: "Empowering Next-Gen",
+      title2: "Tech Talent",
+      description: "Launch your career with comprehensive training, elite mentorship, and hands-on experience in cutting-edge AI and software engineering."
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
     <>
-      <section className="relative flex items-center overflow-hidden bg-white mt-20 md:mt-24 min-h-[60vh] md:min-h-[75vh] lg:min-h-[85vh] py-12 md:py-20 lg:py-24">
+      <section className="relative flex items-center overflow-hidden min-h-[70vh] md:min-h-[75vh] lg:min-h-screen py-12 md:py-20 lg:py-24">
         {/* Enterprise-style Grid Background */}
         <div className="absolute inset-0 z-0">
           {/* Video Background */}
@@ -49,21 +76,46 @@ const HeroSection = () => {
             >
 
 
-              {/* Main Headline */}
-              <h1 className="text-carbon-100 mb-8 leading-[1.1]">
-                <span className="block text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">
-                  Innovating for a
-                </span>
-                <span className="block text-5xl md:text-6xl lg:text-7xl font-light tracking-tight mt-2">
-                  <span className="text-primary">Digital Era</span>
-                </span>
-              </h1>
+              <div className="min-h-[250px] sm:min-h-[280px] md:min-h-[300px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
+                    {/* Main Headline */}
+                    <h1 className="text-carbon-100 mb-8 leading-[1.1]">
+                      <span className="block text-5xl md:text-6xl lg:text-7xl font-light tracking-tight">
+                        {slides[currentSlide].title1}
+                      </span>
+                      <span className="block text-5xl md:text-6xl lg:text-7xl font-light tracking-tight mt-2">
+                        <span className="text-primary">{slides[currentSlide].title2}</span>
+                      </span>
+                    </h1>
 
-              {/* Subheadline */}
-              <p className="text-carbon-80 text-lg md:text-xl max-w-2xl mb-12 leading-relaxed font-medium">
-                Soft Synergy Systems delivers enterprise-grade AI, automation, and software solutions
-                that drive intelligence, efficiency, and growth for global businesses.
-              </p>
+                    {/* Subheadline */}
+                    <p className="text-carbon-80 text-lg md:text-xl max-w-2xl mb-12 leading-relaxed font-medium">
+                      {slides[currentSlide].description}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Carousel Indicators */}
+              <div className="flex space-x-3 mb-10 -mt-4">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      currentSlide === index ? 'w-10 bg-primary' : 'w-4 bg-carbon-100/20 hover:bg-carbon-100/40'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">

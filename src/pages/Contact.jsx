@@ -203,7 +203,7 @@ const Contact = () => {
                         href="tel:+918296453365"
                         className="text-carbon-100 hover:text-primary transition-colors"
                       >
-                        +91 82964 53365
+                        +91 97908 23800
                       </a>
                     </div>
                   </div>

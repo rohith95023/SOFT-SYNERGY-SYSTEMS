@@ -26,7 +26,7 @@ export const COMPANY_INFO = {
     },
     contact: {
         email: 'hr@softsynergysystems.com',
-        phone: '+91 82964 53365',
+        phone: '+91 97908 23800',
     },
     certification: 'ISO Certified Organisation',
 };

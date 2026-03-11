@@ -17,26 +17,29 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isBeyondHero, setIsBeyondHero] = useState(false);
   const { pathname } = useLocation();
-
-  // Check if current page has a dark hero
   const hasDarkHero = DARK_HERO_PAGES.includes(pathname);
+  const isHomePage = pathname === '/';
+
+
+  const updateScrollState = () => {
+    const scrollPos = window.scrollY;
+    setScrolled(scrollPos > 20);
+    setIsBeyondHero(scrollPos > window.innerHeight * 0.8);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    // Set initial scroll state
-    setScrolled(window.scrollY > 20);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', updateScrollState);
+    updateScrollState();
+    return () => window.removeEventListener('scroll', updateScrollState);
   }, []);
 
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
-    // Reset scroll state on page change
-    setScrolled(window.scrollY > 20);
+    updateScrollState();
   }, [pathname]);
 
   const isActive = (path) => pathname === path;
@@ -44,16 +47,34 @@ const Navbar = () => {
   // Determine which logo to show:
   // - LogoDark.webp = for dark backgrounds (not scrolled on dark hero pages)
   // - LogoLight.webp = for white/light backgrounds (scrolled = white navbar, or home page with light hero)
-  const showDarkLogo = !scrolled && hasDarkHero;
+  // Only use dark logo on home page if it has a dark hero (which it doesn't currently) 
+  // or on dark hero pages when not scrolled and transparency is active (only on home)
+  const showDarkLogo = isHomePage ? (!scrolled && hasDarkHero && !isHovered) : false;
+  
+  // Logic for solid white navbar state
+  // It's solid white if:
+  // 1. Not on home page
+  // 2. On home page but scrolled past Hero (isBeyondHero)
+  // 3. On home page and hovered
+  const isSolidWhite = !isHomePage || isBeyondHero || isHovered;
+
 
   return (
     <nav
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-300',
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-soft border-b border-carbon-20'
-          : 'bg-transparent'
+        'fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ',
+        (isHomePage && !isBeyondHero)
+          ? (scrolled || isHovered)
+            ? isHovered 
+              ? 'bg-white shadow-medium border-b border-carbon-30' 
+              : 'bg-white/30 backdrop-blur-md backdrop-saturate-150 backdrop-brightness-95 shadow-sm border-b border-carbon-30'
+            : 'bg-transparent bg-white/80'
+          : 'bg-white shadow-medium border-b border-carbon-30'
       )}
+
+
     >
       <Container className="flex items-center justify-between h-20 md:h-24">
         {/* Logo */}
@@ -81,7 +102,8 @@ const Navbar = () => {
                   'px-5 py-3 text-lg font-medium transition-colors duration-150 flex items-center gap-1.5',
                   isActive(link.path)
                     ? 'text-primary'
-                    : scrolled ? 'text-carbon-80 hover:text-primary' : (hasDarkHero ? 'text-white hover:text-primary-light' : 'text-carbon-80 hover:text-primary')
+                    : isSolidWhite ? 'text-carbon-80 hover:text-primary' : (hasDarkHero ? 'text-white hover:text-primary-light' : 'text-carbon-80 hover:text-primary')
+
                 )}
               >
                 {link.name}
@@ -151,8 +173,9 @@ const Navbar = () => {
         <button
           className={cn(
             "lg:hidden p-2 transition-colors",
-            scrolled ? "text-carbon-100 hover:text-primary" : (hasDarkHero ? "text-white hover:text-primary-light" : "text-carbon-100 hover:text-primary")
+            isSolidWhite ? "text-carbon-100 hover:text-primary" : (hasDarkHero ? "text-white hover:text-primary-light" : "text-carbon-100 hover:text-primary")
           )}
+
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
