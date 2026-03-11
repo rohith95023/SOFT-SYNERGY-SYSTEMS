@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
-import { TESTIMONIALS } from '../constants/testimonials';
+import { TESTIMONIALS } from '../constants';
 
 const TestimonialsSection = () => {
   return (

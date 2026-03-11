@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, ArrowRight, ArrowUpRight } from 'lucide-react';
-import { NAV_LINKS, SERVICE_NAV_LINKS } from '../../constants/navigation';
+import { NAV_LINKS, SERVICE_NAV_LINKS } from '../../constants';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
 import logoDark from '../../assets/LogoDark.webp';

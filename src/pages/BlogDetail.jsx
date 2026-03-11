@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import SEO from '../components/common/SEO';
 import Container from '../components/layout/Container';
 import Section from '../components/layout/Section';
-import { BLOG_POSTS } from '../constants/blog';
+import { BLOG_POSTS } from '../constants';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 

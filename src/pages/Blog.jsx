@@ -8,7 +8,7 @@ import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import InputField from '../components/ui/InputField';
 import Button from '../components/ui/Button';
-import { BLOG_POSTS } from '../constants/blog';
+import { BLOG_POSTS } from '../constants';
 
 const categories = ['All', 'AI & ML', 'Automation', 'Web Dev', 'QA', 'Industry News'];
 
@@ -68,8 +68,8 @@ const Blog = () => {
                   key={category}
                   onClick={() => setActiveCategory(category)}
                   className={`px-4 py-2 text-sm font-medium transition-colors ${activeCategory === category
-                      ? 'bg-primary text-white'
-                      : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
+                    ? 'bg-primary text-white'
+                    : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
                     }`}
                 >
                   {category}

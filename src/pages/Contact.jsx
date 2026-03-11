@@ -7,7 +7,7 @@ import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import Button from '../components/ui/Button';
 import InputField from '../components/ui/InputField';
-import { SERVICE_LIST } from '../constants/services';
+import { SERVICE_CATEGORIES } from '../constants';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -126,7 +126,7 @@ const Contact = () => {
                         className="w-full px-4 py-3 bg-white border border-carbon-50 text-carbon-100 focus:border-primary focus:outline-none transition-colors"
                       >
                         <option value="">Select a service</option>
-                        {SERVICE_LIST.map(service => (
+                        {SERVICE_CATEGORIES.map(service => (
                           <option key={service.id} value={service.id}>
                             {service.title}
                           </option>

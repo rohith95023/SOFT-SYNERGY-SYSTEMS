@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NAV_LINKS } from '../../constants/navigation';
+import { NAV_LINKS } from '../../constants';
 import { cn } from '../../utils/cn';
 import Button from '../ui/Button';
 import Container from '../layout/Container';
+import { trackEvent } from '../../utils/analytics';
 import logoLight from '../../assets/LogoLight.webp';
 import logoDark from '../../assets/LogoDark.webp';
 
@@ -139,7 +140,7 @@ const Navbar = () => {
 
         {/* CTA Button */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link to="/contact">
+          <Link to="/contact" onClick={() => trackEvent('cta_click', { button_name: 'Get a Quote', location: 'Navbar' })}>
             <Button size="sm" icon={ArrowRight}>
               Get a Quote
             </Button>

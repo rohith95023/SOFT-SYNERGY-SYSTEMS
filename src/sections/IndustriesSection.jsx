@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
-import { INDUSTRIES } from '../constants/industries';
+import { INDUSTRIES } from '../constants';
 
 const IndustriesSection = () => {
   return (

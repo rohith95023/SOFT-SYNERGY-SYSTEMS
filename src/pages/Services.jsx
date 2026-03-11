@@ -7,7 +7,7 @@ import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import CTABanner from '../sections/CTABanner';
-import { SERVICE_LIST } from '../constants/services';
+import { SERVICE_CATEGORIES } from '../constants';
 
 const techStack = [
   { name: 'React', category: 'Frontend' },
@@ -33,9 +33,9 @@ const processSteps = [
 ];
 
 const Services = () => {
-  const [activeService, setActiveService] = useState(SERVICE_LIST[0].id);
+  const [activeService, setActiveService] = useState(SERVICE_CATEGORIES[0].id);
 
-  const currentService = SERVICE_LIST.find(s => s.id === activeService);
+  const currentService = SERVICE_CATEGORIES.find(s => s.id === activeService);
 
   return (
     <motion.main
@@ -64,13 +64,13 @@ const Services = () => {
         <Container>
           <div className="border-b border-carbon-20 -mt-8 sticky top-20 bg-white z-30">
             <div className="flex overflow-x-auto hide-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
-              {SERVICE_LIST.map((service) => (
+              {SERVICE_CATEGORIES.map((service) => (
                 <button
                   key={service.id}
                   onClick={() => setActiveService(service.id)}
                   className={`px-6 py-4 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${activeService === service.id
-                      ? 'border-primary text-primary'
-                      : 'border-transparent text-carbon-60 hover:text-carbon-100'
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-carbon-60 hover:text-carbon-100'
                     }`}
                 >
                   {service.title}
@@ -120,7 +120,10 @@ const Services = () => {
                         className="flex items-start gap-3 p-4 bg-carbon-10 hover:bg-carbon-20 transition-colors"
                       >
                         <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                        <span className="text-sm text-carbon-80">{cap}</span>
+                        <div>
+                          <span className="text-sm font-semibold text-carbon-100 block mb-1">{cap.title}</span>
+                          <span className="text-sm text-carbon-80">{cap.description}</span>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -152,13 +155,13 @@ const Services = () => {
                 <div className="bg-carbon-10 p-6 mb-6">
                   <h3 className="text-sm font-semibold text-carbon-100 mb-4">All Services</h3>
                   <div className="space-y-1">
-                    {SERVICE_LIST.map((service) => (
+                    {SERVICE_CATEGORIES.map((service) => (
                       <button
                         key={service.id}
                         onClick={() => setActiveService(service.id)}
                         className={`w-full text-left px-4 py-3 text-sm transition-colors ${activeService === service.id
-                            ? 'bg-white text-primary font-medium'
-                            : 'text-carbon-60 hover:bg-white hover:text-carbon-100'
+                          ? 'bg-white text-primary font-medium'
+                          : 'text-carbon-60 hover:bg-white hover:text-carbon-100'
                           }`}
                       >
                         {service.title}

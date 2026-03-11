@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import Card from '../components/ui/Card';
-import { SERVICE_LIST } from '../constants/services';
+import { SERVICE_CATEGORIES } from '../constants';
 
 const ServicesOverview = () => {
   return (
@@ -34,7 +34,7 @@ const ServicesOverview = () => {
 
         {/* Services Grid - IBM Carbon Style */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-carbon-20">
-          {SERVICE_LIST.map((service, idx) => (
+          {SERVICE_CATEGORIES.map((service, idx) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 20 }}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
-import { BLOG_POSTS } from '../constants/blog';
+import { BLOG_POSTS } from '../constants';
 
 const BlogPreviewSection = () => {
   const latestPosts = BLOG_POSTS.slice(0, 3);

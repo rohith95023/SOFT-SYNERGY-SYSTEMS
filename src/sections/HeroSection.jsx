@@ -4,14 +4,26 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Container from '../components/layout/Container';
+import backgroundVideo from '../assets/background.mp4';
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
       {/* IBM-style Grid Background */}
       <div className="absolute inset-0 z-0">
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={backgroundVideo} type="video/mp4" />
+        </video>
+
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-carbon-10 to-primary-soft" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/30 to-primary-soft/40" />
 
         {/* Animated Grid Pattern */}
         <svg
@@ -166,10 +178,6 @@ const HeroSection = () => {
         </motion.div>
       </motion.div>
 
-      {/* Side Decoration - IBM Style */}
-      <div className="absolute right-0 top-0 h-full w-1 bg-primary hidden lg:block" />
-      <div className="absolute right-4 top-1/4 h-24 w-1 bg-accent hidden lg:block" />
-      <div className="absolute right-4 bottom-1/4 h-16 w-1 bg-primary-light hidden lg:block" />
     </section>
   );
 };

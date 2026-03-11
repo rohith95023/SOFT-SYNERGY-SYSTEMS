@@ -14,18 +14,19 @@ const SEO = ({ title, description, canonical, ogType = 'website', ogImage }) => 
       <link rel="canonical" href={url} />
 
       {/* Open Graph */}
+      {/* Open Graph */}
       <meta property="og:site_name" content={siteName} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={url} />
-      {ogImage && <meta property="og:image" content={ogImage} />}
+      <meta property="og:image" content={ogImage || 'https://softsynergysystems.com/og-image.jpg'} />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      {ogImage && <meta name="twitter:image" content={ogImage} />}
+      <meta name="twitter:image" content={ogImage || 'https://softsynergysystems.com/twitter-image.jpg'} />
     </Helmet>
   );
 };

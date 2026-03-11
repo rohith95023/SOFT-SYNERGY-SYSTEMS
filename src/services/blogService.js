@@ -1,4 +1,4 @@
-import { BLOG_POSTS } from '../constants/blog';
+import { BLOG_POSTS } from '../constants';
 
 /**
  * Returns all blog posts, optionally filtered by category and search query.

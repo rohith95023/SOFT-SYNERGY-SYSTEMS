@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import AnimatedCounter from '../components/ui/AnimatedCounter';
-import { STATS_DATA } from '../constants/stats';
+import { STATS_DATA } from '../constants';
 
 const StatsSection = () => {
   return (

@@ -6,7 +6,7 @@ import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import CTABanner from '../sections/CTABanner';
-import { FAQ_DATA } from '../constants/faq';
+import { FAQ_DATA } from '../constants';
 
 const FAQ = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -72,8 +72,8 @@ const FAQ = () => {
               <button
                 onClick={() => setActiveCategory('All')}
                 className={`px-4 py-2 text-sm font-medium transition-colors ${activeCategory === 'All'
-                    ? 'bg-primary text-white'
-                    : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
+                  ? 'bg-primary text-white'
+                  : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
                   }`}
               >
                 All
@@ -83,8 +83,8 @@ const FAQ = () => {
                   key={category}
                   onClick={() => setActiveCategory(category)}
                   className={`px-4 py-2 text-sm font-medium transition-colors ${activeCategory === category
-                      ? 'bg-primary text-white'
-                      : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
+                    ? 'bg-primary text-white'
+                    : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
                     }`}
                 >
                   {category}

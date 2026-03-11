@@ -7,12 +7,18 @@ import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import CTABanner from '../sections/CTABanner';
-import { PORTFOLIO_ITEMS } from '../constants/portfolio';
+import { PORTFOLIO_ITEMS } from '../constants';
+import { trackEvent } from '../utils/analytics';
 
 const filters = ['All', 'Banking', 'Healthcare', 'E-commerce', 'Telecom'];
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+
+  const handleFilterClick = (filter) => {
+    setActiveFilter(filter);
+    trackEvent('portfolio_filter_click', { filter });
+  };
 
   const filteredItems = activeFilter === 'All'
     ? PORTFOLIO_ITEMS
@@ -47,10 +53,10 @@ const Portfolio = () => {
             {filters.map((filter) => (
               <button
                 key={filter}
-                onClick={() => setActiveFilter(filter)}
+                onClick={() => handleFilterClick(filter)}
                 className={`px-5 py-2.5 text-sm font-medium transition-colors ${activeFilter === filter
-                    ? 'bg-primary text-white'
-                    : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
+                  ? 'bg-primary text-white'
+                  : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
                   }`}
               >
                 {filter}
