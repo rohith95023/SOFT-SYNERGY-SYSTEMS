@@ -64,13 +64,13 @@ const Navbar = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ',
+        'fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out',
         (isHomePage && !isBeyondHero)
           ? (scrolled || isHovered)
             ? isHovered 
               ? 'bg-white shadow-medium border-b border-carbon-30' 
               : 'bg-white/30 backdrop-blur-md backdrop-saturate-150 backdrop-brightness-95 shadow-sm border-b border-carbon-30'
-            : 'bg-transparent bg-white/80'
+            : 'bg-white/80'
           : 'bg-white shadow-medium border-b border-carbon-30'
       )}
 

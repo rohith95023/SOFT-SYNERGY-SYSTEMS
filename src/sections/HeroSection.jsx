@@ -51,7 +51,7 @@ const HeroSection = () => {
           </video>
            
           {/* Gradient Overlay - ensuring text is readable on left but video is bright on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/60 to-white/10" />
+          <div className="absolute inset-0 bg-linear-to-r from-white/95 via-white/60 to-white/10" />
 
           {/* Animated Grid Pattern */}
           <svg
