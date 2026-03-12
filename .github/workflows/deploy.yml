@@ -23,7 +23,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script_stop: true
+          request_pty: false
           script: |
-            # Navigate to project directory and run deploy script
+            # Set PATH for bun and run deploy
+            export PATH="/home/deployer/.bun/bin:$PATH"
             cd /home/deployer/projects || exit 1
             ./deploy.sh
