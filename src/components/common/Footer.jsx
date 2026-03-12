@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, ArrowRight, ArrowUpRight } from 'lucide-react';
-import { NAV_LINKS, SERVICE_NAV_LINKS } from '../../constants';
+import { NAV_LINKS, SERVICE_NAV_LINKS, COMPANY_INFO } from '../../constants';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
 import logoDark from '../../assets/LogoDark.webp';
@@ -102,10 +102,10 @@ const Footer = () => {
                     Email
                   </span>
                   <a
-                    href="mailto:hr@softsynergysystems.com"
+                    href={`mailto:${COMPANY_INFO.contact.email}`}
                     className="text-sm text-carbon-30 hover:text-white transition-colors duration-150"
                   >
-                    hr@softsynergysystems.com
+                    {COMPANY_INFO.contact.email}
                   </a>
                 </div>
               </li>
@@ -118,10 +118,10 @@ const Footer = () => {
                     Phone
                   </span>
                   <a
-                    href="tel:+918296453365"
+                    href={`tel:${COMPANY_INFO.contact.phone.replace(/\s/g, '')}`}
                     className="text-sm text-carbon-30 hover:text-white transition-colors duration-150"
                   >
-                    +91 97908 23800
+                    {COMPANY_INFO.contact.phone}
                   </a>
                 </div>
               </li>
@@ -173,7 +173,7 @@ const Footer = () => {
         <Container className="py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-carbon-50 text-xs text-center md:text-left">
-              © {currentYear} Soft Synergy Systems Pvt Ltd. All rights reserved. ISO Certified Organization.
+              © {currentYear} {COMPANY_INFO.name}. All rights reserved. {COMPANY_INFO.certification}.
             </p>
             <div className="flex gap-6 text-xs">
               <Link

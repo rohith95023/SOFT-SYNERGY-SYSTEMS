@@ -27,7 +27,7 @@ export const submitContactForm = async (formData) => {
           phone: formData.phone,
           service: formData.service,
           message: formData.message,
-          to_email: 'hr@softsynergysystems.com',
+          to_email: import.meta.env.VITE_CONTACT_EMAIL || 'hr@softsynergysystems.com',
         },
         EMAILJS_PUBLIC_KEY
       );

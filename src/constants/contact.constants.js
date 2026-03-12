@@ -39,13 +39,13 @@ export const CONTACT_INFO = {
     },
     contact: {
         email: {
-            primary: 'hr@softsynergysystems.com',
+            primary: import.meta.env.VITE_CONTACT_EMAIL || 'hr@softsynergysystems.com',
             sales: 'sales@softsynergysystems.com',
             support: 'support@softsynergysystems.com',
         },
         phone: {
-            primary: '+91 97908 23800',
-            display: '+91 97908 23800',
+            primary: import.meta.env.VITE_CONTACT_PHONE || '+91 97908 23800',
+            display: import.meta.env.VITE_CONTACT_PHONE || '+91 97908 23800',
         },
     },
     workingHours: {
@@ -121,7 +121,7 @@ export const CONTACT_FORM_CONFIG = {
     },
     errorMessage: {
         title: 'Something went wrong',
-        message: 'Please try again or contact us directly at hr@softsynergysystems.com',
+        message: `Please try again or contact us directly at ${import.meta.env.VITE_CONTACT_EMAIL || 'hr@softsynergysystems.com'}`,
     },
 };
 
@@ -133,7 +133,7 @@ export const MAP_CONFIG = {
     title: 'Our Location',
     subtitle: 'Visit us at our headquarters in Bengaluru',
     // Google Maps embed URL - replace with actual coordinates
-    embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.123456789!2d77.6123456789!3d13.0123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAwJzQ0LjQiTiA3N8KwMzYnNDQuNCJF!5e0!3m2!1sen!2sin!4v1234567890',
+    embedUrl: import.meta.env.VITE_GOOGLE_MAP_EMBED_URL || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.1596909748396!2d77.63029397590326!3d13.089063912290417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae19d5b5766363%3A0x59885816faa7d91f!2sSoft%20Synergy%20Systems%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1773298280470!5m2!1sen!2sin',
     coordinates: {
         lat: 13.012345,
         lng: 77.612345,
@@ -202,7 +202,7 @@ export const CONTACT_CTA = {
     subtitle: 'Call us directly or schedule a meeting at your convenience.',
     phoneCTA: {
         text: 'Call Now',
-        number: '+91 97908 23800',
+        number: import.meta.env.VITE_CONTACT_PHONE || '+91 97908 23800',
     },
     scheduleCTA: {
         text: 'Schedule a Call',

@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import MainLayout from './components/layout/MainLayout'
 import ErrorBoundary from './components/common/ErrorBoundary'
 import AnalyticsTracker from './components/common/AnalyticsTracker'
+import { initAnalytics } from './utils/analytics'
+import { useEffect } from 'react'
 // Lazy loaded pages with preloading
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
@@ -29,6 +31,10 @@ const PageLoader = () => (
 );
 
 function App() {
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
   return (
     <ErrorBoundary>
       <AnalyticsTracker />

@@ -7,7 +7,7 @@ import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import Button from '../components/ui/Button';
 import InputField from '../components/ui/InputField';
-import { SERVICE_CATEGORIES } from '../constants';
+import { SERVICE_CATEGORIES, COMPANY_INFO, MAP_CONFIG } from '../constants';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -183,10 +183,10 @@ const Contact = () => {
                         Email
                       </p>
                       <a
-                        href="mailto:hr@softsynergysystems.com"
+                        href={`mailto:${COMPANY_INFO.contact.email}`}
                         className="text-carbon-100 hover:text-primary transition-colors"
                       >
-                        hr@softsynergysystems.com
+                        {COMPANY_INFO.contact.email}
                       </a>
                     </div>
                   </div>
@@ -200,10 +200,10 @@ const Contact = () => {
                         Phone
                       </p>
                       <a
-                        href="tel:+918296453365"
+                        href={`tel:${COMPANY_INFO.contact.phone.replace(/\s/g, '')}`}
                         className="text-carbon-100 hover:text-primary transition-colors"
                       >
-                        +91 97908 23800
+                        {COMPANY_INFO.contact.phone}
                       </a>
                     </div>
                   </div>
@@ -241,9 +241,9 @@ const Contact = () => {
 
                 {/* Map */}
                 <div className="mt-10">
-                  <div className="aspect-[4/3] bg-carbon-20 overflow-hidden">
+                  <div className="aspect-4/3 bg-carbon-20 overflow-hidden">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5976!2d77.6408!3d13.0451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAyJzQyLjQiTiA3N8KwMzgnMjYuOSJF!5e0!3m2!1sen!2sin!4v1234567890"
+                      src={MAP_CONFIG.embedUrl}
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}

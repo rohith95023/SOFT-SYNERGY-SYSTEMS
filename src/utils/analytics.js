@@ -3,23 +3,31 @@
  * Integrates with Google Analytics and PostHog (placeholders for actual IDs)
  */
 
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_ID || ''; 
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || ''; 
 const POSTHOG_API_KEY = import.meta.env.VITE_POSTHOG_KEY || '';
 
 // Initialize tracking scripts (Call this in main.jsx or App.jsx)
 export const initAnalytics = () => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !GA_MEASUREMENT_ID) return;
 
-  // Example GA Initialization
-  if (GA_MEASUREMENT_ID) {
-    console.log(`Initialized GA with ID: ${GA_MEASUREMENT_ID}`);
-    // Dynamically inject GA script here if needed
-  }
+  // Dynamically inject GA script
+  const script1 = document.createElement('script');
+  script1.async = true;
+  script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(script1);
 
-  // Example PostHog Initialization
-  if (POSTHOG_API_KEY) {
-    console.log(`Initialized PostHog with Key: ${POSTHOG_API_KEY}`);
-  }
+  const script2 = document.createElement('script');
+  script2.innerHTML = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_MEASUREMENT_ID}', {
+      page_path: window.location.pathname,
+    });
+  `;
+  document.head.appendChild(script2);
+
+  console.log(`[Analytics] Initialized GA4 with ID: ${GA_MEASUREMENT_ID}`);
 };
 
 /**

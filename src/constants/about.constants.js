@@ -22,8 +22,8 @@ export const COMPANY_INFO = {
         pincode: '560064',
     },
     contact: {
-        email: 'hr@softsynergysystems.com',
-        phone: '+91 97908 23800',
+        email: import.meta.env.VITE_CONTACT_EMAIL || 'hr@softsynergysystems.com',
+        phone: import.meta.env.VITE_CONTACT_PHONE || '+91 97908 23800',
     },
     certification: 'ISO Certified Organisation',
 };
