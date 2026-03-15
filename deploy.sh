@@ -9,6 +9,7 @@ PROJECT_DIR="/home/deployer/projects/SOFT-SYNERGY-SYSTEMS"
 LOG_FILE="/var/log/soft-synergy-deploy.log"
 BACKUP_DIR="/var/backups/soft-synergy-systems"
 WEB_DIR="/var/www/softsynergysystems.com"
+CADDY_CONFIG="/etc/caddy/Caddyfile"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
@@ -41,8 +42,8 @@ log "Building application..."
 ~/.bun/bin/bun run build
 log "Build completed successfully"
 
-# Copy to web directory (Caddy serves this path)
-log "Copying to web directory ($WEB_DIR)..."
+# Copy build to web directory (Caddy serves this path)
+log "Copying build to web directory ($WEB_DIR)..."
 sudo -n rm -rf "$WEB_DIR"/*
 sudo -n cp -r "$PROJECT_DIR/dist/"* "$WEB_DIR/"
 log "Files copied successfully"
@@ -53,7 +54,16 @@ sudo -n chown -R www-data:www-data "$WEB_DIR"
 sudo -n chmod -R 755 "$WEB_DIR"
 log "Permissions set"
 
-# Reload Caddy to pick up new files
+# Update Caddy configuration from repository
+log "Updating Caddy configuration..."
+if [ -f "$PROJECT_DIR/Caddyfile" ]; then
+    sudo -n cp "$PROJECT_DIR/Caddyfile" "$CADDY_CONFIG"
+    log "Caddyfile updated"
+else
+    log "Warning: Caddyfile not found in repository"
+fi
+
+# Reload Caddy to apply configuration
 log "Reloading Caddy..."
 sudo -n systemctl reload caddy
 log "Caddy reloaded successfully"
