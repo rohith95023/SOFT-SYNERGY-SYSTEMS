@@ -23,7 +23,7 @@ const ServicesOverview = () => {
               Our Capability
             </span>
             <h2 className="text-4xl md:text-5xl font-light text-carbon-100 mb-6 tracking-tight">
-              Advanced Solutions for Modern Enterprises
+              Advanced Solutions for Modern Enterprises.
             </h2>
             <p className="text-lg text-carbon-60 font-light leading-relaxed">
               We bridge the gap between complex problems and elegant technology solutions

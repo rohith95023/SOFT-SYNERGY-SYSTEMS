@@ -1,0 +1,31 @@
+# GitHub Actions workflow for deploying Soft Synergy Systems website
+# Purpose: SSH into server and trigger deployment script
+
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script_stop: true
+          request_pty: false
+          script: |
+            # Set PATH for bun and run deploy
+            export PATH="/home/deployer/.bun/bin:$PATH"
+            cd /home/deployer/projects || exit 1
+            ./deploy.sh
