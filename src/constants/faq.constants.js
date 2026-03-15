@@ -4,13 +4,17 @@
  * All data used specifically on the FAQ page (/faq)
  * 
  * Sections: Hero, FAQ Categories, FAQ Items
+ * 
+ * @module constants/faq
  */
+
+import appConfig from '../config/app.config';
 
 // ============================================
 // FAQ PAGE HERO
 // ============================================
 
-export const FAQ_HERO = {
+export const FAQ_HERO = Object.freeze({
     title: 'Frequently Asked Questions',
     subtitle: 'Find answers to common questions about our services and processes',
     breadcrumb: [
@@ -18,25 +22,25 @@ export const FAQ_HERO = {
         { label: 'FAQ', path: '/faq' },
     ],
     searchPlaceholder: 'Search questions...',
-};
+});
 
 // ============================================
 // FAQ CATEGORIES
 // ============================================
 
-export const FAQ_CATEGORIES = [
+export const FAQ_CATEGORIES = Object.freeze([
     { id: 'general', label: 'General', icon: 'info' },
     { id: 'services', label: 'Services', icon: 'briefcase' },
     { id: 'process', label: 'Process', icon: 'workflow' },
     { id: 'pricing', label: 'Pricing', icon: 'currency' },
     { id: 'support', label: 'Support', icon: 'help' },
-];
+]);
 
 // ============================================
 // FAQ DATA - ALL QUESTIONS AND ANSWERS
 // ============================================
 
-export const FAQ_DATA = [
+export const FAQ_DATA = Object.freeze([
     // ============================================
     // GENERAL QUESTIONS
     // ============================================
@@ -122,7 +126,7 @@ export const FAQ_DATA = [
         id: 'process-1',
         category: 'Process',
         question: 'How do I start a project with Soft Synergy Systems?',
-        answer: `Starting a project is easy. You can use our Contact form on the website, email us at ${import.meta.env.VITE_CONTACT_EMAIL || 'hr@softsynergysystems.com'}, or call us at ${import.meta.env.VITE_CONTACT_PHONE || '+91 97908 23800'}. One of our solution architects will reach out within 24 hours to schedule a discovery call where we will understand your requirements and propose a tailored solution.`,
+        answer: `Starting a project is easy. You can use our Contact form on the website, email us at ${appConfig.contact.email}, or call us at ${appConfig.contact.phone}. One of our solution architects will reach out within 24 hours to schedule a discovery call where we will understand your requirements and propose a tailored solution.`,
         tags: ['start', 'contact', 'engagement', 'begin'],
     },
     {
@@ -196,15 +200,15 @@ export const FAQ_DATA = [
         answer: 'Absolutely. We frequently work in hybrid models where our team collaborates with client teams. We can integrate with your existing workflows, tools, and processes. Many clients appreciate our staff augmentation services where our experts join their teams to fill skill gaps or accelerate projects.',
         tags: ['collaboration', 'team', 'integration', 'augmentation'],
     },
-];
+]);
 
 // ============================================
 // FAQ CTA
 // ============================================
 
-export const FAQ_CTA = {
+export const FAQ_CTA = Object.freeze({
     title: 'Still Have Questions?',
     subtitle: 'Cannot find the answer you are looking for? Please reach out to our team.',
     buttonText: 'Contact Us',
     buttonLink: '/contact',
-};
+});

@@ -339,7 +339,7 @@ const Careers = () => {
                                     </div>
 
                                     <Link
-                                        to={`/careers/${position.id}`}
+                                        to={`/contact?subject=Application%20for%20${encodeURIComponent(position.title)}`}
                                         className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
                                     >
                                         Apply <ArrowRight className="h-4 w-4" />

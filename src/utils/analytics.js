@@ -1,10 +1,19 @@
 /**
- * Generic Analytics Utility for Tracking Page Views and Events
- * Integrates with Google Analytics and PostHog (placeholders for actual IDs)
+ * Analytics Utility — Page Views & Event Tracking
+ * =================================================
+ * Integrates with Google Analytics 4 and PostHog.
+ *
+ * RULE: Config values come from appConfig, not raw import.meta.env.
+ * RULE: Use logger instead of console.log.
+ *
+ * @module utils/analytics
  */
 
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || ''; 
-const POSTHOG_API_KEY = import.meta.env.VITE_POSTHOG_KEY || '';
+import appConfig from '../config/app.config';
+import logger from './logger';
+
+const GA_MEASUREMENT_ID = appConfig.analytics.gaMeasurementId;
+const POSTHOG_API_KEY = appConfig.analytics.posthogKey;
 
 // Initialize tracking scripts (Call this in main.jsx or App.jsx)
 export const initAnalytics = () => {
@@ -27,7 +36,7 @@ export const initAnalytics = () => {
   `;
   document.head.appendChild(script2);
 
-  console.log(`[Analytics] Initialized GA4 with ID: ${GA_MEASUREMENT_ID}`);
+  logger.info(`Analytics: Initialized GA4 with ID: ${GA_MEASUREMENT_ID}`);
 };
 
 /**
@@ -47,10 +56,7 @@ export const trackPageView = (path) => {
     window.posthog.capture('$pageview');
   }
 
-  // Log in dev environment
-  if (import.meta.env.DEV) {
-    console.log(`[Analytics] Page View: ${path}`);
-  }
+  logger.debug(`Analytics: Page View: ${path}`);
 };
 
 /**
@@ -71,8 +77,5 @@ export const trackEvent = (eventName, properties = {}) => {
     window.posthog.capture(eventName, properties);
   }
 
-  // Log in dev environment
-  if (import.meta.env.DEV) {
-    console.log(`[Analytics] Event: ${eventName}`, properties);
-  }
+  logger.debug(`Analytics: Event: ${eventName}`, properties);
 };

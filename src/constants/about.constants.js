@@ -4,13 +4,17 @@
  * All data used specifically on the About page (/about)
  * 
  * Sections: Hero, Company Story, Mission & Vision, Core Values, Divisions, Team
+ * 
+ * @module constants/about
  */
+
+import appConfig from '../config/app.config';
 
 // ============================================
 // COMPANY INFORMATION
 // ============================================
 
-export const COMPANY_INFO = {
+export const COMPANY_INFO = Object.freeze({
     name: 'Soft Synergy Systems Pvt Ltd',
     tagline: 'Innovating for a Digital Era',
     founded: 2014,
@@ -22,17 +26,17 @@ export const COMPANY_INFO = {
         pincode: '560064',
     },
     contact: {
-        email: import.meta.env.VITE_CONTACT_EMAIL || 'hr@softsynergysystems.com',
-        phone: import.meta.env.VITE_CONTACT_PHONE || '+91 97908 23800',
+        email: appConfig.contact.email,
+        phone: appConfig.contact.phone,
     },
     certification: 'ISO Certified Organisation',
-};
+});
 
 // ============================================
 // VISION & MISSION
 // ============================================
 
-export const VISION_MISSION = {
+export const VISION_MISSION = Object.freeze({
     vision: {
         title: 'Our Vision',
         statement: 'To become a global leader in digital transformation and advanced technology solutions.',
@@ -43,13 +47,13 @@ export const VISION_MISSION = {
         statement: 'Empowering organisations with innovative technology solutions that drive efficiency, intelligence, and business growth.',
         description: 'We deliver cutting-edge solutions tailored to each client\'s unique challenges, combining deep technical expertise with a commitment to excellence.',
     },
-};
+});
 
 // ============================================
 // COMPANY STORY
 // ============================================
 
-export const COMPANY_STORY = {
+export const COMPANY_STORY = Object.freeze({
     title: 'Our Story',
     paragraphs: [
         'Founded in 2014, Soft Synergy Systems began with a simple yet ambitious vision: to help enterprises navigate the complexities of digital transformation. What started as a small team of passionate technologists has grown into a full-service technology partner serving clients across the globe.',
@@ -64,13 +68,13 @@ export const COMPANY_STORY = {
         { year: '2023', event: 'Reached 50+ enterprise clients globally' },
         { year: '2026', event: 'Continued innovation in AI & Automation' },
     ],
-};
+});
 
 // ============================================
 // CORE VALUES
 // ============================================
 
-export const CORE_VALUES = [
+export const CORE_VALUES = Object.freeze([
     {
         id: 'innovation',
         title: 'Innovation',
@@ -107,13 +111,13 @@ export const CORE_VALUES = [
         description: 'We adapt quickly to changing technologies and client needs, staying ahead in a fast-evolving landscape.',
         icon: 'zap',
     },
-];
+]);
 
 // ============================================
 // CORE DIVISIONS
 // ============================================
 
-export const CORE_DIVISIONS = [
+export const CORE_DIVISIONS = Object.freeze([
     {
         id: 'software-dev',
         name: 'Software Development Division',
@@ -142,50 +146,14 @@ export const CORE_DIVISIONS = [
         capabilities: ['IoT Solutions', 'Firmware Development', 'Hardware Integration', 'Real-time Systems'],
         icon: 'circuit',
     },
-];
+]);
 
-// ============================================
-// TIMELINE MILESTONES
-// ============================================
-
-export const TIMELINE_MILESTONES = [
-    {
-        year: '2014',
-        title: 'Company Founded',
-        description: 'Soft Synergy Systems established in Bengaluru with a vision to transform enterprise technology.',
-    },
-    {
-        year: '2016',
-        title: 'AI Division Launch',
-        description: 'Launched our Artificial Intelligence division, pioneering AI solutions for enterprises.',
-    },
-    {
-        year: '2018',
-        title: 'ISO Certification',
-        description: 'Achieved ISO certification, demonstrating our commitment to quality and security standards.',
-    },
-    {
-        year: '2020',
-        title: 'Four Divisions',
-        description: 'Expanded to four specialized divisions covering software, AI, robotics, and embedded systems.',
-    },
-    {
-        year: '2023',
-        title: 'Global Expansion',
-        description: 'Reached 50+ enterprise clients across India, Middle East, Southeast Asia, and Europe.',
-    },
-    {
-        year: '2026',
-        title: 'Continued Innovation',
-        description: 'Leading the way in AI, automation, and digital transformation solutions worldwide.',
-    },
-];
 
 // ============================================
 // CERTIFICATIONS & BADGES
 // ============================================
 
-export const CERTIFICATIONS = {
+export const CERTIFICATIONS = Object.freeze({
     iso: {
         title: 'ISO Certified Organisation',
         description: 'We maintain strict quality management systems following international standards.',
@@ -195,4 +163,4 @@ export const CERTIFICATIONS = {
         title: 'Security First',
         description: 'Enterprise-grade security practices in all our development processes.',
     },
-};
+});

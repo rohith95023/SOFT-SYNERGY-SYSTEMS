@@ -3,10 +3,10 @@
  * Configure VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID,
  * and VITE_EMAILJS_PUBLIC_KEY in .env to enable EmailJS.
  */
+import appConfig from '../config/app.config';
+import logger from '../utils/logger';
 
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const { serviceId: EMAILJS_SERVICE_ID, templateId: EMAILJS_TEMPLATE_ID, publicKey: EMAILJS_PUBLIC_KEY } = appConfig.emailjs;
 
 /**
  * Submits the contact form data.
@@ -27,7 +27,7 @@ export const submitContactForm = async (formData) => {
           phone: formData.phone,
           service: formData.service,
           message: formData.message,
-          to_email: import.meta.env.VITE_CONTACT_EMAIL || 'hr@softsynergysystems.com',
+          to_email: appConfig.contact.email,
         },
         EMAILJS_PUBLIC_KEY
       );
@@ -38,7 +38,7 @@ export const submitContactForm = async (formData) => {
     await new Promise((res) => setTimeout(res, 1000));
     return { success: true, message: 'Your message has been received. We will get back to you shortly!' };
   } catch (err) {
-    console.error('Contact form submission error:', err);
+    logger.error('Contact form submission error:', err);
     return { success: false, message: 'Failed to send your message. Please try again or email us directly.' };
   }
 };

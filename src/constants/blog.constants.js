@@ -4,13 +4,15 @@
  * All data used specifically on the Blog page (/blog) and Blog Detail page (/blog/:slug)
  * 
  * Sections: Hero, Blog Grid, Categories, Newsletter
+ * 
+ * @module constants/blog
  */
 
 // ============================================
 // BLOG PAGE HERO
 // ============================================
 
-export const BLOG_HERO = {
+export const BLOG_HERO = Object.freeze({
     title: 'Insights & Articles',
     subtitle: 'Thought leadership, industry perspectives, and technical insights from our team',
     breadcrumb: [
@@ -18,13 +20,13 @@ export const BLOG_HERO = {
         { label: 'Blog', path: '/blog' },
     ],
     searchPlaceholder: 'Search articles...',
-};
+});
 
 // ============================================
 // BLOG CATEGORIES
 // ============================================
 
-export const BLOG_CATEGORIES = {
+export const BLOG_CATEGORIES = Object.freeze({
     allLabel: 'All Posts',
     categories: [
         { id: 'all', label: 'All', value: 'all' },
@@ -35,13 +37,13 @@ export const BLOG_CATEGORIES = {
         { id: 'industry', label: 'Industry News', value: 'Industry News' },
         { id: 'enterprise', label: 'Enterprise', value: 'Enterprise' },
     ],
-};
+});
 
 // ============================================
 // BLOG POSTS - FULL DATA
 // ============================================
 
-export const BLOG_POSTS = [
+export const BLOG_POSTS = Object.freeze([
     {
         id: 1,
         slug: 'future-of-ai-in-enterprise',
@@ -666,29 +668,29 @@ Successful RPA implementation requires strategic planning, proper governance, an
 At Soft Synergy Systems, our Robotics & Automation division helps enterprises implement RPA solutions that deliver real business value. Contact us to discuss your automation journey.
     `,
     },
-];
+]);
 
 // ============================================
 // NEWSLETTER SECTION
 // ============================================
 
-export const NEWSLETTER_DATA = {
+export const NEWSLETTER_DATA = Object.freeze({
     title: 'Subscribe to Our Newsletter',
     subtitle: 'Get the latest insights and updates delivered to your inbox',
     placeholder: 'Enter your email address',
     buttonText: 'Subscribe',
     successMessage: 'Thank you for subscribing!',
     disclaimer: 'We respect your privacy. Unsubscribe at any time.',
-};
+});
 
 // ============================================
 // BLOG DETAIL PAGE CONSTANTS
 // ============================================
 
-export const BLOG_DETAIL_CONSTANTS = {
+export const BLOG_DETAIL_CONSTANTS = Object.freeze({
     relatedPostsTitle: 'Related Articles',
     relatedPostsCount: 3,
     shareTitle: 'Share this article',
     backToBlogText: 'Back to Blog',
     authorTitle: 'Written by',
-};
+});

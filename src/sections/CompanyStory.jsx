@@ -26,7 +26,7 @@ const CompanyStory = () => {
                 Founded on the principles of innovation and synergy, Soft Synergy Systems (SSS) has grown from a specialized technology firm into a global partner for enterprise digital transformation.
               </p>
               <p>
-                Headquartered in the silicon hub of Bengaluru, India, we have spent over 10 years mastering the complexities of AI, automation, and enterprise software systems. Our journey has been defined by a relentless focus on quality and a deep understanding of the evolving digital landscape.
+                Headquartered in the silicon hub of Bengaluru, India, we have spent over 10 years mastering the complexities of AI, automation, and enterprise software systems. Our approach has been defined by a relentless focus on quality and a deep understanding of the evolving digital landscape.
               </p>
               <p>
                 Today, as an ISO Certified Organisation, we serve a diverse portfolio of 50+ enterprise clients across 7 major industry verticals, helping them navigate the digital era with intelligence and agility.

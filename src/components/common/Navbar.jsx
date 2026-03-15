@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NAV_LINKS } from '../../constants';
 import { cn } from '../../utils/cn';
 import Button from '../ui/Button';
 import Container from '../layout/Container';
 import { trackEvent } from '../../utils/analytics';
+import { useTheme } from '../../context/ThemeContext';
+import featuresConfig from '../../config/features.config';
 import logoLight from '../../assets/LogoLight.webp';
 import logoDark from '../../assets/LogoDark.webp';
 
@@ -20,6 +22,8 @@ const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isBeyondHero, setIsBeyondHero] = useState(false);
   const { pathname } = useLocation();
+  // Dark mode toggle — only available when feature flag is on
+  const { theme, toggleTheme } = useTheme();
   const hasDarkHero = DARK_HERO_PAGES.includes(pathname);
   const isHomePage = pathname === '/';
 
@@ -160,8 +164,20 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* CTA Button */}
+        {/* Desktop: Dark Mode Toggle + CTA Button */}
         <div className="hidden lg:flex items-center gap-4">
+          {featuresConfig.darkMode && (
+            <button
+              onClick={() => { toggleTheme(); trackEvent('theme_toggle', { theme: theme === 'light' ? 'dark' : 'light' }); }}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className={cn(
+                'p-2 transition-colors duration-200',
+                isSolidWhite ? 'text-carbon-80 hover:text-primary' : 'text-white hover:text-primary-light'
+              )}
+            >
+              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+          )}
           <Link to="/contact" onClick={() => trackEvent('cta_click', { button_name: 'Get a Quote', location: 'Navbar' })}>
             <Button size="sm" icon={ArrowRight}>
               Get a Quote
@@ -222,7 +238,17 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-              <div className="pt-4 mt-4 border-t border-carbon-20">
+              <div className="pt-4 mt-4 border-t border-carbon-20 flex flex-col gap-3">
+                {featuresConfig.darkMode && (
+                  <button
+                    onClick={() => toggleTheme()}
+                    className="flex items-center gap-3 py-3 px-4 text-base font-medium text-carbon-80 hover:bg-carbon-10 w-full text-left"
+                    aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                  >
+                    {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                  </button>
+                )}
                 <Link to="/contact">
                   <Button className="w-full" icon={ArrowRight}>
                     Get a Quote

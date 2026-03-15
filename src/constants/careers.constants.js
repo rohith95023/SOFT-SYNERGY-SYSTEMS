@@ -4,6 +4,8 @@
  * All data used specifically on the Careers page (/careers)
  * 
  * Sections: Hero, Why Join Us, Culture, Open Positions
+ * 
+ * @module constants/careers
  */
 
 import { TrendingUp, BookOpen, Heart, Globe, Lightbulb, Users } from 'lucide-react';
@@ -12,20 +14,20 @@ import { TrendingUp, BookOpen, Heart, Globe, Lightbulb, Users } from 'lucide-rea
 // CAREERS PAGE HERO
 // ============================================
 
-export const CAREERS_HERO = {
+export const CAREERS_HERO = Object.freeze({
     title: 'Join Our Team',
     subtitle: 'Build your career with a team that is shaping the future of technology',
     breadcrumb: [
         { label: 'Home', path: '/' },
         { label: 'Careers', path: '/careers' },
     ],
-};
+});
 
 // ============================================
 // WHY JOIN US - BENEFITS
 // ============================================
 
-export const CAREER_BENEFITS = {
+export const CAREER_BENEFITS = Object.freeze({
     title: 'Why Join Us',
     subtitle: 'We invest in our people because they are our greatest asset',
     benefits: [
@@ -66,13 +68,13 @@ export const CAREER_BENEFITS = {
             icon: Users,
         },
     ],
-};
+});
 
 // ============================================
 // COMPANY CULTURE
 // ============================================
 
-export const COMPANY_CULTURE = {
+export const COMPANY_CULTURE = Object.freeze({
     title: 'Our Culture',
     subtitle: 'A place where innovation meets collaboration',
     description: 'At Soft Synergy Systems, we have built a culture that celebrates innovation, values diversity, and promotes work-life balance. Our team members come from diverse backgrounds but share a common passion for technology and problem-solving.',
@@ -104,13 +106,13 @@ export const COMPANY_CULTURE = {
         thumbnail: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
         alt: 'Soft Synergy Systems Team',
     },
-};
+});
 
 // ============================================
 // OPEN POSITIONS
 // ============================================
 
-export const OPEN_POSITIONS = {
+export const OPEN_POSITIONS = Object.freeze({
     title: 'Open Positions',
     subtitle: 'Find your perfect role and join our growing team',
     departments: [
@@ -267,13 +269,13 @@ export const OPEN_POSITIONS = {
             posted: 'Feb 10, 2026',
         },
     ],
-};
+});
 
 // ============================================
 // APPLICATION PROCESS
 // ============================================
 
-export const APPLICATION_PROCESS = {
+export const APPLICATION_PROCESS = Object.freeze({
     title: 'How to Apply',
     steps: [
         {
@@ -302,16 +304,16 @@ export const APPLICATION_PROCESS = {
             description: 'Receive your offer and join our team!',
         },
     ],
-};
+});
 
 // ============================================
 // CAREERS CTA
 // ============================================
 
-export const CAREERS_CTA = {
+export const CAREERS_CTA = Object.freeze({
     title: 'Do Not See a Suitable Role?',
     subtitle: 'We are always looking for talented individuals. Send us your resume!',
     buttonText: 'Send Your Resume',
     buttonLink: 'mailto:careers@softsynergysystems.com',
     email: 'careers@softsynergysystems.com',
-};
+});

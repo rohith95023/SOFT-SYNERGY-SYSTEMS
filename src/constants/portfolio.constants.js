@@ -4,26 +4,28 @@
  * All data used specifically on the Portfolio page (/portfolio)
  * 
  * Sections: Hero, Portfolio Grid, Results Stats
+ * 
+ * @module constants/portfolio
  */
 
 // ============================================
 // PORTFOLIO PAGE HERO
 // ============================================
 
-export const PORTFOLIO_HERO = {
+export const PORTFOLIO_HERO = Object.freeze({
     title: 'Our Portfolio',
     subtitle: 'Explore our successful projects across industries and see how we deliver results',
     breadcrumb: [
         { label: 'Home', path: '/' },
         { label: 'Portfolio', path: '/portfolio' },
     ],
-};
+});
 
 // ============================================
 // PORTFOLIO FILTER OPTIONS
 // ============================================
 
-export const PORTFOLIO_FILTERS = {
+export const PORTFOLIO_FILTERS = Object.freeze({
     allLabel: 'All Projects',
     categories: [
         { id: 'all', label: 'All', value: 'all' },
@@ -34,13 +36,13 @@ export const PORTFOLIO_FILTERS = {
         { id: 'logistics', label: 'Logistics', value: 'Logistics' },
         { id: 'fintech', label: 'Fintech', value: 'Fintech' },
     ],
-};
+});
 
 // ============================================
 // PORTFOLIO ITEMS - CASE STUDIES
 // ============================================
 
-export const PORTFOLIO_ITEMS = [
+export const PORTFOLIO_ITEMS = Object.freeze([
     {
         id: 1,
         title: 'Banking Platform Modernization',
@@ -185,13 +187,13 @@ export const PORTFOLIO_ITEMS = [
         teamSize: '10 engineers',
         category: 'AI & Python',
     },
-];
+]);
 
 // ============================================
 // RESULTS/OUTCOMES SUMMARY
 // ============================================
 
-export const PORTFOLIO_RESULTS = {
+export const PORTFOLIO_RESULTS = Object.freeze({
     title: 'Delivering Measurable Results',
     subtitle: 'Our projects consistently deliver significant business impact',
     highlights: [
@@ -200,15 +202,15 @@ export const PORTFOLIO_RESULTS = {
         { metric: '50+', description: 'Successful projects delivered' },
         { metric: '6', description: 'Industries served' },
     ],
-};
+});
 
 // ============================================
 // PORTFOLIO CTA
 // ============================================
 
-export const PORTFOLIO_CTA = {
+export const PORTFOLIO_CTA = Object.freeze({
     title: 'Have a Project in Mind?',
     subtitle: 'Let us help you achieve similar results for your business.',
     buttonText: 'Start a Conversation',
     buttonLink: '/contact',
-};
+});

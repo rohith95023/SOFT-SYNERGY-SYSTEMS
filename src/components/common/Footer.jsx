@@ -1,13 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, ArrowRight, ArrowUpRight, Send } from 'lucide-react';
 import { NAV_LINKS, SERVICE_NAV_LINKS, COMPANY_INFO } from '../../constants';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
 import logoDark from '../../assets/LogoDark.webp';
+import { submitNewsletterSignup } from '../../services/contactService';
+import featuresConfig from '../../config/features.config';
+import { newsletterSchema } from '../../validators/contact.validator';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  // Newsletter state — only used when feature flag is on
+  const [email, setEmail] = useState('');
+  const [nlStatus, setNlStatus] = useState(null); // null | 'loading' | 'success' | 'error'
+  const [nlMessage, setNlMessage] = useState('');
+
+  /**
+   * Handles newsletter signup submission.
+   * Validates with Zod before calling the service layer.
+   */
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    const result = newsletterSchema.safeParse({ email });
+    if (!result.success) {
+      setNlStatus('error');
+      setNlMessage(result.error.errors[0]?.message || 'Invalid email');
+      return;
+    }
+    setNlStatus('loading');
+    const response = await submitNewsletterSignup(email);
+    setNlStatus(response.success ? 'success' : 'error');
+    setNlMessage(response.message);
+    if (response.success) setEmail('');
+  };
 
   return (
     <footer className="bg-carbon-100 text-white">
@@ -142,6 +169,43 @@ const Footer = () => {
           </div>
         </div>
       </Container>
+
+      {/* Newsletter Signup Strip — shown only when feature flag is enabled */}
+      {featuresConfig.newsletter && (
+        <div className="border-t border-carbon-90">
+          <Container className="py-10">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div>
+                <h3 className="text-lg font-light text-white mb-1">Stay ahead of the curve</h3>
+                <p className="text-sm text-carbon-40">Get the latest insights on AI, QA, and enterprise technology.</p>
+              </div>
+              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  aria-label="Email for newsletter signup"
+                  disabled={nlStatus === 'loading' || nlStatus === 'success'}
+                  className="bg-carbon-90 border border-carbon-70 text-white placeholder-carbon-50 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors w-full sm:w-64"
+                  required
+                />
+                <button
+                  type="submit"
+                  disabled={nlStatus === 'loading' || nlStatus === 'success'}
+                  className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 text-sm font-medium hover:bg-primary-hover transition-colors disabled:opacity-50 whitespace-nowrap"
+                >
+                  <Send className="h-4 w-4" />
+                  {nlStatus === 'loading' ? 'Subscribing…' : nlStatus === 'success' ? 'Subscribed!' : 'Subscribe'}
+                </button>
+              </form>
+            </div>
+            {nlMessage && (
+              <p className={`mt-3 text-sm ${nlStatus === 'success' ? 'text-success' : 'text-error'}`}>{nlMessage}</p>
+            )}
+          </Container>
+        </div>
+      )}
 
       {/* CTA Banner */}
       <div className="border-t border-carbon-90">

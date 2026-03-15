@@ -4,6 +4,8 @@
  * All data used specifically on the Services page (/services)
  * 
  * Sections: Hero, Service Categories, Process, Technology Stack
+ * 
+ * @module constants/services
  */
 
 import { Brain, Shield, Code, Globe, Lightbulb, Users, Rocket, CheckCircle } from 'lucide-react';
@@ -12,20 +14,20 @@ import { Brain, Shield, Code, Globe, Lightbulb, Users, Rocket, CheckCircle } fro
 // SERVICES PAGE HERO
 // ============================================
 
-export const SERVICES_HERO = {
+export const SERVICES_HERO = Object.freeze({
     title: 'Our Services',
     subtitle: 'Comprehensive technology solutions designed to drive your business forward',
     breadcrumb: [
         { label: 'Home', path: '/' },
         { label: 'Services', path: '/services' },
     ],
-};
+});
 
 // ============================================
 // SERVICE CATEGORIES - DETAILED
 // ============================================
 
-export const SERVICE_CATEGORIES = [
+export const SERVICE_CATEGORIES = Object.freeze([
     {
         id: 'ai-python',
         title: 'AI & Python Development',
@@ -190,13 +192,13 @@ export const SERVICE_CATEGORIES = [
             link: '/contact',
         },
     },
-];
+]);
 
 // ============================================
 // DEVELOPMENT PROCESS
 // ============================================
 
-export const DEVELOPMENT_PROCESS = {
+export const DEVELOPMENT_PROCESS = Object.freeze({
     title: 'How We Work',
     subtitle: 'Our proven 5-step engineering process ensures successful outcomes',
     steps: [
@@ -236,13 +238,13 @@ export const DEVELOPMENT_PROCESS = {
             deliverables: ['Production Deployment', 'Training', 'Support Plan'],
         },
     ],
-};
+});
 
 // ============================================
 // TECHNOLOGY STACK
 // ============================================
 
-export const TECHNOLOGY_STACK = {
+export const TECHNOLOGY_STACK = Object.freeze({
     title: 'Technology Stack',
     subtitle: 'We work with the latest and most reliable technologies',
     categories: [
@@ -271,15 +273,15 @@ export const TECHNOLOGY_STACK = {
             technologies: ['Selenium', 'Cypress', 'JMeter', 'Postman', 'Appium', 'Jest'],
         },
     ],
-};
+});
 
 // ============================================
 // SERVICE CTA SECTION
 // ============================================
 
-export const SERVICE_CTA = {
+export const SERVICE_CTA = Object.freeze({
     title: 'Ready to Get Started?',
     subtitle: 'Let us discuss how our services can help transform your business.',
     buttonText: 'Contact Us Today',
     buttonLink: '/contact',
-};
+});

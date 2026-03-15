@@ -5,6 +5,7 @@
  * @returns {string} Formatted date string
  */
 export const formatDate = (dateStr, options = {}) => {
+  if (!dateStr) return '';
   const defaultOptions = {
     year: 'numeric',
     month: 'long',

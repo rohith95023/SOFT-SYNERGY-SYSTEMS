@@ -33,7 +33,6 @@ export {
     COMPANY_STORY,
     CORE_VALUES,
     CORE_DIVISIONS,
-    TIMELINE_MILESTONES,
     CERTIFICATIONS,
 } from './about.constants';
 

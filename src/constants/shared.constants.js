@@ -4,15 +4,18 @@
  * Data used across multiple pages and components
  * 
  * Includes: Navigation, Industries, Partners, Testimonials, Team, Social Links
+ * 
+ * @module constants/shared
  */
 
 import { Building2, CreditCard, Phone, Truck, Heart, ShoppingCart, Factory, Linkedin, Twitter, Facebook } from 'lucide-react';
+import appConfig from '../config/app.config';
 
 // ============================================
 // COMPANY INFORMATION (Shared across pages)
 // ============================================
 
-export const COMPANY_INFO = {
+export const COMPANY_INFO = Object.freeze({
     name: 'Soft Synergy Systems Pvt Ltd',
     shortName: 'Soft Synergy Systems',
     tagline: 'Innovating for a Digital Era',
@@ -25,17 +28,17 @@ export const COMPANY_INFO = {
         pincode: '560064',
     },
     contact: {
-        email: import.meta.env.VITE_CONTACT_EMAIL || 'hr@softsynergysystems.com',
-        phone: import.meta.env.VITE_CONTACT_PHONE || '+91 97908 23800',
+        email: appConfig.contact.email,
+        phone: appConfig.contact.phone,
     },
     certification: 'ISO Certified Organisation',
-};
+});
 
 // ============================================
 // NAVIGATION LINKS
 // ============================================
 
-export const NAV_LINKS = [
+export const NAV_LINKS = Object.freeze([
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     {
@@ -52,20 +55,20 @@ export const NAV_LINKS = [
     { name: 'Blog', path: '/blog' },
     { name: 'Careers', path: '/careers' },
     { name: 'Contact', path: '/contact' },
-];
+]);
 
-export const SERVICE_NAV_LINKS = [
+export const SERVICE_NAV_LINKS = Object.freeze([
     { name: 'AI & Python Development', path: '/services' },
     { name: 'Quality Assurance', path: '/services' },
     { name: 'Enterprise Java', path: '/services' },
     { name: 'Full Stack Web', path: '/services' },
-];
+]);
 
 // ============================================
 // INDUSTRIES
 // ============================================
 
-export const INDUSTRIES = [
+export const INDUSTRIES = Object.freeze([
     {
         id: 'banking',
         name: 'Banking',
@@ -108,13 +111,13 @@ export const INDUSTRIES = [
         icon: Factory,
         description: 'Process automation, quality control, and Industry 4.0.',
     },
-];
+]);
 
 // ============================================
 // PARTNERS / CLIENTS
 // ============================================
 
-export const PARTNERS = [
+export const PARTNERS = Object.freeze([
     {
         id: 1,
         name: 'TechCorp',
@@ -157,13 +160,13 @@ export const PARTNERS = [
         website: 'https://example.com',
         industry: 'Security',
     },
-];
+]);
 
 // ============================================
 // TESTIMONIALS
 // ============================================
 
-export const TESTIMONIALS = [
+export const TESTIMONIALS = Object.freeze([
     {
         id: 1,
         quote: 'Soft Synergy Systems transformed our legacy systems into a modern, scalable platform. Their expertise in enterprise Java development is exceptional.',
@@ -200,13 +203,13 @@ export const TESTIMONIALS = [
         rating: 5,
         industry: 'Telecom',
     },
-];
+]);
 
 // ============================================
 // TEAM MEMBERS
 // ============================================
 
-export const TEAM_MEMBERS = [
+export const TEAM_MEMBERS = Object.freeze([
     {
         id: 1,
         name: 'Rajesh Kumar',
@@ -261,15 +264,15 @@ export const TEAM_MEMBERS = [
         initials: 'DK',
         linkedin: 'https://linkedin.com/in/',
     },
-];
+]);
 
-export const DEPARTMENTS = ['All', 'Leadership', 'Technology', 'Development', 'QA', 'AI'];
+export const DEPARTMENTS = Object.freeze(['All', 'Leadership', 'Technology', 'Development', 'QA', 'AI']);
 
 // ============================================
 // SOCIAL LINKS
 // ============================================
 
-export const SOCIAL_LINKS = [
+export const SOCIAL_LINKS = Object.freeze([
     {
         platform: 'LinkedIn',
         url: 'https://linkedin.com/company/soft-synergy-systems',
@@ -288,13 +291,13 @@ export const SOCIAL_LINKS = [
         Icon: Facebook,
         ariaLabel: 'Follow Soft Synergy Systems on Facebook',
     },
-];
+]);
 
 // ============================================
 // STATS DATA
 // ============================================
 
-export const STATS_DATA = [
+export const STATS_DATA = Object.freeze([
     {
         id: 'years',
         value: 10,
@@ -319,13 +322,13 @@ export const STATS_DATA = [
         suffix: '+',
         label: 'Industries Served',
     },
-];
+]);
 
 // ============================================
 // FOOTER LINKS
 // ============================================
 
-export const FOOTER_LINKS = {
+export const FOOTER_LINKS = Object.freeze({
     company: [
         { name: 'About Us', path: '/about' },
         { name: 'Services', path: '/services' },
@@ -345,13 +348,13 @@ export const FOOTER_LINKS = {
         { name: 'Terms of Service', path: '/terms' },
         { name: 'Cookie Policy', path: '/cookies' },
     ],
-};
+});
 
 // ============================================
 // LEGAL PAGES DATA
 // ============================================
 
-export const LEGAL_PAGES = {
+export const LEGAL_PAGES = Object.freeze({
     'privacy-policy': {
         title: 'Privacy Policy',
         lastUpdated: 'March 1, 2026',
@@ -364,13 +367,13 @@ export const LEGAL_PAGES = {
         title: 'Cookie Policy',
         lastUpdated: 'March 1, 2026',
     },
-};
+});
 
 // ============================================
 // ERROR PAGES
 // ============================================
 
-export const ERROR_PAGE = {
+export const ERROR_PAGE = Object.freeze({
     notFound: {
         code: '404',
         title: 'Page Not Found',
@@ -385,4 +388,4 @@ export const ERROR_PAGE = {
         buttonText: 'Back to Home',
         buttonLink: '/',
     },
-};
+});

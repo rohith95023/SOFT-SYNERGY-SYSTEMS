@@ -9,12 +9,27 @@ import PageHero from '../components/ui/PageHero';
 import InputField from '../components/ui/InputField';
 import Button from '../components/ui/Button';
 import { BLOG_POSTS } from '../constants';
+import { submitNewsletterSignup } from '../services/contactService';
 
 const categories = ['All', 'AI & ML', 'Automation', 'Web Dev', 'QA', 'Industry News'];
 
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    setIsSubmitting(true);
+    setStatus({ type: '', message: '' });
+    const result = await submitNewsletterSignup(email);
+    setStatus({ type: result.success ? 'success' : 'error', message: result.message });
+    if (result.success) setEmail('');
+    setIsSubmitting(false);
+  };
 
   const filteredPosts = BLOG_POSTS.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -166,14 +181,25 @@ const Blog = () => {
               <p className="text-carbon-60 mb-8">
                 Get the latest insights and updates delivered to your inbox.
               </p>
-              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-grow px-4 py-3 bg-white border border-carbon-30 text-carbon-100 focus:border-primary focus:outline-none transition-colors"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isSubmitting}
+                  required
+                  className="flex-grow px-4 py-3 bg-white border border-carbon-30 text-carbon-100 focus:border-primary focus:outline-none transition-colors disabled:opacity-50"
                 />
-                <Button icon={ArrowRight}>Subscribe</Button>
+                <Button type="submit" icon={ArrowRight} disabled={isSubmitting}>
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                </Button>
               </form>
+              {status.message && (
+                <p className={`mt-4 text-sm ${status.type === 'success' ? 'text-green-600' : 'text-red-500'}`}>
+                  {status.message}
+                </p>
+              )}
             </motion.div>
           </div>
         </Container>
