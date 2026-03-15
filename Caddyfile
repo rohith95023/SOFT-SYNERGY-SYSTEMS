@@ -1,0 +1,10 @@
+# Caddy configuration for Soft Synergy Systems
+# Purpose: Serve the SPA and handle client-side routing fallback
+
+:80 {
+    root * /var/www/softsynergysystems.com
+    file_server
+    
+    # Fallback to index.html for SPA routing
+    try_files {path} /index.html
+}
