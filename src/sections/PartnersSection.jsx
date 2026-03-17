@@ -2,13 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
-import { PARTNERS } from '../constants';
+import { PARTNERS, PARTNERS_SECTION_DATA } from '../constants';
 
 const PartnersSection = () => {
+  const { sectionBadge, sectionTitle, sectionSubtitle, bottomText } = PARTNERS_SECTION_DATA;
+
   return (
     <Section className="bg-white" id="partners">
       <Container>
-        {/* Section Header - Corporate-style */}
+        {/* Section Header */}
         <div className="text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -17,19 +19,18 @@ const PartnersSection = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
-              Global Network
+              {sectionBadge}
             </span>
             <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight mb-4">
-              Our Trusted Partners
+              {sectionTitle}
             </h2>
             <p className="text-carbon-60 max-w-2xl mx-auto">
-              Collaborating with industry leaders to deliver exceptional value
-              and technological excellence across the globe.
+              {sectionSubtitle}
             </p>
           </motion.div>
         </div>
 
-        {/* Partners Grid - Corporate Style */}
+        {/* Partners Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-carbon-20">
           {PARTNERS.map((partner, idx) => (
             <motion.div
@@ -57,9 +58,7 @@ const PartnersSection = () => {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="mt-10 text-center"
         >
-          <p className="text-sm text-carbon-50">
-            Trusted by leading enterprises across Banking, Healthcare, Telecom, and more.
-          </p>
+          <p className="text-sm text-carbon-50">{bottomText}</p>
         </motion.div>
       </Container>
     </Section>
