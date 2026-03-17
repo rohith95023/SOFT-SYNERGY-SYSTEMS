@@ -3,13 +3,15 @@ import { motion } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
-import { TESTIMONIALS } from '../constants';
+import { TESTIMONIALS, TESTIMONIALS_SECTION_DATA } from '../constants';
 
 const TestimonialsSection = () => {
+  const { sectionBadge, sectionTitle, sectionSubtitle } = TESTIMONIALS_SECTION_DATA;
+
   return (
     <Section className="bg-carbon-10" id="testimonials">
       <Container>
-        {/* Section Header - Corporate-style */}
+        {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -18,19 +20,16 @@ const TestimonialsSection = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
-              Client Success
+              {sectionBadge}
             </span>
             <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight mb-4">
-              What Our Partners Say
+              {sectionTitle}
             </h2>
-            <p className="text-carbon-60">
-              Real results from enterprises that have trusted us with their
-              digital transformation journey.
-            </p>
+            <p className="text-carbon-60">{sectionSubtitle}</p>
           </motion.div>
         </div>
 
-        {/* Testimonials Grid - Corporate Style */}
+        {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-carbon-20">
           {TESTIMONIALS.map((testimonial, idx) => (
             <motion.div

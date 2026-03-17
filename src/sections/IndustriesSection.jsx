@@ -3,10 +3,19 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
-import { INDUSTRIES } from '../constants';
+import { INDUSTRIES, INDUSTRIES_SECTION_DATA } from '../constants';
 import { cn } from '../utils/cn';
 
 const IndustriesSection = () => {
+  const {
+    sectionBadge,
+    sectionTitle,
+    sectionTitleHighlight,
+    sectionSubtitle,
+    calloutCard,
+    bottomStats,
+  } = INDUSTRIES_SECTION_DATA;
+
   return (
     <Section className="bg-white overflow-hidden py-10 md:py-14 lg:py-16 flex items-center min-h-auto lg:min-h-screen" id="industries">
       <Container>
@@ -20,35 +29,32 @@ const IndustriesSection = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-primary font-semibold tracking-wider uppercase text-xs mb-2">
-                Industry Expertise
+                {sectionBadge}
               </h2>
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-carbon-100 tracking-tight leading-tight">
-                Industries We <span className="text-primary font-medium italic">Transform</span>
+                {sectionTitle}{' '}
+                <span className="text-primary font-medium italic">{sectionTitleHighlight}</span>
               </h3>
             </motion.div>
           </div>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-carbon-60 text-base md:text-lg md:max-w-xs leading-relaxed"
           >
-            We bridge the gap between complex business challenges and digital solutions.
+            {sectionSubtitle}
           </motion.p>
         </div>
 
-        {/* Industries Grid - Limited to 2 rows on large screens */}
+        {/* Industries Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
           {INDUSTRIES.map((industry, idx) => (
-            <IndustryCard 
-              key={industry.id} 
-              industry={industry} 
-              index={idx} 
-            />
+            <IndustryCard key={industry.id} industry={industry} index={idx} />
           ))}
-          
-          {/* Decorative Callout Card */}
+
+          {/* Callout Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -58,25 +64,24 @@ const IndustriesSection = () => {
           >
             <div className="relative z-10">
               <h4 className="text-white text-xl font-medium mb-2 leading-tight">
-                Any Domain
+                {calloutCard.title}
               </h4>
               <p className="text-white/80 text-xs leading-relaxed mb-4">
-                Our adaptive engineering framework solves challenges across any industry.
+                {calloutCard.description}
               </p>
             </div>
-            <Link 
-              to="/contact" 
+            <Link
+              to={calloutCard.ctaLink}
               className="relative z-10 w-fit px-5 py-2.5 bg-white text-primary font-semibold rounded-full text-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
             >
-              Let's Discuss
+              {calloutCard.ctaText}
             </Link>
-            {/* Background Pattern */}
             <div className="absolute top-0 right-0 -mr-16 -mt-16 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-colors duration-500" />
             <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-24 h-24 bg-primary-dark/20 rounded-full blur-2xl" />
           </motion.div>
         </div>
 
-        {/* Dynamic Experience Row */}
+        {/* Bottom Stats Row */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -84,20 +89,19 @@ const IndustriesSection = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-8 lg:mt-12 p-6 md:p-8 rounded-4xl bg-carbon-10 border border-carbon-20 flex flex-wrap justify-around items-center gap-6 md:gap-12"
         >
-          <div className="flex flex-col items-center text-center">
-            <span className="text-3xl md:text-4xl lg:text-5xl font-light text-carbon-100 mb-1">10+</span>
-            <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-primary">Years of Innovation</span>
-          </div>
-          <div className="w-px h-10 bg-carbon-20 hidden md:block" />
-          <div className="flex flex-col items-center text-center">
-            <span className="text-3xl md:text-4xl lg:text-5xl font-light text-carbon-100 mb-1">500+</span>
-            <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-primary">Global Deployments</span>
-          </div>
-          <div className="w-px h-10 bg-carbon-20 hidden md:block" />
-          <div className="flex flex-col items-center text-center">
-            <span className="text-3xl md:text-4xl lg:text-5xl font-light text-carbon-100 mb-1">98%</span>
-            <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-primary">Customer Retention</span>
-          </div>
+          {bottomStats.map((stat, idx) => (
+            <React.Fragment key={stat.label}>
+              {idx > 0 && <div className="w-px h-10 bg-carbon-20 hidden md:block" />}
+              <div className="flex flex-col items-center text-center">
+                <span className="text-3xl md:text-4xl lg:text-5xl font-light text-carbon-100 mb-1">
+                  {stat.value}
+                </span>
+                <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-primary">
+                  {stat.label}
+                </span>
+              </div>
+            </React.Fragment>
+          ))}
         </motion.div>
       </Container>
     </Section>
@@ -117,10 +121,12 @@ const IndustryCard = ({ industry, index }) => {
       {/* Icon Container */}
       <div className="relative mb-5">
         <div className="absolute inset-0 bg-primary/10 rounded-xl blur-lg group-hover:scale-150 transition-transform duration-700 opacity-0 group-hover:opacity-100" />
-        <div className={cn(
-          "relative w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 z-10",
-          "bg-carbon-10 group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/30"
-        )}>
+        <div
+          className={cn(
+            'relative w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 z-10',
+            'bg-carbon-10 group-hover:bg-primary group-hover:shadow-lg group-hover:shadow-primary/30'
+          )}
+        >
           <industry.icon className="h-5 w-5 text-carbon-80 group-hover:text-white transition-colors duration-500" />
         </div>
       </div>

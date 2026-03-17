@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import AnimatedCounter from '../components/ui/AnimatedCounter';
-import { STATS_DATA } from '../constants';
+import { STATS_DATA, STATS_SECTION_DATA } from '../constants';
 
 const StatsSection = () => {
+  const { sectionBadge, sectionTitle, certText } = STATS_SECTION_DATA;
+
   return (
     <Section className="bg-carbon-100 py-16 md:py-20">
       <Container>
@@ -17,14 +19,14 @@ const StatsSection = () => {
           className="text-center mb-12"
         >
           <span className="text-xs uppercase tracking-widest font-semibold text-primary-light mb-4 block">
-            Our Impact
+            {sectionBadge}
           </span>
           <h2 className="text-3xl md:text-4xl font-light text-white tracking-tight">
-            Delivering Excellence at Scale
+            {sectionTitle}
           </h2>
         </motion.div>
 
-        {/* Stats Grid - Corporate Style */}
+        {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-carbon-70">
           {STATS_DATA.map((stat, idx) => (
             <motion.div
@@ -50,7 +52,7 @@ const StatsSection = () => {
           <div className="flex items-center gap-4">
             <div className="w-12 h-px bg-primary" />
             <span className="text-xs uppercase tracking-widest font-semibold text-carbon-50">
-              ISO Certified Organization
+              {certText}
             </span>
             <div className="w-12 h-px bg-primary" />
           </div>

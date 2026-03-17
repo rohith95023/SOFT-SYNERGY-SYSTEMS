@@ -5,27 +5,11 @@ import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Container from '../components/layout/Container';
 import backgroundVideo from '../assets/background.mp4';
+import { HERO_DATA } from '../constants';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  const slides = [
-    {
-      title1: "Innovating for a",
-      title2: "Digital Era",
-      description: "Soft Synergy Systems delivers enterprise-grade AI, automation, and software solutions that drive intelligence, efficiency, and growth for global businesses."
-    },
-    {
-      title1: "Scaling Visionary",
-      title2: "Startups",
-      description: "Transform innovative concepts into market-ready products with our agile development, rapid prototyping, and robust architectural solutions."
-    },
-    {
-      title1: "Empowering Next-Gen",
-      title2: "Tech Talent",
-      description: "Launch your career with comprehensive training, elite mentorship, and hands-on experience in cutting-edge AI and software engineering."
-    }
-  ];
+  const { slides, primaryCTA, secondaryCTA } = HERO_DATA;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -49,8 +33,8 @@ const HeroSection = () => {
           >
             <source src={`${backgroundVideo}?v=2`} type="video/mp4" />
           </video>
-           
-          {/* Gradient Overlay - ensuring text is readable on left but video is bright on right */}
+
+          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-linear-to-r from-white/95 via-white/60 to-white/10" />
 
           {/* Animated Grid Pattern */}
@@ -60,7 +44,7 @@ const HeroSection = () => {
           >
             <defs>
               <pattern id="heroGrid" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#008b96" strokeWidth="1" />
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#008b96" strokeWidth="1" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#heroGrid)" />
@@ -74,8 +58,6 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-
-
               <div className="min-h-[250px] sm:min-h-[280px] md:min-h-[300px]">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -83,7 +65,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
                   >
                     {/* Main Headline */}
                     <h1 className="text-carbon-100 mb-8 leading-[1.1]">
@@ -110,7 +92,9 @@ const HeroSection = () => {
                     key={index}
                     onClick={() => setCurrentSlide(index)}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
-                      currentSlide === index ? 'w-10 bg-primary' : 'w-4 bg-carbon-100/20 hover:bg-carbon-100/40'
+                      currentSlide === index
+                        ? 'w-10 bg-primary'
+                        : 'w-4 bg-carbon-100/20 hover:bg-carbon-100/40'
                     }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
@@ -119,22 +103,18 @@ const HeroSection = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/services">
-                  <Button
-                    size="lg"
-                    className="group"
-                    icon={ArrowRight}
-                  >
-                    Explore Our Services
+                <Link to={primaryCTA.link}>
+                  <Button size="lg" className="group" icon={ArrowRight}>
+                    {primaryCTA.text}
                   </Button>
                 </Link>
-                <Link to="/contact">
+                <Link to={secondaryCTA.link}>
                   <Button
                     variant="ghost"
                     size="lg"
                     className="border-2 border-carbon-100 bg-white/50 text-carbon-100 hover:bg-carbon-100 hover:text-white backdrop-blur-sm"
                   >
-                    Get In Touch
+                    {secondaryCTA.text}
                   </Button>
                 </Link>
               </div>
@@ -142,8 +122,6 @@ const HeroSection = () => {
           </div>
         </Container>
       </section>
-
-
     </>
   );
 };

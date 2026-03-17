@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import Button from '../components/ui/Button';
+import { CTA_BANNER_DATA } from '../constants';
 
 const CTABanner = () => {
+  const { headline, subheadline, primaryCTA, secondaryCTA } = CTA_BANNER_DATA;
+
   return (
     <Section className="bg-primary py-16 md:py-20">
       <Container>
@@ -19,33 +22,32 @@ const CTABanner = () => {
         >
           <div className="text-center lg:text-left">
             <h2 className="text-3xl md:text-4xl font-light text-white tracking-tight mb-4">
-              Ready to Transform Your Business?
+              {headline}
             </h2>
             <p className="text-primary-light text-lg max-w-xl">
-              Let's discuss how our technology solutions can drive growth,
-              efficiency, and innovation for your organization.
+              {subheadline}
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/contact">
+            <Link to={primaryCTA.link}>
               <Button
                 variant="ghost"
                 size="lg"
                 className="bg-white text-primary hover:bg-carbon-10 border-white"
                 icon={ArrowRight}
               >
-                Start a Conversation
+                {primaryCTA.text}
               </Button>
             </Link>
-            <Link to="/services">
+            <Link to={secondaryCTA.link}>
               <Button
                 variant="outline"
                 size="lg"
                 className="border-white/30 text-white hover:bg-white/10"
                 icon={ArrowUpRight}
               >
-                Explore Services
+                {secondaryCTA.text}
               </Button>
             </Link>
           </div>
