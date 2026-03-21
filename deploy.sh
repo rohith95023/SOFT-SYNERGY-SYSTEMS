@@ -1,9 +1,7 @@
 #!/bin/bash
 # Deploy script for Soft Synergy Systems website
-# Purpose: Pull latest changes, build, and deploy to web directory
-# Web server: Caddy (serves from /var/www/softsynergysystems.com)
 
-set -e  # Exit on error
+set -e
 
 PROJECT_DIR="/home/ubuntu/projects/SOFT-SYNERGY-SYSTEMS"
 LOG_FILE="/var/log/soft-synergy-deploy.log"
@@ -17,55 +15,61 @@ log() {
 
 log "=== Starting deployment ==="
 
-# Create backup of current web files if exists
+# Ensure log file exists
+sudo touch "$LOG_FILE"
+sudo chmod 666 "$LOG_FILE"
+
+# Create backup if site exists
 if [ -d "$WEB_DIR" ] && [ "$(ls -A $WEB_DIR 2>/dev/null)" ]; then
     log "Creating backup..."
-    sudo -n mkdir -p "$BACKUP_DIR"
-    sudo -n tar -czf "$BACKUP_DIR/web-$(date +%Y%m%d-%H%M%S).tar.gz" -C "$WEB_DIR" .
+    sudo mkdir -p "$BACKUP_DIR"
+    sudo tar -czf "$BACKUP_DIR/web-$(date +%Y%m%d-%H%M%S).tar.gz" -C "$WEB_DIR" .
     log "Backup created"
 fi
 
-# Pull latest changes
-log "Pulling latest changes from repository..."
+# Pull latest code
+log "Pulling latest changes..."
 cd "$PROJECT_DIR"
 git fetch origin
 git reset --hard origin/main
-log "Changes pulled successfully"
+log "Code updated"
 
 # Install dependencies
 log "Installing dependencies..."
-~/.bun/bin/bun install --frozen-lockfile
+export PATH="/home/ubuntu/.bun/bin:$PATH"
+bun install --frozen-lockfile
 log "Dependencies installed"
 
-# Build the application
-log "Building application..."
-~/.bun/bin/bun run build
-log "Build completed successfully"
+# Build project
+log "Building project..."
+bun run build
+log "Build completed"
 
-# Copy build to web directory (Caddy serves this path)
-log "Copying build to web directory ($WEB_DIR)..."
-sudo -n rm -rf "$WEB_DIR"/*
-sudo -n cp -r "$PROJECT_DIR/dist/"* "$WEB_DIR/"
-log "Files copied successfully"
+# Deploy build files
+log "Deploying to $WEB_DIR..."
+sudo rm -rf "$WEB_DIR"/*
+sudo mkdir -p "$WEB_DIR"
+sudo cp -r "$PROJECT_DIR/dist/"* "$WEB_DIR/"
+log "Files copied"
 
-# Set proper permissions for Caddy
+# Set permissions
 log "Setting permissions..."
-sudo -n chown -R www-data:www-data "$WEB_DIR"
-sudo -n chmod -R 755 "$WEB_DIR"
+sudo chown -R www-data:www-data "$WEB_DIR"
+sudo chmod -R 755 "$WEB_DIR"
 log "Permissions set"
 
-# Update Caddy configuration from repository
-log "Updating Caddy configuration..."
+# Update Caddy config
+log "Updating Caddy config..."
 if [ -f "$PROJECT_DIR/Caddyfile" ]; then
-    sudo -n cp "$PROJECT_DIR/Caddyfile" "$CADDY_CONFIG"
+    sudo cp "$PROJECT_DIR/Caddyfile" "$CADDY_CONFIG"
     log "Caddyfile updated"
 else
-    log "Warning: Caddyfile not found in repository"
+    log "Warning: No Caddyfile found"
 fi
 
-# Reload Caddy to apply configuration
-log "Reloading Caddy..."
-sudo -n systemctl reload caddy
-log "Caddy reloaded successfully"
+# Restart Caddy (important)
+log "Restarting Caddy..."
+sudo systemctl restart caddy
+log "Caddy restarted"
 
-log "=== Deployment completed successfully ==="
+log "=== Deployment SUCCESS ✅ ==="
