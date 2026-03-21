@@ -1,9 +1,22 @@
 import React from 'react';
-import { Target, Eye, ShieldCheck, Zap, Users, Lightbulb, TrendingUp, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Target, Eye, ShieldCheck, Zap, Users, Lightbulb, TrendingUp, Award, CheckCircle, Star } from 'lucide-react';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
+import { VISION_MISSION, CORE_VALUES } from '../constants/about.constants';
+
+const ICON_MAP = {
+  lightbulb: Lightbulb,
+  'check-circle': CheckCircle,
+  shield: ShieldCheck,
+  users: Users,
+  star: Star,
+  zap: Zap,
+  'trending-up': TrendingUp,
+  award: Award,
+};
 
 const MissionVision = () => {
   return (
@@ -21,9 +34,9 @@ const MissionVision = () => {
               <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-8">
                 <Target className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-3xl font-extrabold text-navy mb-6">Our Mission</h3>
+              <h3 className="text-3xl font-extrabold text-navy mb-6">{VISION_MISSION.mission.title}</h3>
               <p className="text-slate text-lg leading-relaxed">
-                Empowering organizations with innovative technology solutions that drive efficiency, intelligence, and business growth. We strive to be the bridge between complex challenges and sustainable digital success.
+                {VISION_MISSION.mission.description}
               </p>
             </Card>
           </motion.div>
@@ -39,9 +52,9 @@ const MissionVision = () => {
               <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-8">
                 <Eye className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-3xl font-extrabold text-navy mb-6">Our Vision</h3>
+              <h3 className="text-3xl font-extrabold text-navy mb-6">{VISION_MISSION.vision.title}</h3>
               <p className="text-slate text-lg leading-relaxed">
-                To become a global leader in digital transformation and advanced technology solutions, recognized for our commitment to synergy, quality, and the strategic advancement of the digital world.
+                {VISION_MISSION.vision.description}
               </p>
             </Card>
           </motion.div>
@@ -50,15 +63,6 @@ const MissionVision = () => {
     </Section>
   );
 };
-
-const CORE_VALUES = [
-  { name: 'Innovation', icon: Lightbulb, description: 'Relentlessly pursuing creative and cutting-edge solutions.' },
-  { name: 'Quality', icon: ShieldCheck, description: 'Committed to excellence in every line of code we write.' },
-  { name: 'Integrity', icon: Award, description: 'Building trust through transparency and ethical practices.' },
-  { name: 'Client Focus', icon: Users, description: 'Placing our partners at the heart of everything we do.' },
-  { name: 'Excellence', icon: TrendingUp, description: 'Exceeding expectations in performance and delivery.' },
-  { name: 'Agility', icon: Zap, description: 'Adapting swiftly to the evolving technological landscape.' },
-];
 
 const CoreValues = () => {
   return (
@@ -71,23 +75,26 @@ const CoreValues = () => {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {CORE_VALUES.map((value, idx) => (
-            <motion.div
-              key={value.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full hover:border-primary/20 hover:bg-background-light/50">
-                <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
-                  <value.icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
-                </div>
-                <h4 className="text-xl font-bold mb-4">{value.name}</h4>
-                <p className="text-slate text-sm leading-relaxed">{value.description}</p>
-              </Card>
-            </motion.div>
-          ))}
+          {CORE_VALUES.map((value, idx) => {
+            const Icon = ICON_MAP[value.icon] || Lightbulb;
+            return (
+              <motion.div
+                key={value.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full hover:border-primary/20 hover:bg-background-light/50">
+                  <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
+                    <Icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
+                  </div>
+                  <h4 className="text-xl font-bold mb-4">{value.title}</h4>
+                  <p className="text-slate text-sm leading-relaxed">{value.description}</p>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
       </Container>
     </Section>
@@ -95,4 +102,5 @@ const CoreValues = () => {
 };
 
 export { MissionVision, CoreValues };
+
 

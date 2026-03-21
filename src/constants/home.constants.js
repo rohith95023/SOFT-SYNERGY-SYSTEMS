@@ -9,6 +9,17 @@
  */
 
 // ============================================
+// HOME PAGE SEO
+// ============================================
+
+export const HOME_SEO = Object.freeze({
+    title: 'Soft Synergy Systems - Innovating for a Digital Era',
+    description: 'Enterprise AI, QA, Java, and Full Stack Web Development solutions for global businesses. ISO Certified with 10+ years of experience.',
+    keywords: 'AI development, machine learning, QA services, test automation, Java development, full stack web development, enterprise software, digital transformation, Bengaluru, India',
+    canonical: 'https://softsynergysystems.com/',
+});
+
+// ============================================
 // HERO SECTION DATA
 // ============================================
 

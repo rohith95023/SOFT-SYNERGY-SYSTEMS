@@ -1,22 +1,33 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Target, Eye, Award, Users, Lightbulb, Shield, Heart, Zap } from 'lucide-react';
+import { ArrowRight, Target, Eye, Award, Users, Lightbulb, Shield, Heart, Zap, CheckCircle, Star } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import DivisionsSection from '../sections/DivisionsSection';
 import CTABanner from '../sections/CTABanner';
+import { 
+  ABOUT_HERO, 
+  COMPANY_STORY, 
+  VISION_MISSION, 
+  CORE_VALUES, 
+  ABOUT_STATS,
+  CERTIFICATIONS,
+  ABOUT_SEO
+} from '../constants/about.constants';
+import { GLOBAL_STRINGS } from '../constants/shared.constants';
 
-const values = [
-  { icon: Lightbulb, title: 'Innovation', description: 'Pushing boundaries with cutting-edge technology solutions' },
-  { icon: Award, title: 'Quality', description: 'Delivering excellence in every project we undertake' },
-  { icon: Shield, title: 'Integrity', description: 'Building trust through transparency and ethical practices' },
-  { icon: Users, title: 'Client Focus', description: 'Putting our clients\' success at the heart of everything we do' },
-  { icon: Heart, title: 'Excellence', description: 'Striving for the highest standards in all our deliverables' },
-  { icon: Zap, title: 'Agility', description: 'Adapting quickly to meet evolving business needs' },
-];
+// Icon Map for Core Values
+const ICON_MAP = {
+  lightbulb: Lightbulb,
+  'check-circle': CheckCircle,
+  shield: Shield,
+  users: Users,
+  star: Star,
+  zap: Zap,
+};
 
 const About = () => {
   return (
@@ -27,18 +38,16 @@ const About = () => {
       transition={{ duration: 0.3 }}
     >
       <SEO
-        title="About Us - Soft Synergy Systems"
-        description="Learn about Soft Synergy Systems - our mission, vision, values, and the team driving digital transformation for enterprises globally."
+        title={`${ABOUT_SEO.title} - Soft Synergy Systems`}
+        description={ABOUT_SEO.description}
+        keywords={ABOUT_SEO.keywords}
       />
 
       {/* Page Hero */}
       <PageHero
-        title="About Us"
-        subtitle="Pioneering digital transformation with innovation, integrity, and excellence"
-        breadcrumbs={[
-          { label: 'Home', path: '/' },
-          { label: 'About', path: '/about' }
-        ]}
+        title={ABOUT_HERO.title}
+        subtitle={ABOUT_HERO.subtitle}
+        breadcrumbs={ABOUT_HERO.breadcrumb}
       />
 
       {/* Company Story */}
@@ -52,33 +61,21 @@ const About = () => {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
-                Our Story
+                {COMPANY_STORY.badge}
               </span>
               <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight mb-6">
-                Building the Future of Enterprise Technology
+                {COMPANY_STORY.title}
               </h2>
               <div className="space-y-4 text-carbon-60 leading-relaxed">
-                <p>
-                  Founded with a vision to bridge the gap between complex business challenges and
-                  elegant technology solutions, Soft Synergy Systems has grown into a trusted partner
-                  for enterprises worldwide.
-                </p>
-                <p>
-                  With over a decade of experience, we've established ourselves as leaders in AI,
-                  automation, quality assurance, and enterprise software development. Our ISO
-                  certification reflects our commitment to maintaining the highest standards of
-                  quality and process excellence.
-                </p>
-                <p>
-                  Today, we serve clients across Banking, Healthcare, Telecom, Logistics, and
-                  E-commerce, delivering solutions that drive measurable business outcomes.
-                </p>
+                {COMPANY_STORY.paragraphs.map((para, idx) => (
+                  <p key={idx}>{para}</p>
+                ))}
               </div>
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 text-primary font-medium mt-8 hover:gap-3 transition-all"
               >
-                Get to know us better <ArrowRight className="h-4 w-4" />
+                {GLOBAL_STRINGS.getToKnowUs} <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>
 
@@ -119,11 +116,9 @@ const About = () => {
               <div className="w-12 h-12 bg-primary-soft flex items-center justify-center mb-6">
                 <Target className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-medium text-carbon-100 mb-4">Our Mission</h3>
+              <h3 className="text-xl font-medium text-carbon-100 mb-4">{VISION_MISSION.mission.title}</h3>
               <p className="text-carbon-60 leading-relaxed">
-                Empowering organizations with innovative technology solutions that drive efficiency,
-                intelligence, and business growth. We transform complex challenges into elegant,
-                scalable solutions that deliver lasting value.
+                {VISION_MISSION.mission.statement}
               </p>
             </motion.div>
 
@@ -137,11 +132,9 @@ const About = () => {
               <div className="w-12 h-12 bg-primary-soft flex items-center justify-center mb-6">
                 <Eye className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="text-xl font-medium text-carbon-100 mb-4">Our Vision</h3>
+              <h3 className="text-xl font-medium text-carbon-100 mb-4">{VISION_MISSION.vision.title}</h3>
               <p className="text-carbon-60 leading-relaxed">
-                To become a global leader in digital transformation and advanced technology solutions,
-                recognized for our innovation, quality, and the measurable impact we create for our
-                clients and communities.
+                {VISION_MISSION.vision.statement}
               </p>
             </motion.div>
           </div>
@@ -162,28 +155,31 @@ const About = () => {
                 What Drives Us
               </span>
               <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight">
-                Our Core Values
+                {GLOBAL_STRINGS.ourCoreValues || 'Our Core Values'}
               </h2>
             </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-carbon-20">
-            {values.map((value, idx) => (
-              <motion.div
-                key={value.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="bg-white p-8 group hover:bg-carbon-10 transition-colors duration-200"
-              >
-                <div className="w-12 h-12 bg-primary-soft flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-200">
-                  <value.icon className="h-6 w-6 text-primary group-hover:text-white transition-colors duration-200" />
-                </div>
-                <h3 className="text-lg font-medium text-carbon-100 mb-3">{value.title}</h3>
-                <p className="text-sm text-carbon-60">{value.description}</p>
-              </motion.div>
-            ))}
+            {CORE_VALUES.map((value, idx) => {
+              const Icon = ICON_MAP[value.icon] || Lightbulb;
+              return (
+                <motion.div
+                  key={value.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+                  className="bg-white p-8 group hover:bg-carbon-10 transition-colors duration-200"
+                >
+                  <div className="w-12 h-12 bg-primary-soft flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-200">
+                    <Icon className="h-6 w-6 text-primary group-hover:text-white transition-colors duration-200" />
+                  </div>
+                  <h3 className="text-lg font-medium text-carbon-100 mb-3">{value.title}</h3>
+                  <p className="text-sm text-carbon-60">{value.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </Container>
       </Section>
@@ -206,18 +202,14 @@ const About = () => {
                 <Award className="h-10 w-10 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-medium text-carbon-100 mb-2">ISO Certified Organization</h3>
+                <h3 className="text-xl font-medium text-carbon-100 mb-2">{CERTIFICATIONS.iso.title}</h3>
                 <p className="text-carbon-60">
-                  Our processes and quality management systems meet international standards.
+                  {CERTIFICATIONS.iso.description}
                 </p>
               </div>
             </div>
             <div className="flex gap-8">
-              {[
-                { value: '10+', label: 'Years Experience' },
-                { value: '50+', label: 'Clients Served' },
-                { value: '99%', label: 'Success Rate' },
-              ].map((stat, idx) => (
+              {ABOUT_STATS.map((stat, idx) => (
                 <div key={idx} className="text-center">
                   <p className="text-2xl font-light text-primary mb-1">{stat.value}</p>
                   <p className="text-xs uppercase tracking-widest text-carbon-50">{stat.label}</p>

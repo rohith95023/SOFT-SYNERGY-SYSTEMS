@@ -32,6 +32,7 @@ export const COMPANY_INFO = Object.freeze({
         phone: appConfig.contact.phone,
     },
     certification: 'ISO Certified Organisation',
+    initials: 'SSS',
 });
 
 // ============================================
@@ -121,42 +122,42 @@ export const PARTNERS = Object.freeze([
     {
         id: 1,
         name: 'TechCorp',
-        logo: 'https://via.placeholder.com/120x40?text=TechCorp',
+        logo: 'https://placehold.co/120x40?text=TechCorp',
         website: 'https://example.com',
         industry: 'Technology',
     },
     {
         id: 2,
         name: 'FinanceHub',
-        logo: 'https://via.placeholder.com/120x40?text=FinanceHub',
+        logo: 'https://placehold.co/120x40?text=FinanceHub',
         website: 'https://example.com',
         industry: 'Finance',
     },
     {
         id: 3,
         name: 'HealthTech',
-        logo: 'https://via.placeholder.com/120x40?text=HealthTech',
+        logo: 'https://placehold.co/120x40?text=HealthTech',
         website: 'https://example.com',
         industry: 'Healthcare',
     },
     {
         id: 4,
         name: 'DataSystems',
-        logo: 'https://via.placeholder.com/120x40?text=DataSystems',
+        logo: 'https://placehold.co/120x40?text=DataSystems',
         website: 'https://example.com',
         industry: 'Technology',
     },
     {
         id: 5,
         name: 'CloudFirst',
-        logo: 'https://via.placeholder.com/120x40?text=CloudFirst',
+        logo: 'https://placehold.co/120x40?text=CloudFirst',
         website: 'https://example.com',
         industry: 'Cloud',
     },
     {
         id: 6,
         name: 'SecureNet',
-        logo: 'https://via.placeholder.com/120x40?text=SecureNet',
+        logo: 'https://placehold.co/120x40?text=SecureNet',
         website: 'https://example.com',
         industry: 'Security',
     },
@@ -354,18 +355,91 @@ export const FOOTER_LINKS = Object.freeze({
 // LEGAL PAGES DATA
 // ============================================
 
-export const LEGAL_PAGES = Object.freeze({
-    'privacy-policy': {
-        title: 'Privacy Policy',
-        lastUpdated: 'March 1, 2026',
+
+// ============================================
+// GLOBAL BUTTONS & LABELS
+// ============================================
+
+export const GLOBAL_STRINGS = Object.freeze({
+    getQuote: 'Get a Quote',
+    startConversation: 'Start a Conversation',
+    viewAllServices: 'View all services',
+    backToBlog: 'Back to Blog',
+    backToHome: 'Back to Home',
+    readMore: 'Read More',
+    viewAll: 'View All',
+    loading: 'Loading...',
+    error: 'An error occurred',
+    noResults: 'No results found',
+    learnMore: 'Learn More',
+    getToKnowUs: 'Get to know us better',
+    ourCoreValues: 'Our Core Values',
+    or: 'or',
+    darkMode: {
+        switchToLight: 'Switch to light mode',
+        switchToDark: 'Switch to dark mode',
+        lightMode: 'Light Mode',
+        darkMode: 'Dark Mode',
     },
-    'terms': {
-        title: 'Terms & Conditions',
-        lastUpdated: 'March 1, 2026',
+    menu: {
+        open: 'Open menu',
+        close: 'Close menu',
     },
-    'cookies': {
-        title: 'Cookie Policy',
-        lastUpdated: 'March 1, 2026',
+});
+
+// ============================================
+// FOOTER DATA
+// ============================================
+
+export const FOOTER_DATA = Object.freeze({
+    description: 'Innovating for a Digital Era. Empowering organizations with advanced technology solutions in AI, QA, and Enterprise Software.',
+    columnTitles: {
+        company: 'Company',
+        services: 'Services',
+        contact: 'Contact',
+    },
+    newsletter: {
+        title: 'Stay ahead of the curve',
+        subtitle: 'Get the latest insights on AI, QA, and enterprise technology.',
+        placeholder: 'Enter your email',
+        button: 'Subscribe',
+        buttonLoading: 'Subscribing...',
+        buttonSuccess: 'Subscribed!',
+    },
+    cta: {
+        title: 'Ready to transform your business?',
+        subtitle: "Let's discuss how we can help you achieve your goals.",
+        buttonText: 'Start a Conversation',
+    },
+});
+
+// ============================================
+// COOKIE BANNER DATA
+// ============================================
+
+export const COOKIE_BANNER_DATA = Object.freeze({
+    title: 'We value your privacy',
+    description: 'We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. Read our ',
+    policyLinkText: 'Cookie Policy',
+    declineButton: 'Decline',
+    acceptButton: 'Accept All',
+});
+
+// ============================================
+// GLOBAL SEO DEFAULTS
+// ============================================
+
+export const DEFAULT_SEO = Object.freeze({
+    title: 'Soft Synergy Systems',
+    titleTemplate: '%s | Soft Synergy Systems',
+    description: 'Enterprise AI, QA, Java, and Full Stack Web Development solutions for global businesses.',
+    keywords: 'AI development, machine learning, QA services, test automation, Java development, full stack web development, enterprise software, digital transformation',
+    canonical: 'https://softsynergysystems.com/',
+    openGraph: {
+        type: 'website',
+        locale: 'en_IE',
+        url: 'https://softsynergysystems.com/',
+        site_name: 'Soft Synergy Systems',
     },
 });
 
@@ -376,16 +450,110 @@ export const LEGAL_PAGES = Object.freeze({
 export const ERROR_PAGE = Object.freeze({
     notFound: {
         code: '404',
-        title: 'Page Not Found',
+        title: '404 - Page Not Found',
         message: 'The page you are looking for does not exist or has been moved.',
+        subMessage: "Let's get you back on track.",
         buttonText: 'Back to Home',
         buttonLink: '/',
+        secondaryButtonText: 'Explore Services',
+        secondaryButtonLink: '/services',
     },
     serverError: {
         code: '500',
-        title: 'Server Error',
+        title: '500 - Server Error',
         message: 'Something went wrong. Please try again later.',
         buttonText: 'Back to Home',
         buttonLink: '/',
     },
+});
+
+// ============================================
+// LEGAL PAGES CONTENT
+// ============================================
+
+export const LEGAL_PAGES_CONTENT = Object.freeze({
+    'privacy-policy': {
+        title: 'Privacy Policy',
+        date: 'March 2026',
+        subtitle: 'Official policy and legal documentation.',
+        sections: [
+            {
+                title: '1. Introduction',
+                content: 'Soft Synergy Systems Pvt Ltd ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website.',
+            },
+            {
+                title: '2. Information Collection',
+                content: 'We collect information that you provide directly to us through our contact forms, newsletter signups, and other interactive elements on the site. This may include your name, email address, phone number, and company information.',
+            },
+            {
+                title: '3. Use of Information',
+                content: 'We use the collected information to respond to your inquiries, provide the services you request, and improve your overall experience on our platform. We do not sell your personal data to third parties.',
+            },
+            {
+                title: '4. GDPR Compliance',
+                content: 'For users in the European Economic Area, we process your personal data in accordance with the General Data Protection Regulation (GDPR). You have the right to access, correct, or delete your personal information.',
+            },
+        ]
+    },
+    'terms': {
+        title: 'Terms & Conditions',
+        date: 'March 2026',
+        subtitle: 'Official policy and legal documentation.',
+        sections: [
+            {
+                title: '1. Acceptance of Terms',
+                content: 'By accessing and using the Soft Synergy Systems website, you agree to comply with and be bound by these Terms and Conditions.',
+            },
+            {
+                title: '2. Use of Site',
+                content: 'You may use this site for lawful purposes only and in a manner that does not infringe the rights of others or restrict their use of the site. Unauthorized use of this site may give rise to a claim for damages.',
+            },
+            {
+                title: '3. Intellectual Property',
+                content: 'All content, including text, graphics, logos, and software, is the property of Soft Synergy Systems Pvt Ltd and is protected by international copyright laws.',
+            },
+        ]
+    },
+    'cookies': {
+        title: 'Cookie Policy',
+        date: 'March 2026',
+        subtitle: 'Official policy and legal documentation.',
+        sections: [
+            {
+                title: '1. What are Cookies?',
+                content: 'Cookies are small text files stored on your device to help websites function properly and to provide information to the owners of the site.',
+            },
+            {
+                title: '2. How We Use Cookies',
+                content: 'We use essential cookies for the site\'s functionality and analytical cookies to understand how visitors interact with our content. This helps us improve the user experience.',
+            },
+            {
+                title: '3. Managing Cookies',
+                content: 'You can manage your cookie preferences through the consent banner on our site or by adjusting your browser settings. Declining some cookies may affect the functionality of the site.',
+            },
+        ]
+    },
+    'support': {
+        title: 'Help & Support',
+        date: 'March 2026',
+        subtitle: 'Official policy and legal documentation.',
+        sections: [
+            {
+                title: 'How Can We Assist You?',
+                content: 'Soft Synergy Systems is dedicated to providing exceptional support to our clients and partners. We offer multiple channels for assistance depending on your needs.',
+            },
+            {
+                title: '1. Technical Support',
+                content: 'For existing clients requiring technical assistance with implemented solutions, please contact your dedicated account manager or use our support portal.',
+            },
+            {
+                title: '2. General Inquiries',
+                content: 'For general questions about our services, process, or company, please refer to our <a href="/faq">FAQ page</a> or send an email to our help desk.',
+            },
+            {
+                title: '3. Response Times',
+                content: 'We aim to respond to all support requests within one business day. Critical system issues are prioritized for even faster resolution.',
+            },
+        ]
+    }
 });

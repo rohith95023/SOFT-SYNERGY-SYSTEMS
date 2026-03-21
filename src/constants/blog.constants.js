@@ -9,12 +9,22 @@
  */
 
 // ============================================
+// BLOG PAGE SEO
+// ============================================
+
+export const BLOG_SEO = Object.freeze({
+    title: 'Blog & Insights',
+    description: 'Explore our latest insights on AI, automation, web development, and industry trends.',
+    keywords: 'technology blog, AI insights, software development trends, QA best practices',
+});
+
+// ============================================
 // BLOG PAGE HERO
 // ============================================
 
 export const BLOG_HERO = Object.freeze({
-    title: 'Insights & Articles',
-    subtitle: 'Thought leadership, industry perspectives, and technical insights from our team',
+    title: 'Blog & Insights',
+    subtitle: 'Thoughts on technology, innovation, and digital transformation',
     breadcrumb: [
         { label: 'Home', path: '/' },
         { label: 'Blog', path: '/blog' },
@@ -27,16 +37,8 @@ export const BLOG_HERO = Object.freeze({
 // ============================================
 
 export const BLOG_CATEGORIES = Object.freeze({
-    allLabel: 'All Posts',
-    categories: [
-        { id: 'all', label: 'All', value: 'all' },
-        { id: 'ai-ml', label: 'AI & ML', value: 'AI & ML' },
-        { id: 'automation', label: 'Automation', value: 'Automation' },
-        { id: 'web-dev', label: 'Web Dev', value: 'Web Dev' },
-        { id: 'qa', label: 'QA', value: 'QA' },
-        { id: 'industry', label: 'Industry News', value: 'Industry News' },
-        { id: 'enterprise', label: 'Enterprise', value: 'Enterprise' },
-    ],
+    allLabel: 'All',
+    categories: ['All', 'AI & ML', 'Automation', 'Web Dev', 'QA', 'Industry News'],
 });
 
 // ============================================
@@ -688,9 +690,8 @@ export const NEWSLETTER_DATA = Object.freeze({
 // ============================================
 
 export const BLOG_DETAIL_CONSTANTS = Object.freeze({
-    relatedPostsTitle: 'Related Articles',
-    relatedPostsCount: 3,
-    shareTitle: 'Share this article',
-    backToBlogText: 'Back to Blog',
     authorTitle: 'Written by',
+    keyTakeawaysTitle: 'Key Takeaways',
+    shareText: 'Share this article',
+    relatedArticlesTitle: 'Related Articles',
 });

@@ -6,19 +6,27 @@ import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import CTABanner from '../sections/CTABanner';
-import { FAQ_DATA } from '../constants';
+import {
+  FAQ_HERO,
+  FAQ_CATEGORIES,
+  FAQ_DATA,
+  FAQ_CTA,
+  FAQ_SEO
+} from '../constants/faq.constants';
+import { GLOBAL_STRINGS } from '../constants/shared.constants';
 
 const FAQ = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('General');
+  const [activeCategory, setActiveCategory] = useState('All');
   const [openItems, setOpenItems] = useState({});
 
-  const categories = [...new Set(FAQ_DATA.map(item => item.category))];
+  const categories = FAQ_CATEGORIES.map(c => c.label);
 
-  const filteredFAQs = FAQ_DATA.filter(item => {
-    const matchesSearch = item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.answer.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
+  // Helper to filter FAQs
+  const filteredFAQs = FAQ_DATA.filter(faq => {
+    const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = activeCategory === 'All' || faq.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -37,18 +45,16 @@ const FAQ = () => {
       transition={{ duration: 0.3 }}
     >
       <SEO
-        title="FAQ - Soft Synergy Systems"
-        description="Find answers to frequently asked questions about our services, processes, and more."
+        title={`${FAQ_SEO.title} - Soft Synergy Systems`}
+        description={FAQ_SEO.description}
+        keywords={FAQ_SEO.keywords}
       />
 
       {/* Page Hero */}
       <PageHero
-        title="Frequently Asked Questions"
-        subtitle="Find answers to common questions about our services and processes"
-        breadcrumbs={[
-          { label: 'Home', path: '/' },
-          { label: 'FAQ', path: '/faq' }
-        ]}
+        title={FAQ_HERO.title}
+        subtitle={FAQ_HERO.subtitle}
+        breadcrumbs={FAQ_HERO.breadcrumb}
       />
 
       {/* Search & Filter */}
@@ -60,7 +66,7 @@ const FAQ = () => {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-carbon-50" />
               <input
                 type="text"
-                placeholder="Search questions..."
+                placeholder={FAQ_HERO.searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-4 bg-carbon-10 border border-carbon-20 text-carbon-100 focus:border-primary focus:outline-none transition-colors text-lg"
@@ -133,9 +139,9 @@ const FAQ = () => {
                   </motion.div>
                 ))
               ) : (
-                <div className="py-12 text-center">
-                  <p className="text-carbon-60">No questions found matching your search.</p>
-                </div>
+                <div className="text-center py-20 bg-carbon-10 border border-carbon-20">
+              <p className="text-carbon-60">{GLOBAL_STRINGS.noResults}</p>
+            </div>
               )}
             </div>
           </div>
