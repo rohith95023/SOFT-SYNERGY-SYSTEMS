@@ -7,25 +7,48 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy via SSH
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Install Bun
+      - name: Install Bun
+        run: curl -fsSL https://bun.sh/install | bash
+
+      # Add Bun to PATH
+      - name: Add bun to PATH
+        run: echo "$HOME/.bun/bin" >> $GITHUB_PATH
+
+      # Install dependencies
+      - name: Install dependencies
+        run: bun install
+
+      # Build project
+      - name: Build project
+        run: bun run build
+
+      # Copy dist to server
+      - name: Deploy to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/*"
+          target: "/var/www/softsynergysystems.com"
+
+      # Restart Caddy
+      - name: Restart Caddy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT || 22 }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          script_stop: true
-          request_pty: false
           script: |
-            export PATH="/home/ubuntu/.bun/bin:$PATH"
-            cd /home/ubuntu/projects/SOFT-SYNERGY-SYSTEMS
-            chmod +x deploy.sh
-            ./deploy.sh
+            sudo systemctl restart caddy
