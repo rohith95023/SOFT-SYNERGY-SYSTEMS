@@ -26,5 +26,6 @@ jobs:
           request_pty: false
           script: |
             export PATH="/home/ubuntu/.bun/bin:$PATH"
-            cd /home/ubuntu/projects/SOFT-SYNERGY-SYSTEMS || exit 1
-            sudo ./deploy.sh
+            cd /home/ubuntu/projects/SOFT-SYNERGY-SYSTEMS
+            chmod +x deploy.sh
+            ./deploy.sh
