@@ -4,14 +4,15 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
-import Card from '../components/ui/Card';
-import { SERVICE_CATEGORIES } from '../constants';
+import { SERVICE_CATEGORIES, SERVICES_OVERVIEW_DATA, GLOBAL_STRINGS } from '../constants';
 
 const ServicesOverview = () => {
+  const { sectionBadge, sectionTitle, sectionSubtitle, bottomCTA, contactCTA } = SERVICES_OVERVIEW_DATA;
+
   return (
     <Section className="bg-white" id="services">
       <Container>
-        {/* Section Header - Corporate-style */}
+        {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -20,19 +21,18 @@ const ServicesOverview = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
-              Our Capability
+              {sectionBadge}
             </span>
             <h2 className="text-4xl md:text-5xl font-light text-carbon-100 mb-6 tracking-tight">
-              Advanced Solutions for Modern Enterprises.
+              {sectionTitle}
             </h2>
             <p className="text-lg text-carbon-60 font-light leading-relaxed">
-              We bridge the gap between complex problems and elegant technology solutions
-              across four core divisions, delivering measurable business outcomes.
+              {sectionSubtitle}
             </p>
           </motion.div>
         </div>
 
-        {/* Services Grid - Corporate Style */}
+        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-carbon-20">
           {SERVICE_CATEGORIES.map((service, idx) => (
             <motion.div
@@ -63,7 +63,7 @@ const ServicesOverview = () => {
 
                 {/* Link */}
                 <span className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all duration-200">
-                  Learn more
+                  {GLOBAL_STRINGS.learnMore}
                   <ArrowRight className="h-4 w-4" />
                 </span>
               </Link>
@@ -81,16 +81,16 @@ const ServicesOverview = () => {
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <p className="text-carbon-60">
-              Looking for a specific solution?{' '}
-              <Link to="/services" className="text-primary font-medium hover:underline">
-                View all services
+              {bottomCTA.question}{' '}
+              <Link to={bottomCTA.link} className="text-primary font-medium hover:underline">
+                {bottomCTA.linkText}
               </Link>
             </p>
             <Link
-              to="/contact"
+              to={contactCTA.link}
               className="inline-flex items-center gap-2 text-sm font-medium text-carbon-100 hover:text-primary transition-colors"
             >
-              Discuss your project <ArrowRight className="h-4 w-4" />
+              {contactCTA.text} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </motion.div>

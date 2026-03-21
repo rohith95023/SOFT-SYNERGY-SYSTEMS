@@ -11,6 +11,29 @@
 import appConfig from '../config/app.config';
 
 // ============================================
+// ABOUT PAGE SEO
+// ============================================
+
+export const ABOUT_SEO = Object.freeze({
+    title: 'About Us',
+    description: 'Learn about Soft Synergy Systems - our mission, vision, values, and the team driving digital transformation for enterprises globally.',
+    keywords: 'about soft synergy systems, company mission, vision and values, leadership team, technology enterprise',
+});
+
+// ============================================
+// ABOUT PAGE HERO
+// ============================================
+
+export const ABOUT_HERO = Object.freeze({
+    title: 'About Us',
+    subtitle: 'Pioneering digital transformation with innovation, integrity, and excellence',
+    breadcrumb: [
+        { label: 'Home', path: '/' },
+        { label: 'About', path: '/about' }
+    ],
+});
+
+// ============================================
 // COMPANY INFORMATION
 // ============================================
 
@@ -39,13 +62,13 @@ export const COMPANY_INFO = Object.freeze({
 export const VISION_MISSION = Object.freeze({
     vision: {
         title: 'Our Vision',
-        statement: 'To become a global leader in digital transformation and advanced technology solutions.',
-        description: 'We envision a future where every enterprise can harness the power of AI, automation, and modern software to achieve unprecedented growth and efficiency.',
+        statement: 'To become a global leader in digital transformation and advanced technology solutions, recognized for our innovation, quality, and the measurable impact we create for our clients and communities.',
+        description: 'To become a global leader in digital transformation and advanced technology solutions, recognized for our commitment to synergy, quality, and the strategic advancement of the digital world.',
     },
     mission: {
         title: 'Our Mission',
-        statement: 'Empowering organisations with innovative technology solutions that drive efficiency, intelligence, and business growth.',
-        description: 'We deliver cutting-edge solutions tailored to each client\'s unique challenges, combining deep technical expertise with a commitment to excellence.',
+        statement: 'Empowering organizations with innovative technology solutions that drive efficiency, intelligence, and business growth. We transform complex challenges into elegant, scalable solutions that deliver lasting value.',
+        description: 'Empowering organizations with innovative technology solutions that drive efficiency, intelligence, and business growth. We strive to be the bridge between complex challenges and sustainable digital success.',
     },
 });
 
@@ -54,11 +77,13 @@ export const VISION_MISSION = Object.freeze({
 // ============================================
 
 export const COMPANY_STORY = Object.freeze({
-    title: 'Our Story',
+    badge: 'Our Story',
+    title: 'Building the Future of Enterprise Technology',
+    subtitle: 'A Decade of Excellence in Technology',
     paragraphs: [
-        'Founded in 2014, Soft Synergy Systems began with a simple yet ambitious vision: to help enterprises navigate the complexities of digital transformation. What started as a small team of passionate technologists has grown into a full-service technology partner serving clients across the globe.',
-        'Over the years, we have expanded our capabilities to include four specialized divisions: Software Development, Artificial Intelligence, Robotics & Automation, and Embedded Systems. Each division is staffed by experts who bring deep domain knowledge and a commitment to innovation.',
-        'Today, we are proud to serve over 50 enterprise clients across Banking, Fintech, Telecom, Logistics, Healthcare, and E-commerce. Our ISO certification reflects our unwavering commitment to quality and security in everything we do.',
+        'Founded in 2014, Soft Synergy Systems was built on the belief that technology should be a catalyst for business growth, not a barrier. Over the past decade, we have evolved from a specialized software firm into a comprehensive technology partner for enterprises worldwide.',
+        'Our journey began in Bengaluru, India, with a small team of passionate developers. Today, we stand as a multi-divisional organization with expertise across Artificial Intelligence, Quality Assurance, Enterprise Java, and Full Stack Web Development.',
+        'We take pride in our ability to combine technical depth with strategic thinking. Every solution we deliver is designed not just to meet immediate requirements, but to provide a scalable foundation for the future of our clients\' digital ecosystems.'
     ],
     highlights: [
         { year: '2014', event: 'Company founded in Bengaluru' },
@@ -155,8 +180,8 @@ export const CORE_DIVISIONS = Object.freeze([
 
 export const CERTIFICATIONS = Object.freeze({
     iso: {
-        title: 'ISO Certified Organisation',
-        description: 'We maintain strict quality management systems following international standards.',
+        title: 'ISO Certified Organization',
+        description: 'Our processes and quality management systems meet international standards.',
         badge: 'ISO 9001:2015',
     },
     security: {
@@ -164,3 +189,13 @@ export const CERTIFICATIONS = Object.freeze({
         description: 'Enterprise-grade security practices in all our development processes.',
     },
 });
+
+// ============================================
+// ABOUT STATS
+// ============================================
+
+export const ABOUT_STATS = Object.freeze([
+    { value: '10+', label: 'Years Experience' },
+    { value: '50+', label: 'Clients Served' },
+    { value: '99%', label: 'Success Rate' },
+]);

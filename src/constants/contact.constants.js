@@ -11,12 +11,22 @@
 import appConfig from '../config/app.config';
 
 // ============================================
+// CONTACT PAGE SEO
+// ============================================
+
+export const CONTACT_SEO = Object.freeze({
+    title: 'Contact Us',
+    description: 'Get in touch with Soft Synergy Systems. Let\'s discuss how we can help transform your business with our technology solutions.',
+    keywords: 'contact soft synergy systems, technology consultation, enterprise software inquiry, Bengaluru',
+});
+
+// ============================================
 // CONTACT PAGE HERO
 // ============================================
 
 export const CONTACT_HERO = Object.freeze({
-    title: 'Get In Touch',
-    subtitle: 'Ready to start your project? We would love to hear from you.',
+    title: 'Contact Us',
+    subtitle: 'Let\'s start a conversation about your technology needs',
     breadcrumb: [
         { label: 'Home', path: '/' },
         { label: 'Contact', path: '/contact' },

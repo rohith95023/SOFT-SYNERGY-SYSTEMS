@@ -5,7 +5,7 @@
 
 set -e  # Exit on error
 
-PROJECT_DIR="/home/deployer/projects/SOFT-SYNERGY-SYSTEMS"
+PROJECT_DIR="/home/ubuntu/projects/SOFT-SYNERGY-SYSTEMS"
 LOG_FILE="/var/log/soft-synergy-deploy.log"
 BACKUP_DIR="/var/backups/soft-synergy-systems"
 WEB_DIR="/var/www/softsynergysystems.com"

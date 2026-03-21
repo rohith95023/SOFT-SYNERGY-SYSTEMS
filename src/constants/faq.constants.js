@@ -11,6 +11,16 @@
 import appConfig from '../config/app.config';
 
 // ============================================
+// FAQ PAGE SEO
+// ============================================
+
+export const FAQ_SEO = Object.freeze({
+    title: 'Frequently Asked Questions',
+    description: 'Find answers to frequently asked questions about our services, processes, and more.',
+    keywords: 'FAQ, software development questions, AI development FAQ, QA services FAQ',
+});
+
+// ============================================
 // FAQ PAGE HERO
 // ============================================
 

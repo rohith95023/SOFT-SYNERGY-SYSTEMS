@@ -24,6 +24,7 @@ export {
     TESTIMONIALS_SECTION_DATA,
     CTA_BANNER_DATA,
     BLOG_PREVIEW_DATA,
+    HOME_SEO,
 } from './home.constants';
 
 // About Page Constants
@@ -34,6 +35,7 @@ export {
     CORE_VALUES,
     CORE_DIVISIONS,
     CERTIFICATIONS,
+    ABOUT_SEO,
 } from './about.constants';
 
 // Services Page Constants
@@ -43,6 +45,7 @@ export {
     DEVELOPMENT_PROCESS,
     TECHNOLOGY_STACK,
     SERVICE_CTA,
+    SERVICES_SEO,
 } from './services.constants';
 
 // Portfolio Page Constants
@@ -52,6 +55,7 @@ export {
     PORTFOLIO_ITEMS,
     PORTFOLIO_RESULTS,
     PORTFOLIO_CTA,
+    PORTFOLIO_SEO,
 } from './portfolio.constants';
 
 // Blog Page Constants
@@ -61,6 +65,7 @@ export {
     BLOG_POSTS,
     NEWSLETTER_DATA,
     BLOG_DETAIL_CONSTANTS,
+    BLOG_SEO,
 } from './blog.constants';
 
 // Contact Page Constants
@@ -71,6 +76,7 @@ export {
     MAP_CONFIG,
     CONTACT_FAQ,
     CONTACT_CTA,
+    CONTACT_SEO,
 } from './contact.constants';
 
 // FAQ Page Constants
@@ -79,6 +85,7 @@ export {
     FAQ_CATEGORIES,
     FAQ_DATA,
     FAQ_CTA,
+    FAQ_SEO,
 } from './faq.constants';
 
 // Careers Page Constants
@@ -89,6 +96,7 @@ export {
     OPEN_POSITIONS,
     APPLICATION_PROCESS,
     CAREERS_CTA,
+    CAREERS_SEO,
 } from './careers.constants';
 
 // ============================================
@@ -107,6 +115,10 @@ export {
     SOCIAL_LINKS,
     STATS_DATA,
     FOOTER_LINKS,
-    LEGAL_PAGES,
+    FOOTER_DATA,
+    COOKIE_BANNER_DATA,
     ERROR_PAGE,
+    DEFAULT_SEO,
+    GLOBAL_STRINGS,
+    LEGAL_PAGES_CONTENT,
 } from './shared.constants';

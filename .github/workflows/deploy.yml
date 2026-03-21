@@ -25,7 +25,6 @@ jobs:
           script_stop: true
           request_pty: false
           script: |
-            # Set PATH for bun and run deploy
-            export PATH="/home/deployer/.bun/bin:$PATH"
-            cd /home/deployer/projects || exit 1
-            ./deploy.sh
+            export PATH="/home/ubuntu/.bun/bin:$PATH"
+            cd /home/ubuntu/projects/SOFT-SYNERGY-SYSTEMS || exit 1
+            sudo ./deploy.sh

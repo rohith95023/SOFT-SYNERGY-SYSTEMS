@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ArrowRight, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NAV_LINKS } from '../../constants';
+import { NAV_LINKS, GLOBAL_STRINGS, COMPANY_INFO } from '../../constants';
 import { cn } from '../../utils/cn';
 import Button from '../ui/Button';
 import Container from '../layout/Container';
@@ -85,7 +85,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-3 group">
           <img
             src={showDarkLogo ? logoDark : logoLight}
-            alt="Soft Synergy Systems"
+            alt={COMPANY_INFO.name}
             className="h-16 md:h-20 w-auto object-contain transition-opacity duration-300"
             key={showDarkLogo ? 'dark' : 'light'}
           />
@@ -152,7 +152,7 @@ const Navbar = () => {
                             to="/services"
                             className="text-sm font-medium text-primary hover:text-primary-dark flex items-center gap-2"
                           >
-                            View all services <ArrowRight className="h-4 w-4" />
+                            {GLOBAL_STRINGS.viewAllServices} <ArrowRight className="h-4 w-4" />
                           </Link>
                         </div>
                       </div>
@@ -169,7 +169,7 @@ const Navbar = () => {
           {featuresConfig.darkMode && (
             <button
               onClick={() => { toggleTheme(); trackEvent('theme_toggle', { theme: theme === 'light' ? 'dark' : 'light' }); }}
-              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              aria-label={theme === 'dark' ? GLOBAL_STRINGS.darkMode.switchToLight : GLOBAL_STRINGS.darkMode.switchToDark}
               className={cn(
                 'p-2 transition-colors duration-200',
                 isSolidWhite ? 'text-carbon-80 hover:text-primary' : 'text-white hover:text-primary-light'
@@ -178,9 +178,9 @@ const Navbar = () => {
               {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </button>
           )}
-          <Link to="/contact" onClick={() => trackEvent('cta_click', { button_name: 'Get a Quote', location: 'Navbar' })}>
+          <Link to="/contact" onClick={() => trackEvent('cta_click', { button_name: GLOBAL_STRINGS.getQuote, location: 'Navbar' })}>
             <Button size="sm" icon={ArrowRight}>
-              Get a Quote
+              {GLOBAL_STRINGS.getQuote}
             </Button>
           </Link>
         </div>
@@ -193,7 +193,7 @@ const Navbar = () => {
           )}
 
           onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          aria-label={isOpen ? GLOBAL_STRINGS.menu.close : GLOBAL_STRINGS.menu.open}
         >
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -243,15 +243,15 @@ const Navbar = () => {
                   <button
                     onClick={() => toggleTheme()}
                     className="flex items-center gap-3 py-3 px-4 text-base font-medium text-carbon-80 hover:bg-carbon-10 w-full text-left"
-                    aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                    aria-label={theme === 'dark' ? GLOBAL_STRINGS.darkMode.switchToLight : GLOBAL_STRINGS.darkMode.switchToDark}
                   >
                     {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                    {theme === 'dark' ? GLOBAL_STRINGS.darkMode.lightMode : GLOBAL_STRINGS.darkMode.darkMode}
                   </button>
                 )}
                 <Link to="/contact">
                   <Button className="w-full" icon={ArrowRight}>
-                    Get a Quote
+                    {GLOBAL_STRINGS.getQuote}
                   </Button>
                 </Link>
               </div>

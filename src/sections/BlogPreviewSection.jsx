@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
-import { BLOG_POSTS } from '../constants';
+import { BLOG_POSTS, BLOG_PREVIEW_DATA } from '../constants';
 
 const BlogPreviewSection = () => {
-  const latestPosts = BLOG_POSTS.slice(0, 3);
+  const { sectionBadge, sectionTitle, viewAllLink, viewAllText, postsCount } = BLOG_PREVIEW_DATA;
+  const latestPosts = BLOG_POSTS.slice(0, postsCount);
 
   return (
     <Section className="bg-white" id="blog">
@@ -20,18 +21,18 @@ const BlogPreviewSection = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-block text-xs uppercase tracking-widest font-semibold text-primary mb-4">
-              Insights & Updates
+              {sectionBadge}
             </span>
             <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight">
-              Latest from Our Blog
+              {sectionTitle}
             </h2>
           </motion.div>
 
           <Link
-            to="/blog"
+            to={viewAllLink}
             className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
           >
-            View All Insights <ArrowRight className="h-4 w-4" />
+            {viewAllText} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 

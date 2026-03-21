@@ -15,7 +15,16 @@ import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import ContactForm from '../components/ui/ContactForm';
-import { COMPANY_INFO, MAP_CONFIG } from '../constants';
+import { 
+  CONTACT_HERO, 
+  CONTACT_INFO, 
+  CONTACT_FORM_CONFIG, 
+  MAP_CONFIG, 
+  SOCIAL_LINKS, 
+  CONTACT_FAQ, 
+  CONTACT_CTA,
+  CONTACT_SEO
+} from '../constants/contact.constants';
 
 const Contact = () => {
   return (
@@ -26,20 +35,17 @@ const Contact = () => {
       transition={{ duration: 0.3 }}
     >
       <SEO
-        title="Contact Us - Soft Synergy Systems"
-        description="Get in touch with Soft Synergy Systems. Let's discuss how we can help transform your business with our technology solutions."
-        keywords="contact Soft Synergy Systems, technology consultation, enterprise software inquiry, Bengaluru"
+        title={`${CONTACT_SEO.title} - Soft Synergy Systems`}
+        description={CONTACT_SEO.description}
+        keywords={CONTACT_SEO.keywords}
         canonical="https://softsynergysystems.com/contact"
       />
 
       {/* Page Hero */}
       <PageHero
-        title="Contact Us"
-        subtitle="Let's start a conversation about your technology needs"
-        breadcrumbs={[
-          { label: 'Home', path: '/' },
-          { label: 'Contact', path: '/contact' }
-        ]}
+        title={CONTACT_HERO.title}
+        subtitle={CONTACT_HERO.subtitle}
+        breadcrumbs={CONTACT_HERO.breadcrumb}
       />
 
       {/* Contact Section */}
@@ -57,10 +63,10 @@ const Contact = () => {
                 Get In Touch
               </span>
               <h2 className="text-3xl font-light text-carbon-100 tracking-tight mb-3">
-                Send Us a Message
+                {CONTACT_FORM_CONFIG.title}
               </h2>
               <p className="text-carbon-60 mb-8">
-                Fill out the form and our team will get back to you within 24 hours.
+                {CONTACT_FORM_CONFIG.subtitle}
               </p>
               {/* ContactForm is wired to contactService — handles EmailJS + fallback */}
               <ContactForm />
@@ -86,10 +92,10 @@ const Contact = () => {
                     <div>
                       <p className="text-xs uppercase tracking-widest font-semibold text-carbon-50 mb-1">Email</p>
                       <a
-                        href={`mailto:${COMPANY_INFO.contact.email}`}
+                        href={`mailto:${CONTACT_INFO.contact.email.primary}`}
                         className="text-carbon-100 hover:text-primary transition-colors"
                       >
-                        {COMPANY_INFO.contact.email}
+                        {CONTACT_INFO.contact.email.primary}
                       </a>
                     </div>
                   </div>
@@ -101,10 +107,10 @@ const Contact = () => {
                     <div>
                       <p className="text-xs uppercase tracking-widest font-semibold text-carbon-50 mb-1">Phone</p>
                       <a
-                        href={`tel:${COMPANY_INFO.contact.phone.replace(/\s/g, '')}`}
+                        href={`tel:${CONTACT_INFO.contact.phone.primary.replace(/\s/g, '')}`}
                         className="text-carbon-100 hover:text-primary transition-colors"
                       >
-                        {COMPANY_INFO.contact.phone}
+                        {CONTACT_INFO.contact.phone.display}
                       </a>
                     </div>
                   </div>
@@ -116,9 +122,9 @@ const Contact = () => {
                     <div>
                       <p className="text-xs uppercase tracking-widest font-semibold text-carbon-50 mb-1">Address</p>
                       <p className="text-carbon-80 leading-relaxed">
-                        26/3, Thirumenahalli Main Road,<br />
-                        Block 3, Chokkanahalli,<br />
-                        Bengaluru, Karnataka 560064, India
+                        {CONTACT_INFO.address.street},<br />
+                        {CONTACT_INFO.address.area},<br />
+                        {CONTACT_INFO.address.city}, {CONTACT_INFO.address.state} {CONTACT_INFO.address.pincode}, {CONTACT_INFO.address.country}
                       </p>
                     </div>
                   </div>
@@ -129,7 +135,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-widest font-semibold text-carbon-50 mb-1">Business Hours</p>
-                      <p className="text-carbon-80">Mon – Fri: 9:00 AM – 6:00 PM IST</p>
+                      <p className="text-carbon-80">{CONTACT_INFO.workingHours.weekdays}</p>
                     </div>
                   </div>
                 </div>
@@ -145,7 +151,7 @@ const Contact = () => {
                       allowFullScreen=""
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      title="Soft Synergy Systems Office Location"
+                      title={`${CONTACT_INFO.company.name} Location`}
                     />
                   </div>
                 </div>

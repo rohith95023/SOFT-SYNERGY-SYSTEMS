@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Cookie } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { COOKIE_BANNER_DATA } from '../../constants';
 import Button from '../ui/Button';
 import Container from '../layout/Container';
 
@@ -36,14 +37,14 @@ const CookieBanner = () => {
                 <Cookie className="h-8 w-8 text-primary" />
               </div>
               <div className="flex-grow text-center md:text-left">
-                <h4 className="font-bold text-navy mb-2">We value your privacy</h4>
+                <h4 className="font-bold text-navy mb-2">{COOKIE_BANNER_DATA.title}</h4>
                 <p className="text-slate text-sm leading-relaxed">
-                  We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. Read our <Link to="/cookies" className="text-primary font-semibold hover:underline">Cookie Policy</Link>.
+                  {COOKIE_BANNER_DATA.description} <Link to="/cookies" className="text-primary font-semibold hover:underline">{COOKIE_BANNER_DATA.policyLinkText}</Link>.
                 </p>
               </div>
               <div className="flex gap-3 shrink-0 w-full md:w-auto">
-                <Button variant="ghost" className="grow md:grow-0" onClick={() => handleConsent(false)}>Decline</Button>
-                <Button className="grow md:grow-0" onClick={() => handleConsent(true)}>Accept All</Button>
+                <Button variant="ghost" className="grow md:grow-0" onClick={() => handleConsent(false)}>{COOKIE_BANNER_DATA.declineButton}</Button>
+                <Button className="grow md:grow-0" onClick={() => handleConsent(true)}>{COOKIE_BANNER_DATA.acceptButton}</Button>
               </div>
             </Container>
           </div>

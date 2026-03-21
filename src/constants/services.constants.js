@@ -11,6 +11,16 @@
 import { Brain, Shield, Code, Globe, Lightbulb, Users, Rocket, CheckCircle } from 'lucide-react';
 
 // ============================================
+// SERVICES PAGE SEO
+// ============================================
+
+export const SERVICES_SEO = Object.freeze({
+    title: 'Our Services',
+    description: 'Explore our comprehensive services in AI Development, QA, Enterprise Java, and Full Stack Web Development.',
+    keywords: 'AI development services, QA automation, enterprise Java solutions, full stack web development services',
+});
+
+// ============================================
 // SERVICES PAGE HERO
 // ============================================
 
@@ -203,37 +213,37 @@ export const DEVELOPMENT_PROCESS = Object.freeze({
     subtitle: 'Our proven 5-step engineering process ensures successful outcomes',
     steps: [
         {
-            number: 1,
+            step: '01',
             title: 'Discovery',
-            description: 'We begin by understanding your business goals, challenges, and technical requirements through in-depth consultations.',
+            description: 'Understanding your business needs and technical requirements',
             icon: Lightbulb,
             deliverables: ['Requirements Document', 'Project Scope', 'Timeline Estimate'],
         },
         {
-            number: 2,
-            title: 'Architecture',
-            description: 'Our architects design a scalable, secure solution architecture tailored to your specific needs.',
+            step: '02',
+            title: 'Planning',
+            description: 'Creating detailed project roadmap and architecture design',
             icon: Code,
             deliverables: ['System Architecture', 'Tech Stack Selection', 'Security Plan'],
         },
         {
-            number: 3,
-            title: 'Develop',
-            description: 'Our engineering team builds your solution using agile methodologies with regular progress updates.',
+            step: '03',
+            title: 'Development',
+            description: 'Agile development with regular progress updates',
             icon: Rocket,
             deliverables: ['Working Software', 'Code Repository', 'Documentation'],
         },
         {
-            number: 4,
-            title: 'Validate',
-            description: 'Rigorous testing ensures quality, security, and performance before deployment.',
+            step: '04',
+            title: 'Testing',
+            description: 'Comprehensive QA and user acceptance testing',
             icon: CheckCircle,
             deliverables: ['Test Reports', 'Security Audit', 'Performance Metrics'],
         },
         {
-            number: 5,
-            title: 'Deliver',
-            description: 'We deploy your solution and provide ongoing support to ensure continued success.',
+            step: '05',
+            title: 'Deployment',
+            description: 'Production deployment and post-launch support',
             icon: Users,
             deliverables: ['Production Deployment', 'Training', 'Support Plan'],
         },
@@ -245,8 +255,9 @@ export const DEVELOPMENT_PROCESS = Object.freeze({
 // ============================================
 
 export const TECHNOLOGY_STACK = Object.freeze({
-    title: 'Technology Stack',
+    title: 'Technologies We Use',
     subtitle: 'We work with the latest and most reliable technologies',
+    badge: 'Technology Stack',
     categories: [
         {
             name: 'Frontend',
@@ -273,6 +284,20 @@ export const TECHNOLOGY_STACK = Object.freeze({
             technologies: ['Selenium', 'Cypress', 'JMeter', 'Postman', 'Appium', 'Jest'],
         },
     ],
+    flatStack: [
+        { name: 'React', category: 'Frontend' },
+        { name: 'Python', category: 'Backend' },
+        { name: 'Java', category: 'Backend' },
+        { name: 'Node.js', category: 'Backend' },
+        { name: 'AWS', category: 'Cloud' },
+        { name: 'Azure', category: 'Cloud' },
+        { name: 'TensorFlow', category: 'AI/ML' },
+        { name: 'PostgreSQL', category: 'Database' },
+        { name: 'MongoDB', category: 'Database' },
+        { name: 'Docker', category: 'DevOps' },
+        { name: 'Kubernetes', category: 'DevOps' },
+        { name: 'Selenium', category: 'QA' },
+    ]
 });
 
 // ============================================
