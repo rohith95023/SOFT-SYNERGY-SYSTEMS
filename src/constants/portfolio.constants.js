@@ -9,6 +9,16 @@
  */
 
 // ============================================
+// PORTFOLIO PAGE SEO
+// ============================================
+
+export const PORTFOLIO_SEO = Object.freeze({
+    title: 'Our Portfolio',
+    description: 'Explore our portfolio of successful projects across Banking, Healthcare, E-commerce, and Telecom industries.',
+    keywords: 'software portfolio, case studies, enterprise solutions, AI projects, digital transformation examples',
+});
+
+// ============================================
 // PORTFOLIO PAGE HERO
 // ============================================
 

@@ -7,22 +7,29 @@ import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import CTABanner from '../sections/CTABanner';
-import { PORTFOLIO_ITEMS } from '../constants';
+import { 
+  PORTFOLIO_HERO, 
+  PORTFOLIO_FILTERS, 
+  PORTFOLIO_ITEMS, 
+  PORTFOLIO_RESULTS, 
+  PORTFOLIO_CTA,
+  PORTFOLIO_SEO
+} from '../constants/portfolio.constants';
 import { trackEvent } from '../utils/analytics';
 
-const filters = ['All', 'Banking', 'Healthcare', 'E-commerce', 'Telecom'];
+const categories = PORTFOLIO_FILTERS.categories;
 
 const Portfolio = () => {
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState('all');
 
-  const handleFilterClick = (filter) => {
-    setActiveFilter(filter);
-    trackEvent('portfolio_filter_click', { filter });
+  const handleFilterClick = (filterId) => {
+    setActiveFilter(filterId);
+    trackEvent('portfolio_filter_click', { filterId });
   };
 
-  const filteredItems = activeFilter === 'All'
+  const filteredItems = activeFilter === 'all'
     ? PORTFOLIO_ITEMS
-    : PORTFOLIO_ITEMS.filter(item => item.industry === activeFilter);
+    : PORTFOLIO_ITEMS.filter(item => item.industry === activeFilter || item.category === activeFilter);
 
   return (
     <motion.main
@@ -32,34 +39,32 @@ const Portfolio = () => {
       transition={{ duration: 0.3 }}
     >
       <SEO
-        title="Portfolio - Soft Synergy Systems"
-        description="Explore our portfolio of successful projects across Banking, Healthcare, E-commerce, and Telecom industries."
+        title={`${PORTFOLIO_SEO.title} - Soft Synergy Systems`}
+        description={PORTFOLIO_SEO.description}
+        keywords={PORTFOLIO_SEO.keywords}
       />
 
       {/* Page Hero */}
       <PageHero
-        title="Our Portfolio"
-        subtitle="Case studies showcasing our impact across industries"
-        breadcrumbs={[
-          { label: 'Home', path: '/' },
-          { label: 'Portfolio', path: '/portfolio' }
-        ]}
+        title={PORTFOLIO_HERO.title}
+        subtitle={PORTFOLIO_HERO.subtitle}
+        breadcrumbs={PORTFOLIO_HERO.breadcrumb}
       />
 
       {/* Filter Tabs */}
       <Section className="bg-white pt-8">
         <Container>
           <div className="flex flex-wrap gap-2 mb-12">
-            {filters.map((filter) => (
+            {categories.map((filter) => (
               <button
-                key={filter}
-                onClick={() => handleFilterClick(filter)}
-                className={`px-5 py-2.5 text-sm font-medium transition-colors ${activeFilter === filter
+                key={filter.id}
+                onClick={() => handleFilterClick(filter.id)}
+                className={`px-5 py-2.5 text-sm font-medium transition-colors ${activeFilter === filter.id
                   ? 'bg-primary text-white'
                   : 'bg-carbon-10 text-carbon-80 hover:bg-carbon-20'
                   }`}
               >
-                {filter}
+                {filter.label}
               </button>
             ))}
           </div>
@@ -129,18 +134,13 @@ const Portfolio = () => {
                 Impact & Results
               </span>
               <h2 className="text-3xl md:text-4xl font-light text-carbon-100 tracking-tight">
-                Measurable Business Outcomes
+                {PORTFOLIO_RESULTS.title}
               </h2>
             </motion.div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-carbon-30">
-            {[
-              { value: '40%', label: 'Average Efficiency Gain' },
-              { value: '60%', label: 'Cost Reduction' },
-              { value: '99%', label: 'Client Satisfaction' },
-              { value: '50+', label: 'Projects Delivered' },
-            ].map((stat, idx) => (
+            {PORTFOLIO_RESULTS.highlights.map((stat, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
@@ -149,8 +149,8 @@ const Portfolio = () => {
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
                 className="bg-white p-8 text-center"
               >
-                <p className="text-3xl font-light text-primary mb-2">{stat.value}</p>
-                <p className="text-xs uppercase tracking-widest text-carbon-50">{stat.label}</p>
+                <p className="text-3xl font-light text-primary mb-2">{stat.metric}</p>
+                <p className="text-xs uppercase tracking-widest text-carbon-50">{stat.description}</p>
               </motion.div>
             ))}
           </div>
@@ -164,3 +164,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+

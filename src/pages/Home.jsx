@@ -20,6 +20,7 @@ import PartnersSection from '../sections/PartnersSection';
 import TestimonialsSection from '../sections/TestimonialsSection';
 import CTABanner from '../sections/CTABanner';
 import BlogPreviewSection from '../sections/BlogPreviewSection';
+import { HOME_SEO } from '../constants';
 
 /**
  * JSON-LD Organization schema for the homepage.
@@ -64,10 +65,10 @@ const Home = () => {
       transition={{ duration: 0.3 }}
     >
       <SEO
-        title="Soft Synergy Systems - Innovating for a Digital Era"
-        description="Enterprise AI, QA, Java, and Full Stack Web Development solutions for global businesses. ISO Certified with 10+ years of experience."
-        keywords="AI development, machine learning, QA services, test automation, Java development, full stack web development, enterprise software, digital transformation, Bengaluru, India"
-        canonical="https://softsynergysystems.com/"
+        title={HOME_SEO.title}
+        description={HOME_SEO.description}
+        keywords={HOME_SEO.keywords}
+        canonical={HOME_SEO.canonical}
         jsonLd={ORGANIZATION_JSON_LD}
       />
 

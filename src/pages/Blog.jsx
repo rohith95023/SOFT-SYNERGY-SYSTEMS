@@ -8,14 +8,21 @@ import Container from '../components/layout/Container';
 import PageHero from '../components/ui/PageHero';
 import InputField from '../components/ui/InputField';
 import Button from '../components/ui/Button';
-import { BLOG_POSTS } from '../constants';
+import { 
+  BLOG_HERO, 
+  BLOG_CATEGORIES, 
+  BLOG_POSTS, 
+  NEWSLETTER_DATA,
+  BLOG_SEO
+} from '../constants/blog.constants';
 import { submitNewsletterSignup } from '../services/contactService';
+import { GLOBAL_STRINGS } from '../constants';
 
-const categories = ['All', 'AI & ML', 'Automation', 'Web Dev', 'QA', 'Industry News'];
+const categories = BLOG_CATEGORIES.categories;
 
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState(BLOG_CATEGORIES.allLabel);
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,7 +41,7 @@ const Blog = () => {
   const filteredPosts = BLOG_POSTS.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = activeCategory === 'All' || post.category === activeCategory;
+    const matchesCategory = activeCategory === BLOG_CATEGORIES.allLabel || post.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -46,18 +53,16 @@ const Blog = () => {
       transition={{ duration: 0.3 }}
     >
       <SEO
-        title="Blog & Insights - Soft Synergy Systems"
-        description="Explore our latest insights on AI, automation, web development, and industry trends."
+        title={`${BLOG_SEO.title} - Soft Synergy Systems`}
+        description={BLOG_SEO.description}
+        keywords={BLOG_SEO.keywords}
       />
 
       {/* Page Hero */}
       <PageHero
-        title="Blog & Insights"
-        subtitle="Thoughts on technology, innovation, and digital transformation"
-        breadcrumbs={[
-          { label: 'Home', path: '/' },
-          { label: 'Blog', path: '/blog' }
-        ]}
+        title={BLOG_HERO.title}
+        subtitle={BLOG_HERO.subtitle}
+        breadcrumbs={BLOG_HERO.breadcrumb}
       />
 
       {/* Search & Filter */}
@@ -69,7 +74,7 @@ const Blog = () => {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-carbon-50" />
               <input
                 type="text"
-                placeholder="Search articles..."
+                placeholder={BLOG_HERO.searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 bg-carbon-10 border border-carbon-20 text-carbon-100 focus:border-primary focus:outline-none transition-colors"
@@ -149,13 +154,13 @@ const Blog = () => {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16">
-              <p className="text-carbon-60 mb-4">No articles found matching your criteria.</p>
+            <div className="col-span-full text-center py-20 bg-carbon-10 border border-carbon-20">
+              <p className="text-carbon-60 mb-6">{GLOBAL_STRINGS.noResults}</p>
               <Button
                 variant="ghost"
                 onClick={() => {
                   setSearchQuery('');
-                  setActiveCategory('All');
+                  setActiveCategory(BLOG_CATEGORIES.allLabel);
                 }}
               >
                 Clear Filters
@@ -176,15 +181,15 @@ const Blog = () => {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-2xl md:text-3xl font-light text-carbon-100 tracking-tight mb-4">
-                Subscribe to Our Newsletter
+                {NEWSLETTER_DATA.title}
               </h2>
               <p className="text-carbon-60 mb-8">
-                Get the latest insights and updates delivered to your inbox.
+                {NEWSLETTER_DATA.subtitle}
               </p>
               <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={NEWSLETTER_DATA.placeholder}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={isSubmitting}
@@ -192,7 +197,7 @@ const Blog = () => {
                   className="flex-grow px-4 py-3 bg-white border border-carbon-30 text-carbon-100 focus:border-primary focus:outline-none transition-colors disabled:opacity-50"
                 />
                 <Button type="submit" icon={ArrowRight} disabled={isSubmitting}>
-                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                  {isSubmitting ? 'Subscribing...' : NEWSLETTER_DATA.buttonText}
                 </Button>
               </form>
               {status.message && (
@@ -209,3 +214,4 @@ const Blog = () => {
 };
 
 export default Blog;
+

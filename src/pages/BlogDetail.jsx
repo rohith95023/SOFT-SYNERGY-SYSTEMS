@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import SEO from '../components/common/SEO';
 import Container from '../components/layout/Container';
 import Section from '../components/layout/Section';
-import { BLOG_POSTS } from '../constants';
+import { BLOG_POSTS, GLOBAL_STRINGS } from '../constants';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 
@@ -45,7 +45,7 @@ const BlogDetail = () => {
               className="inline-flex items-center gap-2 text-carbon-60 hover:text-primary mb-8 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to Blog
+              {GLOBAL_STRINGS.backToBlog}
             </Link>
 
             {/* Category & Date */}
@@ -104,14 +104,8 @@ const BlogDetail = () => {
                 {post.content}
               </p>
 
-              <p className="text-carbon-60 leading-relaxed mt-6">
-                This article delves deep into the technological shifts shaping our industry. From AI-driven automation 
-                to cloud-native architectures, we dissect the methodologies that separate market leaders from legacy 
-                systems. Our team's firsthand experience in executing these transformations highlights the critical 
-                importance of agility, security, and continuous innovation.
-              </p>
 
-              <h2 className="text-2xl font-light text-carbon-100 mt-10 mb-4">Key Takeaways</h2>
+              <h2 className="text-2xl font-light text-carbon-100 mt-10 mb-4">{BLOG_DETAIL_CONSTANTS.keyTakeawaysTitle}</h2>
               <ul className="text-carbon-60 space-y-3">
                 <li>Understanding the core concepts and their practical applications</li>
                 <li>Best practices for implementation in enterprise environments</li>
@@ -123,7 +117,7 @@ const BlogDetail = () => {
             {/* Share Section */}
             <div className="mt-12 pt-8 border-t border-carbon-20">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-carbon-80">Share this article</span>
+                <span className="text-sm font-medium text-carbon-80">{BLOG_DETAIL_CONSTANTS.shareText}</span>
                 <div className="flex gap-3">
                   {[Linkedin, Twitter, Facebook].map((Icon, idx) => (
                     <button
@@ -144,7 +138,7 @@ const BlogDetail = () => {
       <Section className="bg-carbon-10">
         <Container>
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-light text-carbon-100 mb-8">Related Articles</h2>
+            <h2 className="text-2xl font-light text-carbon-100 mb-8">{BLOG_DETAIL_CONSTANTS.relatedArticlesTitle}</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {BLOG_POSTS.filter(p => p.id !== post.id).slice(0, 2).map((relatedPost) => (
                 <Link

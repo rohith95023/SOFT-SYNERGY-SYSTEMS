@@ -26,6 +26,6 @@ jobs:
           request_pty: false
           script: |
             # Set PATH for bun and run deploy
-            export PATH="/home/deployer/.bun/bin:$PATH"
-            cd /home/deployer/projects || exit 1
+            export PATH="/home/ubuntu/.bun/bin:$PATH"
+            cd /home/ubuntu/projects
             ./deploy.sh

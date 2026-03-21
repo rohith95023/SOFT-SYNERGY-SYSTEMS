@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Section from '../components/layout/Section';
 import Container from '../components/layout/Container';
-import { SERVICE_CATEGORIES, SERVICES_OVERVIEW_DATA } from '../constants';
+import { SERVICE_CATEGORIES, SERVICES_OVERVIEW_DATA, GLOBAL_STRINGS } from '../constants';
 
 const ServicesOverview = () => {
   const { sectionBadge, sectionTitle, sectionSubtitle, bottomCTA, contactCTA } = SERVICES_OVERVIEW_DATA;
@@ -63,7 +63,7 @@ const ServicesOverview = () => {
 
                 {/* Link */}
                 <span className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all duration-200">
-                  Learn more
+                  {GLOBAL_STRINGS.learnMore}
                   <ArrowRight className="h-4 w-4" />
                 </span>
               </Link>
