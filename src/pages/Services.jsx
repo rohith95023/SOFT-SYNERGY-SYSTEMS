@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Cpu, Shield, Code, Globe, Lightbulb, Rocket, Users } from 'lucide-react';
 import SEO from '../components/common/SEO';
 import Section from '../components/layout/Section';
@@ -18,8 +18,25 @@ import {
 
 const Services = () => {
   const [activeService, setActiveService] = useState(SERVICE_CATEGORIES[0].id);
+  const { hash } = useLocation();
+  const navigate = useNavigate();
 
   const currentService = SERVICE_CATEGORIES.find(s => s.id === activeService);
+
+  useEffect(() => {
+    if (!hash) return;
+    const targetId = hash.replace('#', '');
+    const serviceExists = SERVICE_CATEGORIES.some((service) => service.id === targetId);
+
+    if (serviceExists && targetId !== activeService) {
+      setActiveService(targetId);
+    }
+  }, [hash, activeService]);
+
+  const handleServiceSelect = (serviceId) => {
+    setActiveService(serviceId);
+    navigate(`/services#${serviceId}`, { replace: true });
+  };
 
   return (
     <motion.main
@@ -42,14 +59,14 @@ const Services = () => {
       />
 
       {/* Services Navigation - Corporate-style */}
-      <Section className="bg-white pt-0">
+      <Section className="bg-white py-0">
         <Container>
           <div className="border-b border-carbon-20 -mt-8 sticky top-20 bg-white z-30">
             <div className="flex overflow-x-auto hide-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
               {SERVICE_CATEGORIES.map((service) => (
                 <button
                   key={service.id}
-                  onClick={() => setActiveService(service.id)}
+                  onClick={() => handleServiceSelect(service.id)}
                   className={`px-6 py-4 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${activeService === service.id
                     ? 'border-primary text-primary'
                     : 'border-transparent text-carbon-60 hover:text-carbon-100'
@@ -64,9 +81,9 @@ const Services = () => {
       </Section>
 
       {/* Service Detail */}
-      <Section className="bg-white pt-8">
+      <Section className="bg-white py-4">
         <Container>
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2">
               <motion.div
@@ -140,7 +157,7 @@ const Services = () => {
                     {SERVICE_CATEGORIES.map((service) => (
                       <button
                         key={service.id}
-                        onClick={() => setActiveService(service.id)}
+                        onClick={() => handleServiceSelect(service.id)}
                         className={`w-full text-left px-4 py-3 text-sm transition-colors ${activeService === service.id
                           ? 'bg-white text-primary font-medium'
                           : 'text-carbon-60 hover:bg-white hover:text-carbon-100'

@@ -45,7 +45,7 @@ export const SERVICE_CATEGORIES = Object.freeze([
         description: 'Building intelligent AI-powered solutions tailored for modern enterprises, from RAG systems to predictive analytics.',
         detailedDescription: 'Our AI & Python Development division specializes in creating cutting-edge artificial intelligence solutions that transform how businesses operate. We leverage the latest in machine learning, natural language processing, and computer vision to deliver solutions that drive real business value.',
         icon: Brain,
-        link: '/services',
+        link: '/services#ai-python',
         capabilities: [
             {
                 title: 'RAG Systems & Knowledge Bases',
@@ -86,7 +86,7 @@ export const SERVICE_CATEGORIES = Object.freeze([
         description: 'Ensuring flawless software through comprehensive end-to-end testing and quality engineering practices.',
         detailedDescription: 'Our QA Services division provides comprehensive testing solutions that ensure your software meets the highest quality standards. From automated testing to security assessments, we help you deliver reliable, secure, and performant applications.',
         icon: Shield,
-        link: '/services',
+        link: '/services#qa-services',
         capabilities: [
             {
                 title: 'Automated Testing',
@@ -127,7 +127,7 @@ export const SERVICE_CATEGORIES = Object.freeze([
         description: 'Scalable, enterprise-grade Java applications built for demanding industries with complex requirements.',
         detailedDescription: 'Our Enterprise Java Development team builds robust, scalable backend systems that power mission-critical applications. We specialize in microservices architecture, helping enterprises modernize legacy systems and build cloud-native solutions.',
         icon: Code,
-        link: '/services',
+        link: '/services#enterprise-java',
         capabilities: [
             {
                 title: 'Microservices Architecture',
@@ -168,7 +168,7 @@ export const SERVICE_CATEGORIES = Object.freeze([
         description: 'End-to-end web applications from frontend UX to backend API, delivering seamless digital experiences.',
         detailedDescription: 'Our Full Stack Web Development team creates modern, responsive web applications that deliver exceptional user experiences. From SaaS platforms to e-commerce solutions, we build applications that scale with your business.',
         icon: Globe,
-        link: '/services',
+        link: '/services#fullstack-web',
         capabilities: [
             {
                 title: 'Web Applications',

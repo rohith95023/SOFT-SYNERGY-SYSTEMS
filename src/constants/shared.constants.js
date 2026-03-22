@@ -46,10 +46,10 @@ export const NAV_LINKS = Object.freeze([
         name: 'Services',
         path: '/services',
         dropdown: [
-            { name: 'AI & Python Development', path: '/services', description: 'Intelligent AI-powered solutions' },
-            { name: 'Quality Assurance', path: '/services', description: 'End-to-end testing services' },
-            { name: 'Enterprise Java', path: '/services', description: 'Scalable backend systems' },
-            { name: 'Full Stack Web', path: '/services', description: 'Modern web applications' },
+            { name: 'AI & Python Development', path: '/services#ai-python', description: 'Intelligent AI-powered solutions' },
+            { name: 'Quality Assurance', path: '/services#qa-services', description: 'End-to-end testing services' },
+            { name: 'Enterprise Java', path: '/services#enterprise-java', description: 'Scalable backend systems' },
+            { name: 'Full Stack Web', path: '/services#fullstack-web', description: 'Modern web applications' },
         ]
     },
     { name: 'Portfolio', path: '/portfolio' },
@@ -59,10 +59,10 @@ export const NAV_LINKS = Object.freeze([
 ]);
 
 export const SERVICE_NAV_LINKS = Object.freeze([
-    { name: 'AI & Python Development', path: '/services' },
-    { name: 'Quality Assurance', path: '/services' },
-    { name: 'Enterprise Java', path: '/services' },
-    { name: 'Full Stack Web', path: '/services' },
+    { name: 'AI & Python Development', path: '/services#ai-python' },
+    { name: 'Quality Assurance', path: '/services#qa-services' },
+    { name: 'Enterprise Java', path: '/services#enterprise-java' },
+    { name: 'Full Stack Web', path: '/services#fullstack-web' },
 ]);
 
 // ============================================
