@@ -1,6 +1,0 @@
-softsynergysystems.com, www.softsynergysystems.com {
-    root * /home/ubuntu/projects/SOFT-SYNERGY-SYSTEMS/dist
-    file_server
-
-    try_files {path} /index.html
-}
