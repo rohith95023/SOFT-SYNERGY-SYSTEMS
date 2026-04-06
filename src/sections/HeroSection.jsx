@@ -16,20 +16,20 @@ import { HERO_DATA } from '../constants';
 const VideoBackground = memo(() => {
   return (
     <div className="absolute inset-0 z-0 bg-white">
-      {/* object-contain shows full video frame — no zoom-in distortion */}
+      {/* object-cover fills section fully; right anchor shows video content without center-zoom */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-contain"
-        style={{ pointerEvents: 'none', objectPosition: 'center right' }}
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ pointerEvents: 'none', objectPosition: '70% center' }}
       >
         <source src={backgroundVideo} type="video/mp4" />
       </video>
 
-      {/* Gradient Overlay — covers blank edges from object-contain */}
-      <div className="absolute inset-0 bg-linear-to-r from-white via-white/80 to-white/10" />
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-linear-to-r from-white/95 via-white/60 to-white/10" />
 
       {/* Grid Pattern */}
       <svg
@@ -63,7 +63,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative flex items-center overflow-hidden min-h-[65vh] md:min-h-[70vh] lg:min-h-[90vh] py-12 md:py-20 lg:py-24">
+      <section className="relative flex items-center overflow-hidden min-h-[70vh] md:min-h-[80vh] lg:min-h-screen py-12 md:py-20 lg:py-24">
         <VideoBackground />
 
         <Container className="relative z-10 w-full">
