@@ -11,7 +11,7 @@ import {
 } from '../../constants';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
-import logoDark from '../../assets/LogoDark.webp';
+import logoDark from '../../assets/logos/LogoDark.webp';
 import { submitNewsletterSignup } from '../../services/contactService';
 import featuresConfig from '../../config/features.config';
 import { newsletterSchema } from '../../validators/contact.validator';

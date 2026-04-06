@@ -4,22 +4,23 @@
  * Primary landing page. Assembles all home page sections.
  * SEO metadata and JSON-LD Organization schema injected via <SEO />.
  *
- * RULE: Page files max 80 lines — business sections live in sections/.
- *
  * @module pages/Home
  */
 
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/common/SEO';
 import HeroSection from '../sections/HeroSection';
 import ServicesOverview from '../sections/ServicesOverview';
-import StatsSection from '../sections/StatsSection';
-import IndustriesSection from '../sections/IndustriesSection';
-import PartnersSection from '../sections/PartnersSection';
-import TestimonialsSection from '../sections/TestimonialsSection';
-import CTABanner from '../sections/CTABanner';
-import BlogPreviewSection from '../sections/BlogPreviewSection';
+
+// ── Lazy-loaded sections (loaded as needed or after critical content) ──
+const OfficePhotosSection = lazy(() => import('../sections/OfficePhotosSection'));
+const StatsSection = lazy(() => import('../sections/StatsSection'));
+const IndustriesSection = lazy(() => import('../sections/IndustriesSection'));
+const PartnersSection = lazy(() => import('../sections/PartnersSection'));
+const TestimonialsSection = lazy(() => import('../sections/TestimonialsSection'));
+const CTABanner = lazy(() => import('../sections/CTABanner'));
+
 import { HOME_SEO } from '../constants';
 
 /**
@@ -56,6 +57,9 @@ const ORGANIZATION_JSON_LD = {
   ],
 };
 
+/** Placeholder for lazy-loading sections - prevents layout shifts */
+const SectionPlaceholder = () => <div className="min-h-[500px] w-full bg-carbon-10/50 animate-pulse" />;
+
 const Home = () => {
   return (
     <motion.main
@@ -72,17 +76,21 @@ const Home = () => {
         jsonLd={ORGANIZATION_JSON_LD}
       />
 
+      {/* Critical Sections - Eagerly loaded for better LCP */}
       <HeroSection />
       <ServicesOverview />
-      <StatsSection />
-      <IndustriesSection />
-      <PartnersSection />
-      <TestimonialsSection />
-      <CTABanner />
-      <BlogPreviewSection />
+
+      {/* Delayed Sections - Dynamically imported to reduce initial bundle size */}
+      <Suspense fallback={<SectionPlaceholder />}>
+        <OfficePhotosSection />
+        <StatsSection />
+        <IndustriesSection />
+        <PartnersSection />
+        <TestimonialsSection />
+        <CTABanner />
+      </Suspense>
     </motion.main>
   );
 };
 
 export default Home;
-

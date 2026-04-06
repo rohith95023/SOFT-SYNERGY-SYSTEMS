@@ -1,11 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Container from '../components/layout/Container';
-import backgroundVideo from '../assets/background.mp4';
+import backgroundVideo from '../assets/hero background video/background video.mp4';
 import { HERO_DATA } from '../constants';
+
+/**
+ * Memoized Video Background
+ * -------------------------
+ * Separate component to prevent video re-loading or re-evaluation
+ * when parent slide state changes.
+ */
+const VideoBackground = memo(() => {
+  return (
+    <div className="absolute inset-0 z-0 bg-white">
+      {/* object-contain shows full video frame — no zoom-in distortion */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-contain"
+        style={{ pointerEvents: 'none', objectPosition: 'center right' }}
+      >
+        <source src={backgroundVideo} type="video/mp4" />
+      </video>
+
+      {/* Gradient Overlay — covers blank edges from object-contain */}
+      <div className="absolute inset-0 bg-linear-to-r from-white via-white/80 to-white/10" />
+
+      {/* Grid Pattern */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-[0.03]"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <defs>
+          <pattern id="heroGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#008b96" strokeWidth="1" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#heroGrid)" />
+      </svg>
+    </div>
+  );
+});
+
+VideoBackground.displayName = 'VideoBackground';
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -20,36 +63,8 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative flex items-center overflow-hidden min-h-[70vh] md:min-h-[75vh] lg:min-h-screen py-12 md:py-20 lg:py-24">
-        {/* Enterprise-style Grid Background */}
-        <div className="absolute inset-0 z-0">
-          {/* Video Background */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src={`${backgroundVideo}?v=2`} type="video/mp4" />
-          </video>
-
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-linear-to-r from-white/95 via-white/60 to-white/10" />
-
-          {/* Animated Grid Pattern */}
-          <svg
-            className="absolute inset-0 w-full h-full opacity-[0.03]"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern id="heroGrid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#008b96" strokeWidth="1" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#heroGrid)" />
-          </svg>
-        </div>
+      <section className="relative flex items-center overflow-hidden min-h-[65vh] md:min-h-[70vh] lg:min-h-[90vh] py-12 md:py-20 lg:py-24">
+        <VideoBackground />
 
         <Container className="relative z-10 w-full">
           <div className="max-w-5xl">
@@ -91,11 +106,10 @@ const HeroSection = () => {
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      currentSlide === index
+                    className={`h-1.5 rounded-full transition-all duration-300 ${currentSlide === index
                         ? 'w-10 bg-primary'
                         : 'w-4 bg-carbon-100/20 hover:bg-carbon-100/40'
-                    }`}
+                      }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}

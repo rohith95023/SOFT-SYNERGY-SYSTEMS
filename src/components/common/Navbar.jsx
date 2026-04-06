@@ -9,8 +9,8 @@ import Container from '../layout/Container';
 import { trackEvent } from '../../utils/analytics';
 import { useTheme } from '../../context/ThemeContext';
 import featuresConfig from '../../config/features.config';
-import logoLight from '../../assets/LogoLight.webp';
-import logoDark from '../../assets/LogoDark.webp';
+import logoLight from '../../assets/logos/LogoLight.webp';
+import logoDark from '../../assets/logos/LogoDark.webp';
 
 // Pages with dark hero backgrounds (PageHero component)
 const DARK_HERO_PAGES = ['/about', '/services', '/portfolio', '/blog', '/contact', '/faq', '/careers'];
@@ -49,8 +49,8 @@ const Navbar = () => {
   const isActive = (path) => pathname === path;
 
   // Determine which logo to show:
-  // - LogoDark.webp = for dark backgrounds (not scrolled on dark hero pages)
-  // - LogoLight.webp = for white/light backgrounds (scrolled = white navbar, or home page with light hero)
+  // - logos/LogoDark.webp = for dark backgrounds (not scrolled on dark hero pages)
+  // - logos/LogoLight.webp = for white/light backgrounds (scrolled = white navbar, or home page with light hero)
   // Only use dark logo on home page if it has a dark hero (which it doesn't currently) 
   // or on dark hero pages when not scrolled and transparency is active (only on home)
   const showDarkLogo = isHomePage ? (!scrolled && hasDarkHero && !isHovered) : false;
@@ -87,6 +87,8 @@ const Navbar = () => {
             src={showDarkLogo ? logoDark : logoLight}
             alt={COMPANY_INFO.name}
             className="h-16 md:h-20 w-auto object-contain transition-opacity duration-300"
+            width={200}
+            height={80}
             key={showDarkLogo ? 'dark' : 'light'}
           />
         </Link>

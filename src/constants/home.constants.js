@@ -3,10 +3,19 @@
  * ===================
  * All data used specifically on the Home page (/)
  * 
- * Sections: Hero, Services Overview, Stats, Industries, Partners, Testimonials, CTA Banner, Blog Preview
+ * Sections: Hero, Services Overview, Office Photos, Stats, Industries, Partners, Testimonials, CTA Banner, Blog Preview
  * 
  * @module constants/home
  */
+
+import officePhoto1 from '../assets/office/1.webp';
+import officePhoto2 from '../assets/office/3.webp';
+import officePhoto3 from '../assets/office/5.webp';
+import officePhoto4 from '../assets/office/6.webp';
+import officePhoto5 from '../assets/office/7.webp';
+import officePhoto6 from '../assets/office/8.webp';
+import officeEntrance from '../assets/office/entrance.webp';
+import officeMain from '../assets/office/main office.webp';
 
 // ============================================
 // HOME PAGE SEO
@@ -78,6 +87,26 @@ export const SERVICES_OVERVIEW_DATA = Object.freeze({
         text: 'Discuss your project',
         link: '/contact',
     },
+});
+
+// ============================================
+// OFFICE PHOTOS SECTION DATA
+// ============================================
+
+export const OFFICE_PHOTOS_DATA = Object.freeze({
+    sectionBadge: 'Our Workspace',
+    sectionTitle: 'A Glimpse Into Our Home',
+    sectionSubtitle: 'Where innovation meets collaboration. Our modern workspace is designed to foster creativity and excellence.',
+    photos: [
+        { id: 1, src: officeMain, alt: 'Main Office Area' },
+        { id: 2, src: officeEntrance, alt: 'Office Entrance' },
+        { id: 3, src: officePhoto1, alt: 'Workspace 1' },
+        { id: 4, src: officePhoto2, alt: 'Collaborative Area' },
+        { id: 5, src: officePhoto3, alt: 'Meeting Room' },
+        { id: 6, src: officePhoto4, alt: 'Workspace 2' },
+        { id: 7, src: officePhoto5, alt: 'Relaxation Zone' },
+        { id: 8, src: officePhoto6, alt: 'Workspace 3' },
+    ],
 });
 
 // ============================================

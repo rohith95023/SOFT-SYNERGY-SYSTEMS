@@ -45,6 +45,9 @@ const PartnersSection = () => {
                 src={partner.logo}
                 alt={partner.name}
                 className="max-h-10 max-w-full grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                width={120}
+                height={40}
+                loading="lazy"
               />
             </motion.div>
           ))}
